@@ -11,9 +11,9 @@ OUTPUT_DIR    := macro
 # The actual file array targets are dynamically appended at runtime.
 OPENLANE_CONTAINER := docker run --rm \
   -v "$(CURDIR)":"$(CURDIR)" \
-  -v "$$LOCAL_PDK_ROOT":"$$LOCAL_PDK_ROOT" \
-  -e PDK_ROOT="$$LOCAL_PDK_ROOT" \
-  -e PDK_TARGET="$$PDK_TARGET" \
+  -v "$(LOCAL_PDK_ROOT)":"$(LOCAL_PDK_ROOT)" \
+  -e PDK_ROOT="$(LOCAL_PDK_ROOT)" \
+  -e PDK_TARGET="$(PDK_TARGET)" \
   -w "$(CURDIR)" \
   ghcr.io/librelane/librelane:3.0.5 \
   python3 -m librelane
