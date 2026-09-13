@@ -33,6 +33,16 @@ define_pdn_grid \
     -voltage_domain CORE \
     -pins "$::env(PDN_VERTICAL_LAYER)"
 
+
+# Set core_offsets to 0 so the ring sits flush against 
+# the boundary walls, leaving full internal track clearance for the cell rails!
+add_pdn_ring \
+    -grid stdcell_grid \
+    -layers "$::env(PDN_VERTICAL_LAYER) $::env(PDN_HORIZONTAL_LAYER)" \
+    -widths "$::env(FP_PDN_VWIDTH) $::env(FP_PDN_HWIDTH)" \
+    -spacings "$::env(FP_PDN_VSPACING) $::env(FP_PDN_HSPACING)" \
+    -core_offsets "0 0 0 0"
+
 # 2. Standard Cell Rails on Metal1
 if { $::env(PDN_ENABLE_RAILS) == 1 } {
     add_pdn_stripe \
