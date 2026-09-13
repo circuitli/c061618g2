@@ -56,10 +56,8 @@ $(MACRO_NAMES):
 		*) echo "❌ Error: Invalid PDK select. Use PDK=ihp|sky130|gf180"; exit 1 ;; \
 	esac; \
 	\
-	# Let OpenLane consume the environment parameter directly from the Docker instance map.
 	$(OPENLANE_CONTAINER) --manual-pdk --pdk-root $(PDK_ROOT) --pdk $(PDK_TARGET) $(JSON_TARGETS); \
 	\
-	# Locate the true physical hardware layout and timing assets
 	RAW_LEF =$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/lef/*"    -name "*.lef" -print -quit); \
 	RAW_LIB =$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/lib/*"    -name "*.lib" -print -quit); \
 	RAW_GDS =$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/gds/*"    -name "*.gds" -print -quit); \
@@ -74,7 +72,6 @@ $(MACRO_NAMES):
 	mkdir -p "$(OUTPUT_DIR)/pnl"; \
     mkdir -p "$(OUTPUT_DIR)/spef"; \
 	\
-	# Safe copy operations mapping abstracts straight to the delivery folder
 	if [ -n "$$RAW_LEF" ] ; then cp "$$RAW_LEF"  "$(OUTPUT_DIR)/lef/$@.lef"; fi; \
 	if [ -n "$$RAW_LIB"  ]; then cp "$$RAW_LIB"  "$(OUTPUT_DIR)/lib/$@.lib"; fi; \
 	if [ -n "$$RAW_GDS"  ]; then cp "$$RAW_GDS"  "$(OUTPUT_DIR)/gds/$@.gds"; fi; \
