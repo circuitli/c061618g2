@@ -7,13 +7,21 @@ PDK           ?= ihp
 BUILD_DIR     := openlane
 OUTPUT_DIR    := macro
 
-# System tool configurations
-OPENLANE_EXEC := librelane
+# THE ARCHITECTURAL WIN: The tool execution definition is kept purely as the binary hook.
+# The actual file array targets are dynamically appended at runtime.
+OPENLANE_CONTAINER := docker run --rm \
+  -v "$(CURDIR)":"$(CURDIR)" \
+  -v "$$LOCAL_PDK_ROOT":"$$LOCAL_PDK_ROOT" \
+  -e PDK_ROOT="$$LOCAL_PDK_ROOT" \
+  -w "$(CURDIR)" \
+  ghcr.io/librelane/librelane:3.0.5 \
+  python3 -m librelane
 
 # Dynamically find all immediate subdirectories inside macro_build/
 # Each subdirectory represents a standalone block (e.g., macro_build/filter_1)
 MACRO_SUBDIRS := $(wildcard $(BUILD_DIR)/*)
 MACRO_NAMES   := $(notdir $(MACRO_SUBDIRS))
+JSON_TARGETS  := $(foreach dir,$(MACRO_NAMES),$(BUILD_DIR)/$(dir)/config.json)
 
 .PHONY: all clean $(MACRO_NAMES)
 
@@ -35,9 +43,12 @@ $(MACRO_NAMES):
 	esac; \
 	\
 	# Let OpenLane consume the environment parameter directly from the Docker instance map.
-	$(OPENLANE_EXEC) -manual-pdk --pdk-root "$$PDK_ROOT" --pdk $$PDK_TARGET $(BUILD_DIR)/$@/config.json; \
-
+	$(OPENLANE_CONTAINER) --manual-pdk --pdk $$PDK_TARGET $(JSON_TARGETS); \
 	\
+	$(MAKE) process_assets
+
+# 2. Host Staging Pass: Handles file copying and directory cleanups natively
+process_assets:
 	# Locate the true physical hardware layout and timing assets
 	RAW_LEF =$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/lef/*"    -name "*.lef" -print -quit); \
 	RAW_LIB =$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/lib/*"    -name "*.lib" -print -quit); \

@@ -56,18 +56,7 @@ jobs:
           # Establish an absolute, local workspace destination folder path
           LOCAL_PDK_ROOT="${{ github.workspace }}/pdk"
 
-          # Execute the official OpenROAD/OpenLane image. 
-          # This maps your workspace directory and forces Yosys to process flags natively!
-          docker run --rm \
-            -v ${{ github.workspace }}:/work \
-            -v "$LOCAL_PDK_ROOT":"$LOCAL_PDK_ROOT" \
-            -e PDK_ROOT="$LOCAL_PDK_ROOT" \
-            -e PDK_TARGET="$PDK_TARGET" \
-            -w /work \
-            --entrypoint /bin/bash \
-            ghcr.io/librelane/librelane:3.0.5 \
-            -c "apt-get update && apt-get install -y make && make"
-            #librelane --manual-pdk --pdk-root "$LOCAL_PDK_ROOT" --pdk "$PDK_TARGET" openlane/c061618g2/config.json
+          make
       
           # Stage the compiled views directly to your expected _build folder matrix
           #mkdir -p macros/gds macros/lef macros/lib macros/nl macros/pnl macros/spef
