@@ -85,4 +85,4 @@ add_pdn_connect -grid stdcell_grid -layers "$::env(PDN_VERTICAL_LAYER) $::env(PD
 #define_pdn_grid -macro -default -name macro_grid -starts_with GROUND
 #add_pdn_connect -grid macro_grid -layers "$::env(PDN_VERTICAL_LAYER) $::env(PDN_HORIZONTAL_LAYER)"
 
-pdngen -skip_trim
+#pdngen -skip_trim
