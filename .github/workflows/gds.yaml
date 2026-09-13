@@ -31,7 +31,7 @@ jobs:
           set -eo pipefail
 
           export PDK_ROOT="${{ github.workspace }}/pdk"
-          export PDK_TARGET="ihp-sg13g"
+          export PDK_TARGET="ihp-sg13g2"
 
           pip install ciel
 
