@@ -28,7 +28,7 @@ set physical_y_center [expr {(double([$physical_bbox yMin]) + double([$physical_
 
 # Safely initialize your custom grid name to bypass the memory crash
 define_pdn_grid \
-    -grid_name  stdcell_grid \
+    -name  stdcell_grid \
     -starts_with GROUND \
     -voltage_domain CORE \
     -pins "$::env(PDN_VERTICAL_LAYER)" 
@@ -62,7 +62,7 @@ add_pdn_stripe -grid stdcell_grid \
                -layer $::env(PDN_VERTICAL_LAYER) \
                -width $::env(FP_PDN_VWIDTH) \
                -pitch $::env(FP_PDN_VPITCH) \
-               -offset $::env(FP_PDN_VPITCH) \
+               -offset ($::env(FP_PDN_VPITCH) / 2.0) \
                -spacing $::env(FP_PDN_VSPACING) \
                -nets "$::env(GND_NET) $::env(VDD_NET)" \
                -extend_to_core_ring
@@ -72,7 +72,7 @@ add_pdn_stripe -grid stdcell_grid \
                -layer $::env(PDN_HORIZONTAL_LAYER) \
                -width $::env(FP_PDN_HWIDTH) \
                -pitch $::env(FP_PDN_HPITCH) \
-               -offset $::env(FP_PDN_HPITCH) \
+               -offset ($::env(FP_PDN_HPITCH) / 2.0) \
                -spacing $::env(FP_PDN_HSPACING) \
                -nets "$::env(GND_NET) $::env(VDD_NET)" \
                -extend_to_core_ring
