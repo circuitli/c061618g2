@@ -103,9 +103,7 @@ define_pdn_grid \
     -default \
     -name macro \
     -starts_with POWER \
-    -halo "$::env(PDN_HORIZONTAL_HALO) $::env(PDN_VERTICAL_HALO)" \
-    -pins "Metal3" \
-    -pin_direction horizontal
+    -halo "$::env(PDN_HORIZONTAL_HALO) $::env(PDN_VERTICAL_HALO)" 
 
 # Step 1: Connect Top-Level Horizontal Parameter pins down to the Vertical Parameter straps
 add_pdn_connect \

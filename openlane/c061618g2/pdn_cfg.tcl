@@ -27,17 +27,25 @@ set physical_y_center [expr {(double([$physical_bbox yMin]) + double([$physical_
 # =============================================================================
 
 # Safely initialize your custom grid name to bypass the memory crash
-define_pdn_grid -name stdcell_grid -starts_with GROUND -voltage_domains CORE
+define_pdn_grid \
+    -name stdcell_grid \
+    -starts_with GROUND \
+    -voltage_domain CORE \
+    -pins "$::env(PDN_HORIZONTAL_LAYER)"
 
-# =============================================================================
-# AUTOMATED RAILS (NO FOLLOWPINS - DUAL NET INTERLEAVING ENGINE)
-# =============================================================================
-add_pdn_stripe -grid stdcell_grid \
-               -layer $::env(PDN_RAIL_LAYER) \
-               -width $native_pdk_width \
-               -pitch $calculated_rail_pitch \
-               -offset $physical_y_center \
-               -nets "$::env(VDD_NET) $::env(GND_NET)"
+# 2. Standard Cell Rails on Metal1
+if { $::env(PDN_ENABLE_RAILS) == 1 } {
+    add_pdn_stripe \
+        -grid stdcell_grid \
+        -layer $::env(PDN_RAIL_LAYER) \
+        -width $::env(PDN_RAIL_WIDTH) \
+        -followpins
+
+    # Connect horizontal Metal1 cell rails to the Vertical power straps (Metal4)
+    add_pdn_connect \
+        -grid stdcell_grid \
+        -layers "$::env(PDN_RAIL_LAYER) $::env(PDN_VERTICAL_LAYER)"
+}
 # =============================================================================
 
 # 1. Unified Vertical Stripes (Metal3) -> EXTEND_TO_BOUNDARY
