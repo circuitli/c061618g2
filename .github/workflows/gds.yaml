@@ -49,12 +49,16 @@ jobs:
       # to build your macro sub-config inside your branch natively!
       - name: 🔨 Compile Internal Hard Macros Natively
         shell: bash
+        env:
+          LOCAL_PDK_ROOT: ${{ github.workspace }}/pdk
+          PDK_ROOT: ${{ github.workspace }}/pdk
+          PDK_TARGET: ihp-sg13g2
         run: |
           set -eo pipefail
           echo "🚀 Initialising native macro hardening loop via tt_tool..."
 
           # Establish an absolute, local workspace destination folder path
-          LOCAL_PDK_ROOT="${{ github.workspace }}/pdk"
+          #LOCAL_PDK_ROOT="${{ github.workspace }}/pdk"
 
           make
       
