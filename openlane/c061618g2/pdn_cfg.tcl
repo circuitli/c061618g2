@@ -56,7 +56,7 @@ add_pdn_stripe -grid stdcell_grid \
                -offset $core_left \
                -spacing $::env(FP_PDN_VSPACING) \
                -nets "$::env(GND_NET) $::env(VDD_NET)" \
-               -extend_to_boundary
+               -extend_to_core_ring
 
 # 3. Horizontal Mesh Power Landing Pads -> EXTEND_TO_BOUNDARY
 add_pdn_stripe -grid stdcell_grid \
@@ -66,7 +66,7 @@ add_pdn_stripe -grid stdcell_grid \
                -offset $::env(FP_PDN_HOFFSET) \
                -spacing $::env(FP_PDN_HSPACING) \
                -nets "$::env(GND_NET) $::env(VDD_NET)" \
-               -extend_to_boundary
+               -extend_to_core_ring
 
 # 4. Connect the layers cleanly together via native layer connectivity strings
 #add_pdn_connect -grid stdcell_grid -layers "$::env(PDN_HORIZONTAL_LAYER) Metal2"
