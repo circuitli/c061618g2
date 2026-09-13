@@ -42,13 +42,13 @@ if { $::env(PDN_ENABLE_RAILS) == 1 } {
         -followpins
 
     # Connect horizontal Metal1 cell rails to the Vertical power straps (Metal4)
-    #add_pdn_connect \
+    add_pdn_connect \
         -grid stdcell_grid \
-        -layers "$::env(PDN_RAIL_LAYER) Metal2"
+        -layers "$::env(PDN_RAIL_LAYER) $::env(PDN_VERTICAL_LAYER)"
 }
 # =============================================================================
 
-# 1. Unified Vertical Stripes (Metal3) -> EXTEND_TO_BOUNDARY
+# 1. Unified Vertical Stripes -> EXTEND_TO_BOUNDARY
 add_pdn_stripe -grid stdcell_grid \
                -layer $::env(PDN_VERTICAL_LAYER) \
                -width $::env(FP_PDN_VWIDTH) \
@@ -58,7 +58,7 @@ add_pdn_stripe -grid stdcell_grid \
                -nets "$::env(GND_NET) $::env(VDD_NET)" \
                -extend_to_boundary
 
-# 3. Horizontal Mesh Power Landing Pads (Metal4) -> EXTEND_TO_BOUNDARY
+# 3. Horizontal Mesh Power Landing Pads -> EXTEND_TO_BOUNDARY
 add_pdn_stripe -grid stdcell_grid \
                -layer $::env(PDN_HORIZONTAL_LAYER) \
                -width $::env(FP_PDN_HWIDTH) \
@@ -69,7 +69,7 @@ add_pdn_stripe -grid stdcell_grid \
                -extend_to_boundary
 
 # 4. Connect the layers cleanly together via native layer connectivity strings
-#add_pdn_connect -grid stdcell_grid -layers "$::env(PDN_HORIZONTAL_LAYER) Metal2"
+add_pdn_connect -grid stdcell_grid -layers "$::env(PDN_HORIZONTAL_LAYER) Metal2"
 add_pdn_connect -grid stdcell_grid -layers "$::env(PDN_VERTICAL_LAYER) $::env(PDN_HORIZONTAL_LAYER)"
 
 # Compliance macro integration grid
