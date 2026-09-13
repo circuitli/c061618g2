@@ -44,7 +44,7 @@ $(MACRO_NAMES):
 	esac; \
 	\
 	# Let OpenLane consume the environment parameter directly from the Docker instance map.
-	$(OPENLANE_CONTAINER) --manual-pdk --pdk-root $$PDK_ROOT --pdk $$PDK_TARGET $(JSON_TARGETS); \
+	$(OPENLANE_CONTAINER) --manual-pdk --pdk-root $(PDK_ROOT) --pdk $(PDK_TARGET) $(JSON_TARGETS); \
 	\
 	# Locate the true physical hardware layout and timing assets
 	RAW_LEF =$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/lef/*"    -name "*.lef" -print -quit); \
