@@ -41,13 +41,19 @@ $(MACRO_NAMES):
 	RAW_LEF=$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/lef/*" -name "*.lef" -print -quit); \
 	RAW_LIB=$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/lib/*" -name "*.lib" -print -quit); \
 	RAW_GDS=$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/gds/*" -name "*.gds" -print -quit); \
+	RAW_NL =$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/nl/*"  -name "*.v" -print -quit); \
+	RAW_PNL=$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/pnl/*" -name "*.v" -print -quit); \
+	RAW_PNL=$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/pnl/*" -name "*.v" -print -quit); \
+
+
+
 	\
 	mkdir -p $(OUTPUT_DIR); \
 	\
 	# Safe copy operations mapping abstracts straight to the delivery folder
-	if [ -n "$$RAW_LEF" ]; then cp "$$RAW_LEF" "$(OUTPUT_DIR)/$@.lef"; fi; \
-	if [ -n "$$RAW_LIB" ]; then cp "$$RAW_LIB" "$(OUTPUT_DIR)/$@.lib"; fi; \
-	if [ -n "$$RAW_GDS" ]; then cp "$$RAW_GDS" "$(OUTPUT_DIR)/$@.gds"; fi; \
+	if [ -n "$$RAW_LEF" ]; then cp "$$RAW_LEF" "$(OUTPUT_DIR)/lef/$@.lef"; fi; \
+	if [ -n "$$RAW_LIB" ]; then cp "$$RAW_LIB" "$(OUTPUT_DIR)/lib/$@.lib"; fi; \
+	if [ -n "$$RAW_GDS" ]; then cp "$$RAW_GDS" "$(OUTPUT_DIR)/gds/$@.gds"; fi; \
 	\
 	echo "✅ Successfully delivered abstract macro views to: $(OUTPUT_DIR)/$@.*"
 

@@ -47,6 +47,10 @@
     "FP_PDN_VOFFSET": 0.24,
     "FP_PDN_VPITCH": 11.04,
 
+    // Add substrate ties and diode protection rules
+    "FP_TAP_DISTANCE": 14,
+    "DIODE_INSERTION_STRATEGY": 3,
+
     "PL_MACRO_HALO": 0
   },
 
