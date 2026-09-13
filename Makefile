@@ -8,7 +8,7 @@ BUILD_DIR     := openlane
 OUTPUT_DIR    := macro
 
 # System tool configurations
-OPENLANE_EXEC := openlane
+OPENLANE_EXEC := librelane
 
 # Dynamically find all immediate subdirectories inside macro_build/
 # Each subdirectory represents a standalone block (e.g., macro_build/filter_1)
@@ -35,7 +35,9 @@ $(MACRO_NAMES):
 	esac; \
 	\
 	# Let OpenLane consume the environment parameter directly from the Docker instance map.
-	$(OPENLANE_EXEC) --pdk $$PDK_TARGET $(BUILD_DIR)/$@/config.json; \
+	$(OPENLANE_EXEC) -manual-pdk --pdk-root "$$PDK_ROOT" --pdk $$PDK_TARGET $(BUILD_DIR)/$@/config.json; \
+	            #librelane --manual-pdk --pdk-root "$LOCAL_PDK_ROOT" --pdk ihp-sg13g2 openlane/c061618g2/config.json
+
 	\
 	# Locate the true physical hardware layout and timing assets
 	RAW_LEF =$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/lef/*"    -name "*.lef" -print -quit); \

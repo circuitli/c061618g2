@@ -49,6 +49,7 @@
 
     "FP_TAP_DISTANCE": 14,
     "DIODE_INSERTION_STRATEGY": 3,
+    "PL_RECHOOSE_ENDCAPS": true,
 
     "PL_MACRO_HALO": 0
   },

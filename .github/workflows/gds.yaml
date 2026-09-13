@@ -31,6 +31,7 @@ jobs:
           set -eo pipefail
 
           export PDK_ROOT="${{ github.workspace }}/pdk"
+          export PDK_TARGET="ihp-sg13g"
 
           pip install ciel
 
@@ -40,7 +41,7 @@ jobs:
           echo "Activating IHP PDK Version Hash: $LATEST_HASH"
           
           # 3. Instruct ciel to pull down and enable the target build using that hash
-          python3 -m ciel enable --pdk-root "$PDK_ROOT" --pdk-family ihp-sg13g2 "$LATEST_HASH"
+          python3 -m ciel enable --pdk-root "$PDK_ROOT" --pdk-family "$PDK_TARGET" "$LATEST_HASH"
                 
           echo "✅ PDK tracks successfully populated with configurations."
 
@@ -61,19 +62,21 @@ jobs:
             -v ${{ github.workspace }}:/work \
             -v "$LOCAL_PDK_ROOT":"$LOCAL_PDK_ROOT" \
             -e PDK_ROOT="$LOCAL_PDK_ROOT" \
+            -e PDK_TARGET="$PDK_TARGET" \
             -w /work \
             ghcr.io/librelane/librelane:3.0.5 \
-            librelane --manual-pdk --pdk-root "$LOCAL_PDK_ROOT" --pdk ihp-sg13g2 openlane/c061618g2/config.json
+            make
+            #librelane --manual-pdk --pdk-root "$LOCAL_PDK_ROOT" --pdk "$PDK_TARGET" openlane/c061618g2/config.json
       
           # Stage the compiled views directly to your expected _build folder matrix
-          mkdir -p macros/gds macros/lef macros/lib macros/nl macros/pnl macros/spef
-          cp openlane/c061618g2/runs/*/final/gds/*.gds macros/gds
-          cp openlane/c061618g2/runs/*/final/lef/*.lef macros/lef
-          #cp openlane/c061618g2/runs/*/final/lib/*.lib macros/lib
-          cp openlane/c061618g2/runs/*/final/nl/*.v macros/nl
-          cp openlane/c061618g2/runs/*/final/pnl/*.v macros/pnl
-          printf '%s\n' openlane/c061618g2/runs/*/final/spef/*/*.spef
-          cp openlane/c061618g2/runs/*/final/spef/*/*.spef macros/spef
+          #mkdir -p macros/gds macros/lef macros/lib macros/nl macros/pnl macros/spef
+          #cp openlane/c061618g2/runs/*/final/gds/*.gds macros/gds
+          #cp openlane/c061618g2/runs/*/final/lef/*.lef macros/lef
+          ##cp openlane/c061618g2/runs/*/final/lib/*.lib macros/lib
+          #cp openlane/c061618g2/runs/*/final/nl/*.v macros/nl
+          #cp openlane/c061618g2/runs/*/final/pnl/*.v macros/pnl
+          #printf '%s\n' openlane/c061618g2/runs/*/final/spef/*/*.spef
+          #cp openlane/c061618g2/runs/*/final/spef/*/*.spef macros/spef
           
           echo "✅ Macros compiled successfully."
 
