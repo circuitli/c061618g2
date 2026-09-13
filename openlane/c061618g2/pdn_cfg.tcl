@@ -72,7 +72,7 @@ add_pdn_stripe -grid stdcell_grid \
                -layer $::env(PDN_HORIZONTAL_LAYER) \
                -width $::env(FP_PDN_HWIDTH) \
                -pitch $::env(FP_PDN_HPITCH) \
-               -offset [expr {$::env(FP_PDN_HHPITCH) / 2.0}] \
+               -offset [expr {$::env(FP_PDN_HPITCH) / 2.0}] \
                -spacing $::env(FP_PDN_HSPACING) \
                -nets "$::env(GND_NET) $::env(VDD_NET)" \
                -extend_to_core_ring
