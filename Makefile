@@ -58,12 +58,12 @@ $(MACRO_NAMES):
 	\
 	$(OPENLANE_CONTAINER) --manual-pdk --pdk-root $(PDK_ROOT) --pdk $(PDK_TARGET) $(JSON_TARGETS); \
 	\
-	RAW_LEF=$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/lef/*.lef" -print -quit); \
-	RAW_LIB=$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/lib/*.lib" -print -quit); \
-	RAW_GDS=$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/gds/*.gds" -print -quit); \
-	RAW_NL=$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/nl/*.v" -print -quit); \
-	RAW_PNL=$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/pnl/*.v" -print -quit); \
-	RAW_SPEF=$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/spef/*/*.spef" -print -quit); \
+	RAW_LEF=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.lef" -print -quit); \
+	RAW_LIB=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.lib" -print -quit); \
+	RAW_GDS=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.gds" -print -quit); \
+	RAW_NL=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.nl.v" -print -quit); \
+	RAW_PNL=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.pnl.v" -print -quit); \
+	RAW_SPEF=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.spef" -print -quit); \
 	\
 	mkdir -p "$(OUTPUT_DIR)/lef"; \
 	mkdir -p "$(OUTPUT_DIR)/lib"; \
