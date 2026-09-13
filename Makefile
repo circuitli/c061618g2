@@ -5,7 +5,7 @@
 # Shorthand PDK parameter selection (Defaults to IHP SG13G2)
 PDK           ?= ihp
 BUILD_DIR     := openlane
-OUTPUT_DIR    := macro
+OUTPUT_DIR    := macros
 
 # THE ARCHITECTURAL WIN: The tool execution definition is kept purely as the binary hook.
 # The actual file array targets are dynamically appended at runtime.
