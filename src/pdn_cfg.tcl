@@ -103,7 +103,7 @@ define_pdn_grid \
     -default \
     -name macro \
     -starts_with POWER \
-    -halo "$::env(PDN_HORIZONTAL_HALO) $::env(PDN_VERTICAL_HALO)" 
+    -halo "$::env(PDN_HORIZONTAL_HALO) $::env(PDN_VERTICAL_HALO)" \
     -pins "Metal3" \
     -pin_direction horizontal
 
