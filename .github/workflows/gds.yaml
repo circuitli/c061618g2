@@ -22,7 +22,19 @@ jobs:
         with:
           submodules: recursive
 
+       # Step 2: Query the workspace filesystem to verify if the Makefile exists
+      - name: Check for Makefile presence
+        id: check_makefile
+        run: |
+          if [ -f "Makefile" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+          mkdir -p macros/gds macros/lef macros/lib macros/nl macros/pnl macros/spef
+
       - name: Install and Run PDK Downloader Directly
+        if: steps.check_makefile.outputs.exists == 'true'
         shell: bash
         # Forward the path definitions directly into this step execution block
         env:
@@ -48,6 +60,7 @@ jobs:
       # 🌟 THE COMPILATION STEP: Hardens your macro sub-config natively using 
       # to build your macro sub-config inside your branch natively!
       - name: 🔨 Compile Internal Hard Macros Natively
+        if: steps.check_makefile.outputs.exists == 'true'
         shell: bash
         env:
           LOCAL_PDK_ROOT: ${{ github.workspace }}/pdk
