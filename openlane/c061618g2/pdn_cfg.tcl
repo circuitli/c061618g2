@@ -41,7 +41,7 @@ add_pdn_ring \
     -layers "$::env(PDN_VERTICAL_LAYER) $::env(PDN_HORIZONTAL_LAYER)" \
     -widths "$::env(FP_PDN_VWIDTH) $::env(FP_PDN_HWIDTH)" \
     -spacings "$::env(FP_PDN_VSPACING) $::env(FP_PDN_HSPACING)" \
-    -core_offsets "0 0 0 0"
+    -core_offsets "0.72"
 
 # 2. Standard Cell Rails on Metal1
 if { $::env(PDN_ENABLE_RAILS) == 1 } {
