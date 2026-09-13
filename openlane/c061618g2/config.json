@@ -16,6 +16,7 @@
   "_PDN_CONNECT_MACROS_TO_GRID": false,
   "PDN_ENABLE_RAILS": true,
 
+  "VERILOG_POWER_DEFINE": "USE_POWER_PINS",
   "RUN_SPEF_EXTRACTION": true,
 
   "// -------------------------------------------------------------------------": "",
