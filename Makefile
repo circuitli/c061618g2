@@ -4,7 +4,7 @@
 
 # Shorthand PDK parameter selection (Defaults to IHP SG13G2)
 PDK           ?= ihp
-BUILD_DIR     := macro_build
+BUILD_DIR     := openlane
 OUTPUT_DIR    := macro
 
 # System tool configurations
@@ -38,22 +38,26 @@ $(MACRO_NAMES):
 	$(OPENLANE_EXEC) --pdk $$PDK_TARGET $(BUILD_DIR)/$@/config.json; \
 	\
 	# Locate the true physical hardware layout and timing assets
-	RAW_LEF=$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/lef/*" -name "*.lef" -print -quit); \
-	RAW_LIB=$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/lib/*" -name "*.lib" -print -quit); \
-	RAW_GDS=$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/gds/*" -name "*.gds" -print -quit); \
-	RAW_NL =$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/nl/*"  -name "*.v" -print -quit); \
-	RAW_PNL=$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/pnl/*" -name "*.v" -print -quit); \
-	RAW_PNL=$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/pnl/*" -name "*.v" -print -quit); \
-
+	RAW_LEF =$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/lef/*"    -name "*.lef" -print -quit); \
+	RAW_LIB =$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/lib/*"    -name "*.lib" -print -quit); \
+	RAW_GDS =$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/gds/*"    -name "*.gds" -print -quit); \
+	RAW_NL  =$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/nl/*"     -name "*.v" -print -quit); \
+	RAW_PNL =$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/pnl/*"    -name "*.v" -print -quit); \
+	RAW_SPEF=$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/spef/*/*" -name "*.v" -print -quit); \
 
 
 	\
 	mkdir -p $(OUTPUT_DIR); \
 	\
 	# Safe copy operations mapping abstracts straight to the delivery folder
-	if [ -n "$$RAW_LEF" ]; then cp "$$RAW_LEF" "$(OUTPUT_DIR)/lef/$@.lef"; fi; \
-	if [ -n "$$RAW_LIB" ]; then cp "$$RAW_LIB" "$(OUTPUT_DIR)/lib/$@.lib"; fi; \
-	if [ -n "$$RAW_GDS" ]; then cp "$$RAW_GDS" "$(OUTPUT_DIR)/gds/$@.gds"; fi; \
+	if [ -n "$$RAW_LEF" ] ; then cp "$$RAW_LEF"  "$(OUTPUT_DIR)/lef/$@.lef"; fi; \
+	if [ -n "$$RAW_LIB"  ]; then cp "$$RAW_LIB"  "$(OUTPUT_DIR)/lib/$@.lib"; fi; \
+	if [ -n "$$RAW_GDS"  ]; then cp "$$RAW_GDS"  "$(OUTPUT_DIR)/gds/$@.gds"; fi; \
+	if [ -n "$$RAW_NL"   ]; then cp "$$RAW_NL"   "$(OUTPUT_DIR)/nl/$@.v"; fi; \
+	if [ -n "$$RAW_PNL"  ]; then cp "$$RAW_PNL"  "$(OUTPUT_DIR)/pnl/$@.v"; fi; \
+    if [ -n "$$RAW_SPEF" ]; then cp "$$RAW_SPEF" "$(OUTPUT_DIR)/spef/$@.spef"; fi; \
+
+
 	\
 	echo "✅ Successfully delivered abstract macro views to: $(OUTPUT_DIR)/$@.*"
 
