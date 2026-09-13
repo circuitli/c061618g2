@@ -56,7 +56,6 @@ define_pdn_grid \
 add_pdn_stripe \
     -grid stdcell_grid \
     -layer $::env(PDN_HORIZONTAL_LAYER) \
-    -orient horizontal \
     -width $::env(PDN_HWIDTH) \
     -pitch $::env(PDN_HPITCH) \
     -offset $::env(PDN_HOFFSET) \
@@ -67,7 +66,6 @@ add_pdn_stripe \
 add_pdn_stripe \
     -grid stdcell_grid \
     -layer $::env(PDN_VERTICAL_LAYER) \
-    -orient vertical \
     -width $::env(PDN_VWIDTH) \
     -pitch $::env(PDN_VPITCH) \
     -offset $::env(PDN_VOFFSET) \
@@ -105,7 +103,8 @@ define_pdn_grid \
     -default \
     -name macro \
     -starts_with POWER \
-    -halo "$::env(PDN_HORIZONTAL_HALO) $::env(PDN_VERTICAL_HALO)" \
+    -halo "$::env(PDN_HORIZONTAL_HALO) $::env(PDN_VERTICAL_HALO)" 
+    -pins "Metal3" \
     -pin_direction horizontal
 
 # Step 1: Connect Top-Level Horizontal Parameter pins down to the Vertical Parameter straps
