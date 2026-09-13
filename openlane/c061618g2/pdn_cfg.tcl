@@ -31,7 +31,7 @@ define_pdn_grid \
     -name  stdcell_grid \
     -starts_with GROUND \
     -voltage_domain CORE \
-    -pins "$::env(PDN_VERTICAL_LAYER)" 
+    -pins "$::env(PDN_HORIZONTAL_LAYER)" 
 
 # Set core_offsets to 0 so the ring sits flush against 
 # the boundary walls, leaving full internal track clearance for the cell rails!
