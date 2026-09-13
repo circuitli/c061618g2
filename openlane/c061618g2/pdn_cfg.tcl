@@ -44,7 +44,7 @@ if { $::env(PDN_ENABLE_RAILS) == 1 } {
     # Connect horizontal Metal1 cell rails to the Vertical power straps (Metal4)
     add_pdn_connect \
         -grid stdcell_grid \
-        -layers "$::env(PDN_RAIL_LAYER) $::env(PDN_VERTICAL_LAYER)"
+        -layers "$::env(PDN_RAIL_LAYER) Metal2"
 }
 # =============================================================================
 
@@ -69,8 +69,9 @@ add_pdn_stripe -grid stdcell_grid \
                -extend_to_boundary
 
 # 4. Connect the layers cleanly together via native layer connectivity strings
+add_pdn_connect -grid stdcell_grid -layers "$::env(PDN_HORIZONTAL_LAYER) Metal2"
 add_pdn_connect -grid stdcell_grid -layers "$::env(PDN_VERTICAL_LAYER) $::env(PDN_HORIZONTAL_LAYER)"
 
 # Compliance macro integration grid
-define_pdn_grid -macro -default -name macro_grid -starts_with GROUND
-add_pdn_connect -grid macro_grid -layers "$::env(PDN_VERTICAL_LAYER) $::env(PDN_HORIZONTAL_LAYER)"
+#define_pdn_grid -macro -default -name macro_grid -starts_with GROUND
+#add_pdn_connect -grid macro_grid -layers "$::env(PDN_VERTICAL_LAYER) $::env(PDN_HORIZONTAL_LAYER)"
