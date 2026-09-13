@@ -45,10 +45,6 @@ $(MACRO_NAMES):
 	# Let OpenLane consume the environment parameter directly from the Docker instance map.
 	$(OPENLANE_CONTAINER) --manual-pdk --pdk $$PDK_TARGET $(JSON_TARGETS); \
 	\
-	$(MAKE) process_assets
-
-# 2. Host Staging Pass: Handles file copying and directory cleanups natively
-process_assets:
 	# Locate the true physical hardware layout and timing assets
 	RAW_LEF =$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/lef/*"    -name "*.lef" -print -quit); \
 	RAW_LIB =$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/lib/*"    -name "*.lib" -print -quit); \
@@ -56,8 +52,6 @@ process_assets:
 	RAW_NL  =$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/nl/*"     -name "*.v" -print -quit); \
 	RAW_PNL =$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/pnl/*"    -name "*.v" -print -quit); \
 	RAW_SPEF=$$(find $(BUILD_DIR)/$@/runs/ -type f -path "*/final/spef/*/*" -name "*.v" -print -quit); \
-
-
 	\
 	mkdir -p $(OUTPUT_DIR); \
 	\
@@ -68,8 +62,6 @@ process_assets:
 	if [ -n "$$RAW_NL"   ]; then cp "$$RAW_NL"   "$(OUTPUT_DIR)/nl/$@.v"; fi; \
 	if [ -n "$$RAW_PNL"  ]; then cp "$$RAW_PNL"  "$(OUTPUT_DIR)/pnl/$@.v"; fi; \
     if [ -n "$$RAW_SPEF" ]; then cp "$$RAW_SPEF" "$(OUTPUT_DIR)/spef/$@.spef"; fi; \
-
-
 	\
 	echo "✅ Successfully delivered abstract macro views to: $(OUTPUT_DIR)/$@.*"
 
