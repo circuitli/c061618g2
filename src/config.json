@@ -65,6 +65,9 @@
         }
       }
     },
+    "RT_MAX_LAYER": "Metal5",
+    "PDN_HORIZONTAL_LAYER": "Metal5",
+    "PDN_VERTICAL_LAYER": "Metal4",
     "PDN_MACRO_CONNECTIONS": [
       "u_c061618g2 VPWR VGND vdd vss"
     ],
@@ -94,7 +97,7 @@
   "_PDN_CORE_RING": false,
   "PDN_ENABLE_RAILS": true,
   "_PDN_ENABLE_MACROS_GRID": false,
-  "_PDN_CONNECT_MACROS_TO_GRID": false,
+  "_PDN_CONNECT_MACROS_TO_GRID": true,
 
   "_QUIT_ON_PDN_VIOLATIONS": true,
   "_FP_PDN_CHECK_NODES": true,
