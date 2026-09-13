@@ -28,15 +28,14 @@ set physical_y_center [expr {(double([$physical_bbox yMin]) + double([$physical_
 
 # Safely initialize your custom grid name to bypass the memory crash
 define_pdn_grid \
-    -name stdcell_grid \
+    -grid_name  stdcell_grid \
     -starts_with GROUND \
     -voltage_domain CORE \
-    -pins "$::env(PDN_VERTICAL_LAYER)" \
-    -core_area "5.76 3.78 138.24 34.02"
+    -pins "$::env(PDN_VERTICAL_LAYER)" 
 
 # Set core_offsets to 0 so the ring sits flush against 
 # the boundary walls, leaving full internal track clearance for the cell rails!
-add_pdn_ring \
+#add_pdn_ring \
     -grid stdcell_grid \
     -layers "$::env(PDN_VERTICAL_LAYER) $::env(PDN_HORIZONTAL_LAYER)" \
     -widths "$::env(FP_PDN_VWIDTH) $::env(FP_PDN_HWIDTH)" \
