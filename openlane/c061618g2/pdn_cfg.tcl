@@ -38,8 +38,8 @@ define_pdn_grid \
 #add_pdn_ring \
     -grid stdcell_grid \
     -layers "$::env(PDN_VERTICAL_LAYER) $::env(PDN_HORIZONTAL_LAYER)" \
-    -widths "$::env(FP_PDN_VWIDTH) $::env(FP_PDN_HWIDTH)" \
-    -spacings "$::env(FP_PDN_VSPACING) $::env(FP_PDN_HSPACING)" \
+    -widths "$::env(PDN_VWIDTH) $::env(PDN_HWIDTH)" \
+    -spacings "$::env(PDN_VSPACING) $::env(PDN_HSPACING)" \
     -core_offsets "0.72"
 
 # 2. Standard Cell Rails on Metal1
@@ -60,20 +60,20 @@ if { $::env(PDN_ENABLE_RAILS) == 1 } {
 # 1. Unified Vertical Stripes -> EXTEND_TO_BOUNDARY
 add_pdn_stripe -grid stdcell_grid \
                -layer $::env(PDN_VERTICAL_LAYER) \
-               -width $::env(FP_PDN_VWIDTH) \
-               -pitch $::env(FP_PDN_VPITCH) \
-               -offset [expr {$::env(FP_PDN_VPITCH) / 2.0}] \
-               -spacing $::env(FP_PDN_VSPACING) \
+               -width $::env(PDN_VWIDTH) \
+               -pitch $::env(PDN_VPITCH) \
+               -offset [expr {$::env(PDN_VPITCH) / 2.0}] \
+               -spacing $::env(PDN_VSPACING) \
                -nets "$::env(GND_NET) $::env(VDD_NET)" \
                -extend_to_core_ring
 
 # 3. Horizontal Mesh Power Landing Pads -> EXTEND_TO_BOUNDARY
 add_pdn_stripe -grid stdcell_grid \
                -layer $::env(PDN_HORIZONTAL_LAYER) \
-               -width $::env(FP_PDN_HWIDTH) \
-               -pitch $::env(FP_PDN_HPITCH) \
-               -offset [expr {$::env(FP_PDN_HPITCH) / 2.0}] \
-               -spacing $::env(FP_PDN_HSPACING) \
+               -width $::env(PDN_HWIDTH) \
+               -pitch $::env(PDN_HPITCH) \
+               -offset [expr {$::env(PDN_HPITCH) / 2.0}] \
+               -spacing $::env(PDN_HSPACING) \
                -nets "$::env(GND_NET) $::env(VDD_NET)" \
                -extend_to_core_ring
 

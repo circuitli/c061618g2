@@ -32,26 +32,28 @@
     "RT_MAX_LAYER": "Metal3",
     "PDN_HORIZONTAL_LAYER": "Metal4",
     "PDN_VERTICAL_LAYER": "Metal3",
-    "FP_PDN_RAIL_LAYER": "Metal1",
+    "PDN_RAIL_LAYER": "Metal1",
     "_FP_PDN_UPPER_LAYERS": [ "Metal2", "Metal3", "Metal4" ],
     "RT_CLOCK_MIN_LAYER": "Metal1",
     "RT_CLOCK_MAX_LAYER": "Metal2",
 
-    "FP_PDN_HWIDTH": 0.48,
-    "FP_PDN_HSPACING": 0.48,
-    "FP_PDN_HOFFSET": 0.24,
-    "FP_PDN_HPITCH": 7.56,
+    "PDN_HWIDTH": 0.48,
+    "PDN_HSPACING": 0.48,
+    "PDN_HOFFSET": 0.24,
+    "PDN_HPITCH": 7.56,
 
-    "FP_PDN_VWIDTH": 0.48,
-    "FP_PDN_VSPACING": 0.48,
-    "FP_PDN_VOFFSET": 0.24,
-    "FP_PDN_VPITCH": 11.04,
+    "PDN_VWIDTH": 0.48,
+    "PDN_VSPACING": 0.48,
+    "PDN_VOFFSET": 0.24,
+    "PDN_VPITCH": 11.04,
 
-    "FP_PDN_SKIPTRIM": true,
+    "PDN_SKIPTRIM": true,
 
     "FP_TAP_DISTANCE": 14,
-    "DIODE_INSERTION_STRATEGY": 3,
     "PL_RECHOOSE_ENDCAPS": true,
+
+    "RUN_ANTENNA_REPAIR": true,
+    "RUN_HEURISTIC_DIODE_INSERTION": false,
 
     "PL_MACRO_HALO": 0
   },
