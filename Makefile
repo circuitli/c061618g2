@@ -36,7 +36,6 @@ $(MACRO_NAMES):
 	\
 	# Let OpenLane consume the environment parameter directly from the Docker instance map.
 	$(OPENLANE_EXEC) -manual-pdk --pdk-root "$$PDK_ROOT" --pdk $$PDK_TARGET $(BUILD_DIR)/$@/config.json; \
-	            #librelane --manual-pdk --pdk-root "$LOCAL_PDK_ROOT" --pdk ihp-sg13g2 openlane/c061618g2/config.json
 
 	\
 	# Locate the true physical hardware layout and timing assets
