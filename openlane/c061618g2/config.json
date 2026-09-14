@@ -60,7 +60,7 @@
     "PDN_VOFFSET": 0.24,
     "PDN_VPITCH": 11.04,
 
-    "PDN_SKIPTRIM": true,
+    "_PDN_SKIPTRIM": true,
 
     "RUN_ANTENNA_REPAIR": true,
     "RUN_HEURISTIC_DIODE_INSERTION": false
