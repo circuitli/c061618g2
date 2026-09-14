@@ -91,6 +91,9 @@ add_pdn_connect \
     -grid stdcell_grid \
     -layers "$::env(PDN_VERTICAL_LAYER) $::env(PDN_HORIZONTAL_LAYER)"
 
+add_pdn_connect \
+    -grid stdcell_grid \
+    -layers "$::env(PDN_HORIZONTAL_LAYER) TopMetal1"
 
 # =========================================================================
 # SRAM MACRO POWER GRID CONNECTION
@@ -106,6 +109,10 @@ define_pdn_grid \
     -halo "$::env(PDN_HORIZONTAL_HALO) $::env(PDN_VERTICAL_HALO)" 
 
 # Step 1: Connect Top-Level Horizontal Parameter pins down to the Vertical Parameter straps
+add_pdn_connect \
+    -grid macro \
+    -layers "TopMetal1 $::env(PDN_HORIZONTAL_LAYER)"
+
 add_pdn_connect \
     -grid macro \
     -layers "$::env(PDN_HORIZONTAL_LAYER) $::env(PDN_VERTICAL_LAYER)"
