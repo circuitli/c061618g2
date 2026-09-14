@@ -60,7 +60,7 @@ add_pdn_stripe \
     -pitch $::env(PDN_HPITCH) \
     -offset $::env(PDN_HOFFSET) \
     -spacing $::env(PDN_HSPACING) \
-    -starts_with POWER -extend_to_boundary
+    -starts_with POWER
 
 # 2. VERTICAL STRIPE LAYER: Explicitly forced to vertical layout rules
 add_pdn_stripe \
@@ -70,7 +70,7 @@ add_pdn_stripe \
     -pitch $::env(PDN_VPITCH) \
     -offset $::env(PDN_VOFFSET) \
     -spacing $::env(PDN_VSPACING) \
-    -starts_with POWER -extend_to_boundary
+    -starts_with POWER
 
 # 3. Standard Cell Rails on Metal1
 if { $::env(PDN_ENABLE_RAILS) == 1 } {

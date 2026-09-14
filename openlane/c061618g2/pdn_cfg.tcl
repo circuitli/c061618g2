@@ -12,6 +12,16 @@ set db_units         [$db_tech getDbUnitsPerMicron]
 set core_box  [$db_block getDieArea]
 set core_left [expr {double([$core_box xMin]) / $db_units}]
 
+# =============================================================================
+# DYNAMIC CENTER-LINE EXTRACTION (NO ASSUMPTIONS)
+# =============================================================================
+set core_ymin [expr {double([$core_box yMin]) / $db_units}]
+set core_ymax [expr {double([$core_box yMax]) / $db_units}]
+
+# Calculate the precise center-line regardless of how many rows the macro has
+set calculated_h_offset [expr {($core_ymin + $core_ymax) / 2.0}]
+# =============================================================================
+
 # 2. Query the verified layout rail width from OpenLane
 set native_pdk_width $::env(PDN_RAIL_WIDTH)
 
@@ -29,7 +39,7 @@ set physical_y_center [expr {(double([$physical_bbox yMin]) + double([$physical_
 # Safely initialize your custom grid name to bypass the memory crash
 define_pdn_grid \
     -name  stdcell_grid \
-    -starts_with GROUND \
+    -starts_with POWER \
     -voltage_domain CORE \
     -pins "$::env(PDN_HORIZONTAL_LAYER)" 
 
@@ -62,9 +72,8 @@ add_pdn_stripe -grid stdcell_grid \
                -layer $::env(PDN_VERTICAL_LAYER) \
                -width $::env(PDN_VWIDTH) \
                -pitch $::env(PDN_VPITCH) \
-               -offset [expr {$::env(PDN_VPITCH) / 2.0}] \
+               -offset $::env(PDN_VOFFSET \
                -spacing $::env(PDN_VSPACING) \
-               -nets "$::env(GND_NET) $::env(VDD_NET)" \
                -extend_to_core_ring
 
 # 3. Horizontal Mesh Power Landing Pads -> EXTEND_TO_BOUNDARY
@@ -72,9 +81,9 @@ add_pdn_stripe -grid stdcell_grid \
                -layer $::env(PDN_HORIZONTAL_LAYER) \
                -width $::env(PDN_HWIDTH) \
                -pitch $::env(PDN_HPITCH) \
-               -offset [expr {$::env(PDN_HPITCH) / 2.0}] \
+               -offset $calculated_h_offset \
                -spacing $::env(PDN_HSPACING) \
-               -nets "$::env(GND_NET) $::env(VDD_NET)" \
+               -nets "$::env(VDD_NET) $::env(GND_NET)" \
                -extend_to_core_ring
 
 # 4. Connect the layers cleanly together via native layer connectivity strings
