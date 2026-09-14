@@ -72,13 +72,13 @@
     "FP_IO_MIN_DISTANCE": 0.48,
     "FP_IO_EDGE_PADDING": 1.44,
 
-    "PDN_SKIPTRIM": true,
+    "PDN_SKIPTRIM": false,
 
     "RUN_TAP_ENDCAP_INSERTION": true,
     "FP_TAPCELL_DIST": 30,
 
     "RUN_ANTENNA_REPAIR": true,
-    "RUN_HEURISTIC_DIODE_INSERTION": false
+    "RUN_HEURISTIC_DIODE_INSERTION": true
   },
 
   "pdk::sky130*": {
