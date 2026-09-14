@@ -26,6 +26,10 @@
 
   "PDN_CFG": "dir::pdn_cfg.tcl",
 
+  "LVS_CONNECT_BY_NAME": true,
+  "LVS_INCLUDE_POWER_GROUND": true,
+  "SYNTH_USE_PG_PINS": true,
+
   "// -------------------------------------------------------------------------": "",
   "// STRICT PROCESS-SPECIFIC OVERRIDES ONLY": "",
   "// -------------------------------------------------------------------------": "",
