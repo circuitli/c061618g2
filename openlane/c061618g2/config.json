@@ -68,6 +68,9 @@
     "PDN_VOFFSET": 11.04,
     "PDN_VPITCH": 11.04,
 
+    "FP_IO_MIN_DISTANCE": 0.48,
+    "FP_IO_EDGE_PADDING": 1.44,
+
     "PDN_SKIPTRIM": true,
 
     "RUN_TAP_ENDCAP_INSERTION": true,
