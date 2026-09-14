@@ -57,8 +57,7 @@ jobs:
                 
           echo "✅ PDK tracks successfully populated with configurations."
 
-      # 🌟 THE COMPILATION STEP: Hardens your macro sub-config natively using 
-      # to build your macro sub-config inside your branch natively!
+      # Hardens the macros sub-config natively
       - name: 🔨 Compile Internal Hard Macros Natively
         if: steps.check_makefile.outputs.exists == 'true'
         shell: bash
@@ -67,21 +66,9 @@ jobs:
           PDK_TARGET: ihp-sg13g2
         run: |
           set -eo pipefail
-          echo "🚀 Initialising native macro hardening loop via tt_tool..."
+          echo "🚀 Native macro hardening..."
 
           make
-      
-          # Stage the compiled views directly to your expected _build folder matrix
-          #mkdir -p macros/gds macros/lef macros/lib macros/nl macros/pnl macros/spef
-          #cp openlane/c061618g2/runs/*/final/gds/*.gds macros/gds
-          #cp openlane/c061618g2/runs/*/final/lef/*.lef macros/lef
-          ##cp openlane/c061618g2/runs/*/final/lib/*.lib macros/lib
-          #cp openlane/c061618g2/runs/*/final/nl/*.v macros/nl
-          #cp openlane/c061618g2/runs/*/final/pnl/*.v macros/pnl
-          #printf '%s\n' openlane/c061618g2/runs/*/final/spef/*/*.spef
-          #cp openlane/c061618g2/runs/*/final/spef/*/*.spef macros/spef
-          
-          echo "✅ Macros compiled successfully."
 
       - name: 💾 Upload Macro Abstract Views for Top-Level Assembly
         uses: actions/upload-artifact@v4

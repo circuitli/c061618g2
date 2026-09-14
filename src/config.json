@@ -55,7 +55,7 @@
       "c061618g2": {
         "gds": [ "dir::../macros/gds/c061618g2.gds" ],
         "lef": [ "dir::../macros/lef/c061618g2.lef" ],
-        "nl": [ "dir::../macros/nl/c061618g2.nl.v" ],
+        "nl": [ "dir::../macros/pnl/c061618g2.pnl.v" ],
         "spef": {
           "min*": [ "dir::../macros/spef/c061618g2.nom.spef" ],
           "nom": [ "dir::../macros/spef/c061618g2.nom.spef" ],
@@ -63,7 +63,6 @@
         },
         "instances": {
           "u_c061618g2": {
-            "_location": [ 11.04, 94.50 ],
             "location": [ 2.88, 94.50 ],
             "orientation": "N"
           }
