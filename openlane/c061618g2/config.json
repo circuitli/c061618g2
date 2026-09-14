@@ -58,12 +58,12 @@
 
     "PDN_HWIDTH": 0.48,
     "PDN_HSPACING": 0.48,
-    "PDN_HOFFSET": 0.48,
+    "PDN_HOFFSET": 3.78,
     "PDN_HPITCH": 7.56,
 
     "PDN_VWIDTH": 0.48,
     "PDN_VSPACING": 0.48,
-    "PDN_VOFFSET": 0.48,
+    "PDN_VOFFSET": 11.04,
     "PDN_VPITCH": 11.04,
 
     "PDN_SKIPTRIM": true,

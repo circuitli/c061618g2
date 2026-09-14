@@ -69,7 +69,7 @@
         }
       }
     },
-    "RT_MAX_LAYER": "Metal5",
+    "RT_MAX_LAYER": "Metal3",
     "PDN_HORIZONTAL_LAYER": "Metal5",
     "PDN_VERTICAL_LAYER": "Metal4",
     "PDN_MACRO_CONNECTIONS": [
@@ -81,7 +81,7 @@
 
     "PDN_HWIDTH": 1.64,
     "PDN_HSPACING": 1.64,
-    "PDN_HOFFSET": 7.56,
+    "PDN_HOFFSET": 11.34,
     "PDN_HPITCH": 22.68,
 
     "PDN_ENABLE_PINS": true,
