@@ -14,7 +14,7 @@
  * limitations under the License.
  */
  
-`IFNDEF TT_UM_C061618G2_V
+`ifndef TT_UM_C061618G2_V
 `define TT_UM_C061618G2_V
 
 // =========================================================================
