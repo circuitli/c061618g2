@@ -50,7 +50,7 @@ define_pdn_grid \
     -name stdcell_grid \
     -starts_with POWER \
     -voltage_domain CORE \
-    -pins "TopMetal1"
+    -pins $::env(PDN_HORIZONTAL_LAYER)
 
 # 1. HORIZONTAL STRIPE LAYER: Explicitly forced to horizontal layout rules
 add_pdn_stripe \
@@ -91,9 +91,10 @@ add_pdn_connect \
     -grid stdcell_grid \
     -layers "$::env(PDN_VERTICAL_LAYER) $::env(PDN_HORIZONTAL_LAYER)"
 
-add_pdn_connect \
+#add_pdn_connect \
     -grid stdcell_grid \
-    -layers "$::env(PDN_HORIZONTAL_LAYER) TopMetal1"
+    -layers "$::env(PDN_HORIZONTAL_LAYER) TopMetal1" \
+    -vias {TopVia1}
 
 # =========================================================================
 # SRAM MACRO POWER GRID CONNECTION
@@ -109,9 +110,10 @@ define_pdn_grid \
     -halo "$::env(PDN_HORIZONTAL_HALO) $::env(PDN_VERTICAL_HALO)" 
 
 # Step 1: Connect Top-Level Horizontal Parameter pins down to the Vertical Parameter straps
-add_pdn_connect \
+#add_pdn_connect \
     -grid macro \
-    -layers "TopMetal1 $::env(PDN_HORIZONTAL_LAYER)"
+    -layers "TopMetal1 $::env(PDN_HORIZONTAL_LAYER)" \
+    -vias {TopVia1}
 
 add_pdn_connect \
     -grid macro \
