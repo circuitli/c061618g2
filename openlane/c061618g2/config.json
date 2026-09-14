@@ -71,10 +71,7 @@
     "PDN_SKIPTRIM": true,
 
     "RUN_TAP_ENDCAP_INSERTION": true,
-    "FP_TAPCELL_DIST": 30,
-
-    "RUN_ANTENNA_REPAIR": true,
-    "RUN_HEURISTIC_DIODE_INSERTION": false
+    "FP_TAPCELL_DIST": 30
   },
 
   "pdk::sky130*": {
