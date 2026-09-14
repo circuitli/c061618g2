@@ -13,9 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-`IFNDEF TT_UM_C061618G2_V
-`define TT_UM_C061618G2_V
 
 // =========================================================================
 // CONDITIONAL PDK INTERFACE RESOLUTION
@@ -24,13 +21,17 @@
 // If compiling for local verification (Cocotb/Icarus), include the source
 // so the simulator doesn't throw an 'Unknown module type' crash.
 // =========================================================================
+
+`ifndef C061618G2TR_SV
+`define C061618G2TR_SV
+
 `ifndef SYNTHESIS
     `include "src/module/c061618g2.sv"
 `endif
 
 `default_nettype none
 
-module tt_um_c061618g2 (
+module c061618g2tr (
     input  wire [7:0] ui_in,    // Dedicated hardware inputs
     output wire [7:0] uo_out,   // Dedicated hardware outputs
     input  wire [7:0] uio_in,   // Bidirectional bus input network
@@ -41,20 +42,55 @@ module tt_um_c061618g2 (
     input  wire [0:0] rst_n     // Active-low system reset
 );
 
+    wire [7:0] uo_out1, uo_out2, uo_out3,   // Dedicated hardware outputs
+    wire [7:0] uio_out, uio_out2, uio_out3,  // Bidirectional bus output network
+    wire [7:0] uio_oe1, uio_oe2, uio_oe3,   // Safe output enablement bus mapping
+
     // =========================================================================
-    // 2. CORE HIERARCHICAL INSTANTIATION
+    // CORE HIERARCHICAL INSTANTIATION
     // =========================================================================
     (* keep_hierarchy = "TRUE" *) 
-    c061618g2 u_c061618g2 (
+    c061618g2 u_c061618g2_1 (
         .clk     (clk),
         .rst_n   (rst_n),
         .ui_in   (ui_in),
-        .uo_out  (uo_out),
+        .uo_out  (uo_out1),
         .uio_in  (uio_in),
-        .uio_out (uio_out),
-        .uio_oe  (uio_oe),
+        .uio_out (uio_out1),
+        .uio_oe  (uio_oe1),
         .ena     (ena)
     );
+
+    (* keep_hierarchy = "TRUE" *) 
+    c061618g2 u_c061618g2_2 (
+        .clk     (clk),
+        .rst_n   (rst_n),
+        .ui_in   (ui_in),
+        .uo_out  (uo_out2),
+        .uio_in  (uio_in),
+        .uio_out (uio_out2),
+        .uio_oe  (uio_oe2),
+        .ena     (ena)
+    );
+
+    (* keep_hierarchy = "TRUE" *) 
+    c061618g2 u_c061618g2_3 (
+        .clk     (clk),
+        .rst_n   (rst_n),
+        .ui_in   (ui_in),
+        .uo_out  (uo_out3),
+        .uio_in  (uio_in),
+        .uio_out (uio_out3),
+        .uio_oe  (uio_oe3),
+        .ena     (ena)
+    );
+
+    // =========================================================================
+    // TRIPLE MODULAR REDUNDANCY (TMR) MAJORITY VOTING FILTERS
+    // =========================================================================
+    assign uo_out  = (uo_out1  & uo_out2)  | (uo_out2  & uo_out3)  | (uo_out1  & uo_out3);
+    assign uio_out = (uio_out1 & uio_out2) | (uio_out2 & uio_out3) | (uio_out1 & uio_out3);
+    assign uio_oe  = (uio_oe1  & uio_oe2)  | (uio_oe2  & uio_oe3)  | (uio_oe1  & uio_oe3);
 
 endmodule
 
