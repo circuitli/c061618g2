@@ -10,6 +10,8 @@
 
   "PDN_CFG": "dir::pdn_cfg.tcl",
 
+  "SYNTH_VECTOR_MAPPING": "square",
+
   "FP_SIZING": "absolute",
   "PDN_MULTILAYER": false,
   "PDN_CORE_RING": false,
