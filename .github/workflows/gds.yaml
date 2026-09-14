@@ -70,6 +70,15 @@ jobs:
 
           make
 
+          # 2. FAIL-FAST VALIDATION: Ensure the macro delivery path contains a valid layout file
+          # (Replace tt_um_c061618g2 with your exact design folder name if different)
+          if [ ! -f "macros/gds/tt_um_c061618g2.gds" ]; then
+            echo "❌ ERROR: Macro GDS file was not generated!"
+            exit 1
+          fi
+        
+          echo "🎉 Macro compilation passed validation checks completely!"
+
       - name: 💾 Upload Macro Abstract Views for Top-Level Assembly
         uses: actions/upload-artifact@v4
         with:

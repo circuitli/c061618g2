@@ -82,7 +82,7 @@
     "PDN_HWIDTH": 1.64,
     "PDN_HSPACING": 1.64,
     "PDN_HOFFSET": 11.34,
-    "PDN_HPITCH": 22.68,
+    "PDN_HPITCH": 18.90, 
 
     "PDN_ENABLE_PINS": true,
     "FP_PDN_UPPER_LAYERS": [ "Metal4", "Metal5", "TopMetal1" ],
