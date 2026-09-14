@@ -63,7 +63,8 @@
         },
         "instances": {
           "u_c061618g2": {
-            "location": [ 11.04, 94.50 ],
+            "_location": [ 11.04, 94.50 ],
+            "location": [ 2.88, 94.50 ],
             "orientation": "N"
           }
         }
