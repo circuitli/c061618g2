@@ -65,6 +65,11 @@ $(MACRO_NAMES):
 	RAW_PNL=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.pnl.v" -print -quit); \
 	RAW_SPEF=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.spef" -print -quit); \
 	\
+	if [ -z "$$RAW_GDS" ]; then \
+		echo "❌ Error: No physical GDS layout file found for macro $@. Compilation failed."; \
+		exit 1; \
+	fi; \
+	\
 	mkdir -p "$(OUTPUT_DIR)/lef"; \
 	mkdir -p "$(OUTPUT_DIR)/lib"; \
 	mkdir -p "$(OUTPUT_DIR)/gds"; \
