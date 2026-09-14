@@ -45,8 +45,10 @@
     "___DIE_AREA": [ 0.0, 0.0, 121.92, 37.80 ],
     "___CORE_AREA": [ 5.76, 0.0, 116.16, 37.80 ],
     "__CORE_AREA": [ 5.76, 3.78, 116.16, 34.02 ],
-    "DIE_AREA": [ 0.0, 0.0, 110.40, 37.80 ],
-    "CORE_AREA": [ 0.0, 0.0, 110.40, 37.80 ],
+    "____DIE_AREA": [ 0.0, 0.0, 110.40, 37.80 ],
+    "____CORE_AREA": [ 0.0, 0.0, 110.40, 37.80 ],
+    "DIE_AREA": [ 0.0, 0.0, 121.44, 37.80 ],
+    "CORE_AREA": [ 0.0, 0.0, 121.44, 37.80 ],
 
     "RT_MAX_LAYER": "Metal3",
     "PDN_HORIZONTAL_LAYER": "Metal3",
@@ -59,7 +61,7 @@
     "PDN_HWIDTH": 0.48,
     "PDN_HSPACING": 0.48,
     "PDN_HOFFSET": 3.78,
-    "PDN_HPITCH": 11.34, 
+    "PDN_HPITCH": 11.34,
 
     "PDN_VWIDTH": 0.48,
     "PDN_VSPACING": 0.48,
