@@ -71,6 +71,15 @@
     "PDN_MACRO_CONNECTIONS": [
       "u_c061618g2 VPWR VGND vdd vss"
     ],
+
+    "PDN_VWIDTH": 0.96,
+    "PDN_VSPACING": 0.96,
+
+    "PDN_HWIDTH": 1.64,
+    "PDN_HSPACING": 1.64,
+    "PDN_HOFFSET": 18.9,
+    "PDN_HPITCH": 37.8,
+
     "PDN_HORIZONTAL_HALO": 0,
     "PDN_VERTICAL_HALO": 0
   },
@@ -337,7 +346,8 @@
   "FP_IO_HLENGTH": 2,
   "FP_IO_VLENGTH": 2,
 
-  "FP_PDN_VPITCH": 38.87,
+  "FP_PDN_VPITCH": 
+
 
   "//": "Clock",
   "RUN_CTS": 0,
