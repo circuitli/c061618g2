@@ -65,8 +65,8 @@
 
     "PDN_VWIDTH": 0.48,
     "PDN_VSPACING": 0.48,
-    "PDN_VOFFSET": 10.80, 
-    "PDN_VPITCH": 11.04,
+    "PDN_VOFFSET": 10.80,
+    "PDN_VPITCH": 22.08, 
 
     "FP_IO_MODE": 1,
     "FP_IO_MIN_DISTANCE": 0.96,
