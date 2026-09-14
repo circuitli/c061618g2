@@ -70,7 +70,7 @@
 
     "FP_IO_MODE": 1,
     "FP_IO_MIN_DISTANCE": 0.96,
-    "FP_IO_EDGE_PADDING": 1.44,
+    "FP_IO_EDGE_PADDING": 2.88, 
 
     "PDN_SKIPTRIM": false,
 
