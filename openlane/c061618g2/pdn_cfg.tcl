@@ -72,7 +72,7 @@ add_pdn_stripe -grid stdcell_grid \
                -layer $::env(PDN_VERTICAL_LAYER) \
                -width $::env(PDN_VWIDTH) \
                -pitch $::env(PDN_VPITCH) \
-               -offset $::env(PDN_VOFFSET \
+               -offset $::env(PDN_VOFFSET) \
                -spacing $::env(PDN_VSPACING) \
                -extend_to_core_ring
 
