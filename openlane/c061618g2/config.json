@@ -69,7 +69,7 @@
     "PDN_VPITCH": 11.04,
 
     "FP_IO_MODE": 1,
-    "FP_IO_MIN_DISTANCE": 0.48,
+    "FP_IO_MIN_DISTANCE": 0.96,
     "FP_IO_EDGE_PADDING": 1.44,
 
     "PDN_SKIPTRIM": false,

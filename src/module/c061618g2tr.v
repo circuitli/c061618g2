@@ -22,8 +22,8 @@
 // so the simulator doesn't throw an 'Unknown module type' crash.
 // =========================================================================
 
-`ifndef C061618G2TR_SV
-`define C061618G2TR_SV
+`ifndef C061618G2TR_V
+`define C061618G2TR_V
 
 `ifndef SYNTHESIS
     `include "src/module/c061618g2.sv"
