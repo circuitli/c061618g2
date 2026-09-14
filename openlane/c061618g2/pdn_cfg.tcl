@@ -13,12 +13,12 @@ set core_box  [$db_block getDieArea]
 set core_left [expr {double([$core_box xMin]) / $db_units}]
 
 # =============================================================================
-# DYNAMIC CENTER-LINE EXTRACTION (NO ASSUMPTIONS)
+# DYNAMIC CENTER-LINE EXTRACTION (PARSER SYNTAX BALANCED)
 # =============================================================================
-set core_ymin [expr {double([$core_box yMin]) / $db_units}]
-set core_ymax [expr {double([$core_box yMax]) / $db_units}]
+set core_ymin [expr {double([$core_box yMin]) / double($db_units)}]
+set core_ymax [expr {double([$core_box yMax]) / double($db_units)}]
 
-# Calculate the precise center-line regardless of how many rows the macro has
+# Double check that both braces and parentheses close cleanly here
 set calculated_h_offset [expr {($core_ymin + $core_ymax) / 2.0}]
 # =============================================================================
 
