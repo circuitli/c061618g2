@@ -59,7 +59,7 @@ $(MACRO_NAMES):
 	container_status=0; \
 	$(OPENLANE_CONTAINER) --manual-pdk --pdk-root $(PDK_ROOT) --pdk $(PDK_TARGET) $(JSON_TARGETS) || container_status=$$?; 
 	\
-	if [ $$container_status -ne 0 ]; then \
+	if [ $$container_status != 0 ]; then \
 		echo "❌ Error: LibreLane failed on macro $$@ with exit code $$container_status"; \
 		exit $$container_status; \
 	fi; \
