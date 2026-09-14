@@ -75,7 +75,7 @@
     "PDN_SKIPTRIM": false,
 
     "RUN_TAP_ENDCAP_INSERTION": true,
-    "FP_TAPCELL_DIST": 30,
+    "FP_TAPCELL_DIST": 60,
 
     "RUN_ANTENNA_REPAIR": true,
     "RUN_HEURISTIC_DIODE_INSERTION": true
