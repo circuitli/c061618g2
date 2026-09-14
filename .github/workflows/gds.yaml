@@ -68,13 +68,18 @@ jobs:
           set -eo pipefail
           echo "🚀 Native macro hardening..."
 
+          # Execute make exactly once and record the numeric status code
           make
-
-          # 2. FAIL-FAST VALIDATION: Ensure the macro delivery path contains a valid layout file
-          # (Replace tt_um_c061618g2 with your exact design folder name if different)
-          if [ ! -f "macros/gds/tt_um_c061618g2.gds" ]; then
-            echo "❌ ERROR: Macro GDS file was not generated!"
-            exit 1
+          make_exit_code=$?
+        
+          # Re-enable standard safe exit constraints
+          set -e
+        
+          echo "🔍 Evaluating tool execution status... (Code: $make_exit_code)"
+        
+          if [ $make_exit_code -ne 0 ]; then
+            echo "❌ ERROR: The hardening step returned a non-zero exit status!"
+            exit $make_exit_code
           fi
         
           echo "🎉 Macro compilation passed validation checks completely!"

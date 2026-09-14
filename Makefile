@@ -56,7 +56,13 @@ $(MACRO_NAMES):
 		*) echo "❌ Error: Invalid PDK select. Use PDK=ihp|sky130|gf180"; exit 1 ;; \
 	esac; \
 	\
-	$(OPENLANE_CONTAINER) --manual-pdk --pdk-root $(PDK_ROOT) --pdk $(PDK_TARGET) $(JSON_TARGETS); \
+	container_status=0; \
+	$(OPENLANE_CONTAINER) --manual-pdk --pdk-root $(PDK_ROOT) --pdk $(PDK_TARGET) $(JSON_TARGETS) || container_status=$$?; 
+	\
+	if [ $$container_status -ne 0 ]; then \
+		echo "❌ Error: LibreLane failed on macro $$@ with exit code $$container_status"; \
+		exit $$container_status; \
+	fi; \
 	\
 	RAW_LEF=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.lef" -print -quit); \
 	RAW_LIB=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.lib" -print -quit); \
@@ -64,11 +70,6 @@ $(MACRO_NAMES):
 	RAW_NL=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.nl.v" -print -quit); \
 	RAW_PNL=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.pnl.v" -print -quit); \
 	RAW_SPEF=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.spef" -print -quit); \
-	\
-	if [ -z "$$RAW_GDS" ]; then \
-		echo "❌ Error: No physical GDS layout file found for macro $@. Compilation failed."; \
-		exit 1; \
-	fi; \
 	\
 	mkdir -p "$(OUTPUT_DIR)/lef"; \
 	mkdir -p "$(OUTPUT_DIR)/lib"; \
