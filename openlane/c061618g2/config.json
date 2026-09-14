@@ -40,8 +40,10 @@
     "GND_NETS": [ "vss" ],
     "FP_CORE_UTIL": 65,
     "PL_TARGET_DENSITY_PCT": 75,
-    "DIE_AREA": [ 0.0, 0.0, 144.00, 37.80 ],
-    "CORE_AREA": [ 5.76, 3.78, 138.24, 34.02 ],
+    "_DIE_AREA": [ 0.0, 0.0, 144.00, 37.80 ],
+    "_CORE_AREA": [ 5.76, 3.78, 138.24, 34.02 ],
+    "DIE_AREA": [ 0.0, 0.0, 121.92, 37.80 ],
+    "CORE_AREA": [ 5.76, 3.78, 116.16, 34.02 ],
     "RT_MAX_LAYER": "Metal3",
     "PDN_HORIZONTAL_LAYER": "Metal3",
     "PDN_VERTICAL_LAYER": "Metal2",
@@ -60,7 +62,7 @@
     "PDN_VOFFSET": 0.24,
     "PDN_VPITCH": 11.04,
 
-    "_PDN_SKIPTRIM": true,
+    "PDN_SKIPTRIM": true,
 
     "RUN_TAP_ENDCAP_INSERTION": true,
     "FP_TAPCELL_DIST": 30,
