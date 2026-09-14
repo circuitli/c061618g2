@@ -70,7 +70,7 @@ add_pdn_stripe \
     -pitch $::env(PDN_VPITCH) \
     -offset $::env(PDN_VOFFSET) \
     -spacing $::env(PDN_VSPACING) \
-    -starts_with POWER extend_to_boundary
+    -starts_with POWER -extend_to_boundary
 
 # 3. Standard Cell Rails on Metal1
 if { $::env(PDN_ENABLE_RAILS) == 1 } {
