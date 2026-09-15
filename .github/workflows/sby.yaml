@@ -14,11 +14,18 @@
 
 name: sby
 
+
 on:
   push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'formal/**'
+      - 'info.yaml'
+      - '.github/workflows/sby.yaml'
+
+  workflow_dispatch:
 
 # =========================================================================
 # CONCURRENCY MANAGER (Cancels excessive outdated runs)

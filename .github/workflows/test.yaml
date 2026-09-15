@@ -1,6 +1,16 @@
 name: test
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'test/**'
+      - 'info.yaml'
+      - '.github/workflows/test.yaml'
+
+  workflow_dispatch:
 
 # =========================================================================
 # CONCURRENCY MANAGER (Cancels excessive outdated runs)
