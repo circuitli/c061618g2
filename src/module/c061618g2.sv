@@ -29,8 +29,8 @@ module c061618g2 (
     input  wire  [7:0] ui_in,    // Dedicated hardware inputs
     output wire  [7:0] uo_out,   // Dedicated hardware outputs
     input  wire  [7:0] uio_in,   // Bidirectional bus input network
-    output wire  [7:0] uio_out,  // Bidirectional bus output network
-    output wire  [7:0] uio_oe,   // Safe output enablement bus mapping
+    (* keep = "true" *) output wire  [7:0] uio_out,  // Bidirectional bus output network
+    (* keep = "true" *) output wire  [7:0] uio_oe,   // Safe output enablement bus mapping
     input  wire        ena       // Tiny Tapeout macro environment block enable signal
 );
 
