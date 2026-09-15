@@ -12,6 +12,18 @@
 source $::env(SCRIPTS_DIR)/openroad/common/set_global_connections.tcl
 set_global_connections
 
+# =============================================================================
+# EXPLICIT TINY TAPEOUT TO IHP PDK NET BRIDGING
+# =============================================================================
+# 1. Connect standard logic cell rows to the TT Top-Level Nets
+add_global_connection -net $::env(VDD_NET) -inst_pattern .* -pin_pattern {vdd|VDD|VPWR|vpwr}
+add_global_connection -net $::env(GND_NET) -inst_pattern .* -pin_pattern {vss|VSS|VGND|vgnd}
+
+# 2. Hard-tie the substrate well layers cleanly to close the LVS net loop
+add_global_connection -net vdd -inst_pattern .* -pin_pattern {vdd|VPWR}
+add_global_connection -net vss -inst_pattern .* -pin_pattern {vss|VGND}
+# =============================================================================
+
 set secondary []
 foreach vdd $::env(VDD_NETS) gnd $::env(GND_NETS) {
     if { $vdd != $::env(VDD_NET)} {
