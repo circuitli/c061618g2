@@ -33,7 +33,7 @@
     "VERILOG_DEFINES": [ "IHP_SG13G2" ],
     "LVS_VERILOG_CASE_INSENSITIVE": true,
     "LVS_SPICE_CASE_INSENSITIVE": true,
-    "LVS_NO_FLATTEN": true,
+    "_LVS_NO_FLATTEN": true,
     "LVS_FLATTEN_CELLS": [],
     "_LVS_FLATTEN_CELLS": [ "sg13g2_tielo", "sg13g2_tiehi", "sg13g2_antennanp", "sg13g2_fill_1", "sg13g2_fill_2", "sg13g2_fill_4", "sg13g2_decap_4", "sg13g2_decap_8" ],
     "LVS_IGNORE_CELLS": [
@@ -46,7 +46,7 @@
     "LVS_EXTRA_STD_CELL_LIBRARY": true,
     "LVS_INCLUDE_MACROS_NETLIST": true,
     "LVS_REDUCE_SPLIT_NETS": true,
-    "LVS_CONNECT_BY_NAME": [ "VDD", "VSS", "vdd", "vss", "clk", "rst_n" ],
+    "LVS_CONNECT_BY_NAME": [ "VDD", "VSS", "vdd", "vss" ],
     "LVS_POWER_NETS": [ "vdd", "VDD" ],
     "LVS_GROUND_NETS": [ "vss", "VSS" ],
     "VDD_NETS": [ "vdd" ],
