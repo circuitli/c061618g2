@@ -96,11 +96,11 @@ jobs:
           echo "=== SEARCHING FOR MAGIC DRC LOGS ==="
           find . -name "*.magic.drc" -exec echo "--- FILE: {} ---" \; -exec head -n 50 {} \;
 
-      - name: Upload LVS & DRC Logs on Failure
+      - name: Upload LVS & DRC Logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: mmacro-signoff-logs
+          name: macro-signoff-logs
           path: |
             **/runs/*/*
 
