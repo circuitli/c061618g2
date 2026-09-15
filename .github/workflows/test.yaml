@@ -44,7 +44,7 @@ jobs:
             echo "run_id=${{ github.event.workflow_run.id }}" >> $GITHUB_OUTPUT
           else
             # Finds the absolute latest successful macros workflow run ID natively via GitHub CLI
-            LATEST_ID=$(gh run list --workflow="macros.yml" --status=success --limit=1 --json databaseId -q '.[0].databaseId')
+            LATEST_ID=$(gh run list --workflow="macros.yaml" --status=success --limit=1 --json databaseId -q '.[0].databaseId')
             echo "run_id=$LATEST_ID" >> $GITHUB_OUTPUT
           fi
 
