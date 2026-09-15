@@ -29,8 +29,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: precompiled-macros
+          workflow: macros.yaml
+          branch: main
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          if_no_artifact_found: fail
           path: macros/  # Pulls the files right back into the root workspace folder
 
       - name: Build GDS
