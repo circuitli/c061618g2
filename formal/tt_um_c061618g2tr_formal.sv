@@ -14,19 +14,19 @@
  * limitations under the License.
  */
  
-`ifndef TT_UM_C061618G2_FORMAL_SV
-`define TT_UM_C061618G2_FORMAL_SV
+`ifndef TT_UM_C061618G2TR_FORMAL_SV
+`define TT_UM_C061618G2TR_FORMAL_SV
 
 /// ==============================================================================
 // SECTION: TOP-LEVEL HARDWARE WRAPPER FORMAL PROPERTIES
 // ==============================================================================
 `include "src/project.v"
 
-`include "formal/module/c061618g2_formal.sv"
+`include "formal/module/c061618g2tr_formal.sv"
 
 `default_nettype none
 
-module tt_um_c061618g2_formal (
+module tt_um_c061618g2tr_formal (
     input  wire [7:0] ui_in,    // Dedicated hardware inputs
     input  wire [7:0] uo_out,   // Live unclocked output pins
     input  wire [7:0] uio_in,   // Bidirectional bus input network
@@ -100,7 +100,7 @@ endmodule
 // =========================================================================
 // BIND DIRECTIVE: Inject properties cleanly into production RTL target
 // =========================================================================
-bind tt_um_c061618g2 tt_um_c061618g2_formal i_tt_um_c061618g2_formal (
+bind tt_um_c061618g2tr tt_um_c061618g2tr_formal i_tt_um_c061618g2tr_formal (
     .ui_in     (ui_in),
     .uo_out    (uo_out),
     .uio_in    (uio_in),

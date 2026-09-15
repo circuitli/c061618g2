@@ -85,30 +85,21 @@ jobs:
           echo "🎉 Macro compilation passed validation checks completely!"
 
       - name: Print LVS Log Directly to Terminal
-        if: failure()
+        if: always()
         run: |
-          echo "::group::🔍 SEARCHING EXPANDED SIGNOFF REPORTS"
-          LVS_LOG=$(find . -name "netgen_lvs.log" | head -n 1)
-          if [ -f "$LVS_LOG" ]; then
-            echo "--- Found Netgen Log at: $LVS_LOG ---"
-            tail -n 100 "$LVS_LOG"
-          else
-            echo "⚠️ netgen_lvs.log not found. Checking general flow logs..."
-            find . -name "*.log" -exec grep -Hn -m 5 "LVS" {} \;
-          fi
-          echo "::endgroup::"
+          echo "=== DUMPING NETGEN LVS COMPARISON ==="
+          find . -name "netgen-lvs.log" -exec echo "--- FILE: {} ---" \; -exec tail -n 120 {} \;
 
           echo "=== SEARCHING FOR MAGIC DRC LOGS ==="
           find . -name "*.magic.drc" -exec echo "--- FILE: {} ---" \; -exec head -n 50 {} \;
 
       - name: Upload LVS & DRC Logs on Failure
-        if: failure()
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: mmacro-signoff-logs
           path: |
-            **/runs/*/logs/signoff/*
-            **/runs/*/reports/signoff/*
+            **/runs/*/*
 
       - name: 💾 Upload Macro Abstract Views for Top-Level Assembly
         uses: actions/upload-artifact@v4
