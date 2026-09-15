@@ -18,16 +18,6 @@
   "_PDN_CONNECT_MACROS_TO_GRID": false,
   "PDN_ENABLE_RAILS": true,
 
-  "FP_PDN_GLOBAL_CONNECTIONS": {
-    "VDD": {
-      "pins": [ "VDD", "vdd", "VCC", "vcc" ],
-      "insts": [ "*" ]
-    },
-    "VSS": {
-      "pins": [ "VSS", "vss", "GND", "gnd" ],
-      "insts": [ "*" ]
-    }
-  },
   "FP_PDN_ENABLE_PINS": true,
   "PDN_ENABLE_PINS": true,
   "VERILOG_POWER_DEFINE": "USE_POWER_PINS",
@@ -40,7 +30,18 @@
     "VERILOG_DEFINES": [ "IHP_SG13G2" ],
     "VDD_NETS": [ "vdd" ],
     "GND_NETS": [ "vss" ],
-    "LVS_CONNECT_BY_NAME": [ "vdd", "vss", "sub", "well" ],    "MAGIC_WRITE_GDS_STRIP_EMPTY_MUTEX": 1,
+    "LVS_CONNECT_BY_NAME": [ "vdd", "vss", "sub", "well" ],
+    "MAGIC_WRITE_GDS_STRIP_EMPTY_MUTEX": 1,
+    "FP_PDN_GLOBAL_CONNECTIONS": {
+      "VDD": {
+        "pins": [ "VDD", "vdd", "VCC", "vcc" ],
+        "insts": [ "*" ]
+      },
+      "VSS": {
+        "pins": [ "VSS", "vss", "GND", "gnd" ],
+        "insts": [ "*" ]
+      }
+    },
     "FP_CORE_UTIL": 65,
     "PL_TARGET_DENSITY_PCT": 75,
     "_DIE_AREA": [ 0.0, 0.0, 144.00, 37.80 ],

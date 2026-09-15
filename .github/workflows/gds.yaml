@@ -84,6 +84,15 @@ jobs:
         
           echo "🎉 Macro compilation passed validation checks completely!"
 
+      - name: Upload LVS & DRC Logs on Failure
+        #if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mmacro-signoff-logs
+          path: |
+            **/runs/*/logs/signoff/*
+            **/runs/*/reports/signoff/*
+
       - name: 💾 Upload Macro Abstract Views for Top-Level Assembly
         uses: actions/upload-artifact@v4
         with:
