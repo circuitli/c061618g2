@@ -87,6 +87,9 @@ jobs:
       - name: Print LVS Log Directly to Terminal
         if: always()
         run: |
+          echo "=== DUMPING NETGEN REPORT COMPARISON ==="
+          find . -name "lvs.netgen.rpt" -exec echo "--- FILE: {} ---" \; -exec tail -n 120 {} \;
+
           echo "=== DUMPING NETGEN LVS COMPARISON ==="
           find . -name "netgen-lvs.log" -exec echo "--- FILE: {} ---" \; -exec tail -n 120 {} \;
 
