@@ -93,6 +93,14 @@ jobs:
             **/runs/*/logs/signoff/*
             **/runs/*/reports/signoff/*
 
+      - name: Print LVS Log Directly to Terminal
+        if: failure()
+        run: |
+          echo "=== SEARCHING FOR NETGEN LVS LOGS ==="
+          find . -name "netgen_lvs.log" -exec echo "--- FILE: {} ---" \; -exec cat {} \;
+          echo "=== SEARCHING FOR MAGIC DRC LOGS ==="
+          find . -name "*.magic.drc" -exec echo "--- FILE: {} ---" \; -exec head -n 50 {} \;
+
       - name: 💾 Upload Macro Abstract Views for Top-Level Assembly
         uses: actions/upload-artifact@v4
         with:
