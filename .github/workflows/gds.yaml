@@ -1,6 +1,13 @@
 name: gds
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/*.*'
+      - '.github/workflows/gds.yaml'
+- 
   workflow_run:
     workflows: ["macros"]
     types:
@@ -17,7 +24,7 @@ concurrency:
 
 jobs:
   gds:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-24.04
     steps:
       - name: checkout repo

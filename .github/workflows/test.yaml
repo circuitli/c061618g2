@@ -10,6 +10,11 @@ on:
       - 'info.yaml'
       - '.github/workflows/test.yaml'
 
+  workflow_run:
+    workflows: ["macros"]
+    types:
+      - completed
+
   workflow_dispatch:
 
 # =========================================================================
@@ -21,12 +26,24 @@ concurrency:
 
 jobs:
   test:
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout repo
         uses: actions/checkout@v6
         with:
-          submodules: recursive    
+          submodules: recursive  
+          
+      - name: Download Precompiled Macro Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: precompiled-macros
+          workflow: macros.yaml
+          branch: main
+          run_id: ${{ github.event.workflow_run.id || '' }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          if_no_artifact_found: fail
+          path: macros/  # Pulls the files right back into the root workspace folder
 
       - name: Install iverilog
         shell: bash
