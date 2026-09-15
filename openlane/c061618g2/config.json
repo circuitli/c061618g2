@@ -35,7 +35,7 @@
     "LVS_VERILOG_CASE_INSENSITIVE": true,
     "LVS_SPICE_CASE_INSENSITIVE": true,
     "LVS_EXTRA_SPICE_MODELS": [
-      "dir::$PDK_ROOT/ihp-sg13g2/libs.tech/netgen/sg13g2_netlist.tcl"
+      "dir::$PDK_ROOT/libs.tech/ihp-sg13g2/netgen/sg13g2_netlist.tcl"
     ],
     "LVS_REDUCE_SPLIT_NETS": false,
     "LVS_NO_FLATTEN": true,
