@@ -6,9 +6,9 @@
 
   "PNR_SDC_FILE": "dir::../../src/mmu_constraints.sdc",
 
-  "IO_PIN_ORDER_CFG": "dir::pin_order.cfg",
+  "_IO_PIN_ORDER_CFG": "dir::pin_order.cfg",
 
-  "_PDN_CFG": "dir::pdn_cfg.tcl",
+  "PDN_CFG": "dir::pdn_cfg.tcl",
 
   "FP_SIZING": "absolute",
   "PDN_MULTILAYER": false,

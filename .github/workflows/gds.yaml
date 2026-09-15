@@ -85,7 +85,7 @@ jobs:
           echo "🎉 Macro compilation passed validation checks completely!"
 
       - name: Print LVS Log Directly to Terminal
-        if: always()
+        if: failure()
         run: |
           echo "=== DUMPING NETGEN REPORT COMPARISON ==="
           find . -name "lvs.netgen.rpt" -exec echo "--- FILE: {} ---" \; -exec tail -n 120 {} \;
