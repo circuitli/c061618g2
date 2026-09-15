@@ -35,7 +35,7 @@ jobs:
           submodules: recursive  
           
       - name: Download Precompiled Macro Artifacts
-        uses: actions/download-artifact@v4
+        uses: dawidd6/action-download-artifact@v3   # 👈 Correct action for cross-workflow lookups
         with:
           name: precompiled-macros
           workflow: macros.yaml
