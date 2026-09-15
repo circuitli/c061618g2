@@ -37,6 +37,7 @@
     "LVS_EXTRA_SPICE_MODELS": [
       "dir::$PDK_ROOT/ihp-sg13g2/libs.tech/netgen/sg13g2_netlist.tcl"
     ],
+    "LVS_NO_FLATTEN": true,
     "LVS_FLATTEN_CELLS": [],
     "LVS_INCLUDE_MACROS_NETLIST": true,
     "LVS_EXTRA_STD_CELL_LIBRARY": true,
