@@ -12,7 +12,7 @@
 
   "SYNTH_VECTOR_MAPPING": "square",
   "MAGIC_WRITE_GDS_STRIP_EMPTY_MUTEX": 1,
-  "LVS_FLATTEN_CELLS": [ "*" ],
+  "LVS_FLATTEN_CELLS": [],
   "LVS_REDUCE_SPLIT_NETS": true,
   "LVS_CONNECT_BY_NAME": [ "vdd", "vss", "VPWR", "VGND" ],
 
@@ -32,6 +32,8 @@
   "// -------------------------------------------------------------------------": "",
   "pdk::ihp-sg13g2": {
     "VERILOG_DEFINES": [ "IHP_SG13G2" ],
+    "LVS_SPICE_CASE_INSENSITIVE": true,
+    "LVS_VERILOG_CASE_INSENSITIVE": true,
     "SYNTH_EXPLODE_BUSSES": true,
     "MAGIC_WRITE_GDS_STRIP_EMPTY_MUTEX": 1,
     "LVS_FLATTEN_CELLS": [ "*" ],
