@@ -10,7 +10,7 @@ on:
       - 'openlane/*/*.*'
       - 'info.yaml'
       - '.github/workflows/macros.yaml'
-- 
+
   workflow_dispatch:
 
 # =========================================================================
