@@ -39,7 +39,7 @@
     "LVS_IGNORE_CELLS": [],
     "LVS_EXTRA_STD_CELL_LIBRARY": true,
     "LVS_INCLUDE_MACROS_NETLIST": true,
-    "LVS_REDUCE_SPLIT_NETS": false,
+    "LVS_REDUCE_SPLIT_NETS": true,
     "LVS_CONNECT_BY_NAME": [ "vdd", "vss", "VPWR", "VGND" ],
     "FP_PDN_GLOBAL_CONNECTIONS": {
       "VDD": {
