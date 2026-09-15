@@ -2,6 +2,13 @@
 set_voltage_domain -name CORE -power $::env(VDD_NET) -ground $::env(GND_NET)
 
 # =============================================================================
+# GLOBAL NET STRIP LOGIC (FOR IHP SUBSTRATE WELL PASSING)
+# =============================================================================
+add_global_connection -net $::env(VDD_NET) -inst_pattern .* -pin_pattern {VDD|vdd}
+add_global_connection -net $::env(GND_NET) -inst_pattern .* -pin_pattern {VSS|vss}
+# =============================================================================
+
+# =============================================================================
 # DYNAMIC TECHNOLOGY GRID EXTRACTION
 # =============================================================================
 set db_block         [ord::get_db_block]
