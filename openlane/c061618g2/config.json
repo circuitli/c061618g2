@@ -29,7 +29,7 @@
   "_PDN_CONNECT_MACROS_TO_GRID": false,
   "_PDN_ENABLE_RAILS": true,
 
-  "PDN_CFG": "dir::pdn_cfg.tcl",
+  "_PDN_CFG": "dir::pdn_cfg.tcl",
 
   "FP_SIZING": "absolute",
 
