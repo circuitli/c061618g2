@@ -10,7 +10,7 @@
 
   "PDN_CFG": "dir::pdn_cfg.tcl",
 
-  "SYNTH_VECTOR_MAPPING": "none",
+  "SYNTH_VECTOR_MAPPING": "square",
   "MAGIC_WRITE_GDS_STRIP_EMPTY_MUTEX": 1,
   "LVS_FLATTEN_CELLS": [],
   "LVS_REDUCE_SPLIT_NETS": true,
@@ -62,7 +62,7 @@
       }
     },
 
-    "SYNTH_EXPLODE_BUSSES": true,
+    "SYNTH_EXPLODE_BUSSES": false,
     "MAGIC_WRITE_GDS_STRIP_EMPTY_MUTEX": 1,
 
     "FP_CORE_UTIL": 45,
