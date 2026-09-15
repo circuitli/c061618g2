@@ -34,16 +34,28 @@ jobs:
         with:
           submodules: recursive  
           
+      # 🔍 1. EXTRACT RUN ID (Handles manual buttons natively)
+      - name: Resolve Macro Run ID
+        id: resolve-id
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_run" ]; then
+            echo "run_id=${{ github.event.workflow_run.id }}" >> $GITHUB_OUTPUT
+          else
+            # Finds the absolute latest successful macros workflow run ID natively via GitHub CLI
+            LATEST_ID=$(gh run list --workflow="macros.yml" --status=success --limit=1 --json databaseId -q '.[0].databaseId')
+            echo "run_id=$LATEST_ID" >> $GITHUB_OUTPUT
+          fi
+
+      # 📦 2. OFFICIAL GITHUB ARTIFACT DOWNLOADER
       - name: Download Precompiled Macro Artifacts
-        uses: dawidd6/action-download-artifact@v3   # 👈 Correct action for cross-workflow lookups
+        uses: actions/download-artifact@v4
         with:
           name: precompiled-macros
-          workflow: macros.yaml
-          branch: main
-          run_id: ${{ github.event.workflow_run.id || '' }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          if_no_artifact_found: fail
-          path: macros/  # Pulls the files right back into the root workspace folder
+          run-id: ${{ steps.resolve-id.outputs.run_id }}  # 👈 Safe native cross-workflow link
+          github-token: ${{ secrets.GITHUB_TOKEN }}       # 👈 Official syntax
+          path: macros/
 
       - name: Install iverilog
         shell: bash
