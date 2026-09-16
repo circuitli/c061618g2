@@ -19,6 +19,8 @@
   "_RUN_LINTER": false,
   "LINTER_INCLUDE_PDK_MODELS": 1,
 
+  "EXTRA_CONFIGS": [ "extra_config.tcl" ],
+
   "// -------------------------------------------------------------------------": "",
   "// GLOBAL EXTRA MACRO FILE INTEGRATION (Evaluated Once Globally)": "",
   "// -------------------------------------------------------------------------": "",
@@ -73,17 +75,17 @@
     },
     "RT_MAX_LAYER": "Metal4",
     "PDN_HORIZONTAL_LAYER": "Metal5",
-    "TILE_PDN_VERTICAL_LAYER": "Metal4",
+    "_TILE_PDN_VERTICAL_LAYER": "Metal4",
     "_VDD_NETS": [ "VPWR", "vdd" ],
     "_GND_NETS": [ "VGND", "vss" ],
     "PDN_MACRO_CONNECTIONS": [
       "u_c061618g2 VPWR VGND vdd vss"
     ],
 
-    "TILE_PDN_VWIDTH": 0.48,
-    "TILE_PDN_VSPACING": 0.96,
-    "TILE_PDN_VOFFSET": 11.04,
-    "TILE_PDN_VPITCH": 22.08,
+    "_TILE_PDN_VWIDTH": 0.48,
+    "_TILE_PDN_VSPACING": 0.96,
+    "_TILE_PDN_VOFFSET": 11.04,
+    "_TILE_PDN_VPITCH": 22.08,
 
     "PDN_HWIDTH": 0.96,
     "PDN_HSPACING": 1.64,
@@ -124,7 +126,7 @@
   "_FP_PDN_CORE_RING": false,
   "_FP_PDN_ENABLE_RAILS": true,
   "_FP_PDN_ENABLE_MACROS_GRID": true,
- 
+
   "PDN_CORE_RING": false,
   "PDN_ENABLE_RAILS": true,
   "_PDN_ENABLE_MACROS_GRID": false,
