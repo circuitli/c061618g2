@@ -20,7 +20,9 @@ on:
     branches:
       - main
     paths:
-      - 'src/**'
+      - 'src/*/**'
+      - 'src/*.sv'
+      - 'src/*.v'
       - 'formal/**'
       - 'info.yaml'
       - '.github/workflows/sby.yaml'
