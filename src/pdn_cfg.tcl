@@ -20,8 +20,7 @@ add_global_connection -net $::env(VDD_NET) -inst_pattern .* -pin_pattern {vdd|VD
 add_global_connection -net $::env(GND_NET) -inst_pattern .* -pin_pattern {vss|VSS|VGND|vgnd}
 
 # =============================================================================
-set_voltage_domain -name CORE -power $::env(VDD_NET) -ground $::env(GND_NET) \
-    -secondary_power $secondary
+set_voltage_domain -name CORE -power $::env(VDD_NET) -ground $::env(GND_NET) 
 
 # =========================================================================
 # STANDARD CELL POWER GRID CONFIGURATION
