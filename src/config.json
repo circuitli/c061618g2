@@ -50,6 +50,12 @@
     ],
     "macro_y_1": 3.78,
     "macro_x_1": 20.16,
+    "PLACEMENT_CONSTRAINTS": [
+      {
+        "type": "placement",
+        "bbox": [ 0.0, 0.0, 6.72, 143.64 ]
+      }
+    ],
     "MACROS": {
       "c061618g2": {
         "gds": [ "dir::../macros/gds/c061618g2.gds" ],
@@ -68,7 +74,7 @@
         }
       }
     },
-    "RT_MAX_LAYER": "Metal5",
+    "RT_MAX_LAYER": "Metal4",
     "PDN_HORIZONTAL_LAYER": "Metal5",
     "PDN_VERTICAL_LAYER": "Metal4",
     "PDN_MACRO_CONNECTIONS": [
