@@ -50,11 +50,8 @@
     ],
     "macro_y_1": 3.78,
     "macro_x_1": 20.16,
-    "PLACEMENT_CONSTRAINTS": [
-      {
-        "type": "placement",
-        "bbox": [ 0.0, 0.0, 6.72, 143.64 ]
-      }
+    "PLACEMENT_BLOCKAGES": [
+      "0.0 0.0 6.72 143.64"
     ],
     "MACROS": {
       "c061618g2": {
@@ -68,7 +65,7 @@
         },
         "instances": {
           "u_c061618g2": {
-            "location": [ 7.32, 94.50 ],
+            "location": [ 7.56, 94.50 ],
             "orientation": "N"
           }
         }
