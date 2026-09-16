@@ -32,7 +32,16 @@ define_pdn_grid \
     -name stdcell_grid \
     -starts_with POWER \
     -voltage_domain CORE \
-    -pins TopMetal1
+    -pins $::env(PDN_VERTICAL_LAYER)
+
+add_pdn_stripe \
+    -grid stdcell_grid \
+    -layer $::env(PDN_VERTICAL_LAYER) \
+    -width $::env(PDN_VWIDTH) \
+    -pitch $::env(PDN_VPITCH) \
+    -offset $::env(PDN_VOFFSET) \
+    -spacing $::env(PDN_VSPACING) \
+    -starts_with POWER -extend_to_core_ring
 
 # 1. HORIZONTAL STRIPE LAYER: Explicitly forced to horizontal layout rules
 add_pdn_stripe \
@@ -47,11 +56,11 @@ add_pdn_stripe \
 # 2. VERTICAL STRIPE LAYER: Explicitly forced to vertical layout rules
 add_pdn_stripe \
     -grid stdcell_grid \
-    -layer $::env(PDN_VERTICAL_LAYER) \
-    -width $::env(PDN_VWIDTH) \
-    -pitch $::env(PDN_VPITCH) \
-    -offset $::env(PDN_VOFFSET) \
-    -spacing $::env(PDN_VSPACING) \
+    -layer $::env(TILE_PDN_VERTICAL_LAYER) \
+    -width $::env(TILE_PDN_VWIDTH) \
+    -pitch $::env(TILE_PDN_VPITCH) \
+    -offset $::env(TILE_PDN_VOFFSET) \
+    -spacing $::env(TILE_PDN_VSPACING) \
     -starts_with POWER
 
 # 3. Standard Cell Rails on Metal1

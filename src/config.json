@@ -73,17 +73,17 @@
     },
     "RT_MAX_LAYER": "Metal4",
     "PDN_HORIZONTAL_LAYER": "Metal5",
-    "PDN_VERTICAL_LAYER": "Metal4",
+    "TILE_PDN_VERTICAL_LAYER": "Metal4",
     "_VDD_NETS": [ "VPWR", "vdd" ],
     "_GND_NETS": [ "VGND", "vss" ],
     "PDN_MACRO_CONNECTIONS": [
       "u_c061618g2 VPWR VGND vdd vss"
     ],
 
-    "PDN_VWIDTH": 0.48,
-    "PDN_VSPACING": 0.96,
-    "_PDN_VOFFSET": 11.04,
-    "_PDN_VPITCH": 22.08,
+    "TILE_PDN_VWIDTH": 0.48,
+    "TILE_PDN_VSPACING": 0.96,
+    "TILE_PDN_VOFFSET": 11.04,
+    "TILE_PDN_VPITCH": 22.08,
 
     "PDN_HWIDTH": 0.96,
     "PDN_HSPACING": 1.64,
