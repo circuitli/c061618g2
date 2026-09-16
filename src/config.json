@@ -26,6 +26,9 @@
 
   "PDN_CFG": "dir::pdn_cfg.tcl",
 
+  "VDD_NETS": [ "VDD", "VPWR", "vdd" ],
+  "GND_NETS": [ "VSS", "VGND", "vss" ],
+
   "// -------------------------------------------------------------------------": "",
   "// STRICT PROCESS-SPECIFIC OVERRIDES ONLY": "",
   "// -------------------------------------------------------------------------": "",
@@ -97,8 +100,8 @@
     "RUN_ANTENNA_REPAIR": true,
     "RUN_HEURISTIC_DIODE_INSERTION": true,
 
-    "FP_MACRO_HORIZONTAL_HALO": 0,
-    "FP_MACRO_VERTICAL_HALO": 0
+    "FP_MACRO_HORIZONTAL_HALO": 0.42,
+    "FP_MACRO_VERTICAL_HALO": 0.756
   },
 
   "pdk::sky130*": {
