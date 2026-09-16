@@ -89,14 +89,25 @@
 
     "FP_PDN_UPPER_LAYERS": [ "Metal4", "Metal5", "TopMetal1" ],
 
-    "PDN_ENABLE_PINS": true,
-    "FP_IO_MIN_DISTANCE": 1.92,
-    "FP_IO_EDGE_PADDING": 2.88,
+    "LVS_FLATTEN_CELLS": [],
+    "LVS_IGNORE_CELLS": [
+      "sg13g2_fill_1",
+      "sg13g2_fill_2",
+      "sg13g2_fill_4",
+      "sg13g2_decap_4",
+      "sg13g2_decap_8"
+    ],
+
+    "PDN_SKIPTRIM": false,
+
+    "RUN_TAP_ENDCAP_INSERTION": true,
+    "FP_TAPCELL_DIST": 60,
+
+    "RUN_ANTENNA_REPAIR": true,
+    "RUN_HEURISTIC_DIODE_INSERTION": true,
 
     "FP_MACRO_HORIZONTAL_HALO": 0,
-    "FP_MACRO_VERTICAL_HALO": 0,
-
-    "LVS_IGNORE_CELLS": [ "sg13g2_fill_1", "sg13g2_fill_2", "sg13g2_fill_4", "sg13g2_decap_4", "sg13g2_decap_8" ]
+    "FP_MACRO_VERTICAL_HALO": 0
   },
 
   "pdk::sky130*": {

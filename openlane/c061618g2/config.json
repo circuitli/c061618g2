@@ -42,9 +42,6 @@
 
   "FP_SIZING": "absolute",
 
-  "_FP_PDN_ENABLE_PINS": true,
-  "_PDN_ENABLE_PINS": true,
-  "_VERILOG_POWER_DEFINE": "USE_POWER_PINS",
   "RUN_SPEF_EXTRACTION": true,
 
   "// -------------------------------------------------------------------------": "",
@@ -52,7 +49,6 @@
   "// -------------------------------------------------------------------------": "",
   "pdk::ihp-sg13g2": {
     "VERILOG_DEFINES": [ "IHP_SG13G2" ],
-    "_LVS_NO_FLATTEN": true,
     "LVS_FLATTEN_CELLS": [],
     "_LVS_FLATTEN_CELLS": [ "sg13g2_tielo", "sg13g2_tiehi", "sg13g2_antennanp", "sg13g2_fill_1", "sg13g2_fill_2", "sg13g2_fill_4", "sg13g2_decap_4", "sg13g2_decap_8" ],
     "LVS_IGNORE_CELLS": [
