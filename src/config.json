@@ -83,8 +83,8 @@
 
     "PDN_VWIDTH": 0.48,
     "PDN_VSPACING": 0.96,
-    "_PDN_VOFFSET": 4.20,
-    "_PDN_VPITCH": 22.26,
+    "PDN_VOFFSET": 4.20,
+    "PDN_VPITCH": 22.26,
 
     "PDN_HWIDTH": 0.96,
     "PDN_HSPACING": 1.64,
