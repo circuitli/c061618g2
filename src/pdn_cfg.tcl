@@ -23,32 +23,6 @@ add_global_connection -net $::env(GND_NET) -inst_pattern .* -pin_pattern {vss|VS
 add_global_connection -net vdd -inst_pattern .* -pin_pattern {vdd|VPWR}
 add_global_connection -net vss -inst_pattern .* -pin_pattern {vss|VGND}
 # =============================================================================
-
-set secondary []
-foreach vdd $::env(VDD_NETS) gnd $::env(GND_NETS) {
-    if { $vdd != $::env(VDD_NET)} {
-        lappend secondary $vdd
-
-        set db_net [[ord::get_db_block] findNet $vdd]
-        if {$db_net == "NULL"} {
-            set net [odb::dbNet_create [ord::get_db_block] $vdd]
-            $net setSpecial
-            $net setSigType "POWER"
-        }
-    }
-
-    if { $gnd != $::env(GND_NET)} {
-        lappend secondary $gnd
-
-        set db_net [[ord::get_db_block] findNet $gnd]
-        if {$db_net == "NULL"} {
-            set net [odb::dbNet_create [ord::get_db_block] $gnd]
-            $net setSpecial
-            $net setSigType "GROUND"
-        }
-    }
-}
-
 set_voltage_domain -name CORE -power $::env(VDD_NET) -ground $::env(GND_NET) \
     -secondary_power $secondary
 

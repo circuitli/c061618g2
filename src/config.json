@@ -74,9 +74,12 @@
     "RT_MAX_LAYER": "Metal4",
     "PDN_HORIZONTAL_LAYER": "Metal5",
     "PDN_VERTICAL_LAYER": "Metal4",
+    "VDD_NETS": [ "VPWR", "vdd" ],
+    "GND_NETS": [ "VGND", "vss" ],
     "PDN_MACRO_CONNECTIONS": [
       "u_c061618g2 VPWR VGND vdd vss"
     ],
+
 
     "PDN_VWIDTH": 0.48,
     "PDN_VSPACING": 0.96,
