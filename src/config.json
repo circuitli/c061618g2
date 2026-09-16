@@ -62,7 +62,7 @@
         },
         "instances": {
           "u_c061618g2": {
-            "location": [ 5.28, 94.50 ],
+            "location": [ 5.46, 94.50 ],
             "orientation": "N"
           }
         }
@@ -92,7 +92,7 @@
       "sg13g2_decap_8"
     ],
 
-    "PDN_SKIPTRIM": true,
+    "PDN_SKIPTRIM": false,
 
     "RUN_TAP_ENDCAP_INSERTION": true,
     "FP_TAPCELL_DIST": 60,
@@ -100,7 +100,7 @@
     "RUN_ANTENNA_REPAIR": true,
     "RUN_HEURISTIC_DIODE_INSERTION": true,
 
-    "FP_MACRO_HORIZONTAL_HALO": 0.42,
+    "FP_MACRO_HORIZONTAL_HALO": 0.0,
     "FP_MACRO_VERTICAL_HALO": 0.756
   },
 
