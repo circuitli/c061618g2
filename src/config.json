@@ -26,13 +26,6 @@
 
   "PDN_CFG": "dir::pdn_cfg.tcl",
 
-  "LVS_INCLUDE_POWER_GROUND": true,
-  "LVS_FLATTEN_CELLS": [ "*" ],
-  "LVS_INCLUDE_MACROS_NETLIST": true,
-  "LVS_REDUCE_SPLIT_NETS": true,
-  "LVS_CONNECT_BY_NAME": [ "vdd", "vss", "VPWR", "VGND" ],
-  "SYNTH_USE_PG_PINS": true,
-
   "// -------------------------------------------------------------------------": "",
   "// STRICT PROCESS-SPECIFIC OVERRIDES ONLY": "",
   "// -------------------------------------------------------------------------": "",
@@ -54,7 +47,6 @@
     ],
     "macro_y_1": 3.78,
     "macro_x_1": 20.16,
-    "MACRO_PAD": 0,
     "MACROS": {
       "c061618g2": {
         "gds": [ "dir::../macros/gds/c061618g2.gds" ],
@@ -67,7 +59,7 @@
         },
         "instances": {
           "u_c061618g2": {
-            "location": [ 5.28, 94.50 ],
+            "location": [ 5.28, 94.72 ],
             "orientation": "N"
           }
         }
@@ -87,8 +79,6 @@
     "PDN_HSPACING": 1.64,
     "PDN_HOFFSET": 11.34,
     "PDN_HPITCH": 15.12,
-
-    "FP_PDN_UPPER_LAYERS": [ "Metal4", "Metal5", "TopMetal1" ],
 
     "LVS_FLATTEN_CELLS": [],
     "LVS_IGNORE_CELLS": [
