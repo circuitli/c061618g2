@@ -79,9 +79,9 @@
     ],
 
     "PDN_VWIDTH": 0.48,
-    "PDN_VSPACING": 0.48,
-    "PDN_VOFFSET": 4.20,
-    "PDN_VPITCH": 22.26,
+    "PDN_VSPACING": 0.96
+    "_PDN_VOFFSET": 4.20,
+    "_PDN_VPITCH": 22.26,
 
     "PDN_HWIDTH": 0.96,
     "PDN_HSPACING": 1.64,
@@ -124,7 +124,7 @@
   "_FP_PDN_ENABLE_MACROS_GRID": true,
  
   "PDN_CORE_RING": false,
-  "PDN_ENABLE_RAILS": true,
+  "PDN_ENABLE_RAILS": false,
   "_PDN_ENABLE_MACROS_GRID": false,
   "_PDN_CONNECT_MACROS_TO_GRID": true,
 
@@ -366,7 +366,7 @@
   "FP_IO_HLENGTH": 2,
   "FP_IO_VLENGTH": 2,
 
-  "_FP_PDN_VPITCH": 38.87,
+  "FP_PDN_VPITCH": 38.87,
 
   "//": "Clock",
   "RUN_CTS": 0,
