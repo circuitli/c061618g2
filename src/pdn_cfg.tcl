@@ -62,7 +62,7 @@ add_pdn_stripe \
     -pitch $::env(TILE_PDN_VPITCH) \
     -offset $::env(TILE_PDN_VOFFSET) \
     -spacing $::env(TILE_PDN_VSPACING) \
-    -starts_with POWER
+    -starts_with POWER -extend_to_core_ring
 
 # 3. Standard Cell Rails on Metal1
 if { $::env(PDN_ENABLE_RAILS) == 1 } {
