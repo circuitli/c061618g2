@@ -60,7 +60,8 @@ if { $::env(PDN_ENABLE_RAILS) == 1 } {
         -grid stdcell_grid \
         -layer $::env(PDN_RAIL_LAYER) \
         -width $::env(PDN_RAIL_WIDTH) \
-        -followpins
+        -followpins \
+        -extend_to_core_ring
 
     # Connect horizontal Metal1 cell rails to the Vertical power straps (Metal4)
     add_pdn_connect \
