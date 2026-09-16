@@ -127,7 +127,7 @@
   "_FP_PDN_ENABLE_MACROS_GRID": true,
  
   "PDN_CORE_RING": false,
-  "PDN_ENABLE_RAILS": false,
+  "PDN_ENABLE_RAILS": true,
   "_PDN_ENABLE_MACROS_GRID": false,
   "_PDN_CONNECT_MACROS_TO_GRID": true,
 
