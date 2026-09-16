@@ -19,10 +19,7 @@
   "_RUN_LINTER": false,
   "LINTER_INCLUDE_PDK_MODELS": 1,
 
-  "// -------------------------------------------------------------------------": "",
-  "// GLOBAL EXTRA MACRO FILE INTEGRATION (Evaluated Once Globally)": "",
-  "// -------------------------------------------------------------------------": "",
-  "_EXTRA_LEFS": [ "dir::macro/*.lef" ],
+  "FALLBACK_SDC": "src/mmu_constraints.sdc",
 
   "PDN_CFG": "dir::pdn_cfg.tcl",
 
@@ -50,9 +47,6 @@
     ],
     "macro_y_1": 3.78,
     "macro_x_1": 20.16,
-    "PLACEMENT_BLOCKAGES": [
-      "0.0 0.0 6.72 143.64"
-    ],
     "MACROS": {
       "c061618g2": {
         "gds": [ "dir::../macros/gds/c061618g2.gds" ],
@@ -73,17 +67,11 @@
     },
     "RT_MAX_LAYER": "Metal4",
     "PDN_HORIZONTAL_LAYER": "Metal5",
-    "_TILE_PDN_VERTICAL_LAYER": "Metal4",
     "_VDD_NETS": [ "VPWR", "vdd" ],
     "_GND_NETS": [ "VGND", "vss" ],
     "PDN_MACRO_CONNECTIONS": [
       "u_c061618g2 VPWR VGND vdd vss"
     ],
-
-    "_TILE_PDN_VWIDTH": 0.48,
-    "_TILE_PDN_VSPACING": 0.96,
-    "_TILE_PDN_VOFFSET": 11.04,
-    "_TILE_PDN_VPITCH": 22.08,
 
     "PDN_HWIDTH": 0.96,
     "PDN_HSPACING": 0.96,
@@ -122,12 +110,8 @@
     "STD_CELL_LIBRARY": "gf180mcu_fd_sc_mcu7t5v0"
   },
 
-  "_FP_PDN_CORE_RING": false,
-  "_FP_PDN_ENABLE_RAILS": true,
-  "_FP_PDN_ENABLE_MACROS_GRID": true,
-
   "PDN_CORE_RING": false,
-  "PDN_ENABLE_RAILS": true,
+  "PDN_ENABLE_RAILS": false
   "_PDN_ENABLE_MACROS_GRID": false,
   "_PDN_CONNECT_MACROS_TO_GRID": true,
 
@@ -201,25 +185,6 @@
   "//": "ERROR_ON_UNMAPPED_CELLS - Set to false to act as a fallback safety guardrail in case Yosys attempts to infer any sequential logic out of your stripped loops.",
   "ERROR_ON_UNMAPPED_CELLS": false,
 
-  "FALLBACK_SDC": "src/mmu_constraints.sdc",
-  "_MACRO_PLACEMENT_CFG": "",
-  "_MACRO_PLACEMENT_BOUNDS_FILE": "src/macro_bounds.json",
-  "_EXTRA_SPECS_TCL": "dir::src/floorplan_hooks.tcl",
-  "_EXTRA_PLACEMENT_TCL_FILES": [
-    "src/floorplan_hooks.tcl"
-  ],
-  "_OpenROAD.Floorplan": {
-    "extra_tcl_lines": [
-      "source src/floorplan_hooks.tcl"
-    ]
-  },
-  "_hooks": {
-    "OpenROAD.Floorplan": {
-      "post": "dir::src/floorplan_hooks.tcl"
-    }
-  },
-  "_HOOK_BEFORE_PLACEMENT": "src/floorplan_hooks.tcl",
-  "_GPL_PRE_HOOK": "dir::src/floorplan_hooks.tcl",
   "//": "EXTRA_FLOORPLAN_TCL - Forces OpenROAD to execute raw Tcl commands during the floorplan pass, guaranteeing fence allocation before cells are evaluated",
   "_EXTRA_FLOORPLAN_TCL": "create_fence -name u_c061618g2 -box {10.08 10.08 63.84 75.60}",
 
@@ -228,64 +193,6 @@
 
   "//": "PL_MAX_PHI_COEFFICIENT - Limits the maximum density packing penalty. This prevents the placement engine from aggressively spreading out your custom cells during cell legalization, preserving your compact layout arrangement.",
   "_PL_MAX_PHI_COEFFICIENT": 1.05,
-
-  "_FP_DEF_TEMPLATE": "dir::src/tt_um_c061618g2.def",
-
-  "_FP_REGIONS_EXCLUSIVE": true,
-  "// === Physical Grid Compliant Subregion Constraints ===": "",
-  "_FP_REGIONS": {
-    "u_c061618g2": [ 10.08, 10.08, 63.84, 75.60 ]
-  },
-  "//": "PL_REGIONS - Binds the entire unflattened u_c061618g2 macro logic block inside a strict physical coordinate bounding box on the Tiny Tapeout wrapper grid without needing a hard GDS database.",
-  "__PL_REGIONS": {
-    "u_c061618g2_region": {
-      "instances": [ "u_c061618g2" ],
-      "bounds": [ 10.0, 10.0, 55.36, 25.12 ],
-      "type": "guide"
-    }
-  },
-  "_PL_MACRO_CHNL_VAL": {
-    "u_c061618g2": [ 10.0, 10.0, 55.36, 25.12 ]
-  },
-  "__PLACEMENT_CONSTRAINTS": {
-    "u_c061618g2": {
-      "type": "fence",
-      "box": [ 10.08, 10.08, 63.84, 75.60 ]
-    },
-    "u_c061618g2/*": {
-      "type": "fence",
-      "box": [ 10.08, 10.08, 63.84, 75.60 ]
-    }
-  },
-  "_MODULE_GROUPS": {
-    "c061618g2_box": {
-      "box": [ 10.0, 10.0, 55.36, 25.12 ],
-      "instances": [ "*u_c061618g2*" ],
-      "type": "fence"
-    }
-  },
-  "_BLACKBOXES": {
-    "u_c061618g2": {
-      "box": [ 0, 0, 45.36, 15.12 ]
-    }
-  },
-
-  "_MACRO_PLACEMENT": {
-    "u_c061618g2": {
-      "location": [ 10.0, 10.0 ],
-      "orientation": "N",
-      "boundary": [ 0, 0, 45.36, 15.12 ]
-    }
-  },
-  "_PL_BOUNDS_INSTS": [ "tt_um_c061618g2.u_c061618g2" ],
-  "_PL_BOUNDS_X0": [ 10.0 ],
-  "_PL_BOUNDS_Y0": [ 10.0 ],
-  "_PL_BOUNDS_X1": [ 55.36 ],
-  "_____PL_BOUNDS_Y1": [ 25.12 ],
-  "____PL_BOUNDS_Y1": [ 35.20 ],
-  "_PL_BOUNDS_Y1": [ 40.24 ],
-  "__PL_BOUNDS_Y1": [ 45.28 ],
-  "___PL_BOUNDS_Y1": [ 50.32 ],
 
   "//": "FP_CORE_UTIL - Force LibreLane to generate a much larger dynamic box for our 3% cell logic by lowering core utilization",
   "FP_CORE_UTIL": 65,
