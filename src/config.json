@@ -86,7 +86,7 @@
     "_TILE_PDN_VPITCH": 22.08,
 
     "PDN_HWIDTH": 0.96,
-    "PDN_HSPACING": 1.64,
+    "PDN_HSPACING": 0.96,
     "PDN_HOFFSET": 3.78,
     "PDN_HPITCH": 15.12,
 
