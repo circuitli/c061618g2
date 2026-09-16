@@ -62,7 +62,7 @@
         },
         "instances": {
           "u_c061618g2": {
-            "location": [ 5.28, 94.28 ],
+            "location": [ 5.28, 94.50 ],
             "orientation": "N"
           }
         }
@@ -81,7 +81,7 @@
     "PDN_HWIDTH": 0.96,
     "PDN_HSPACING": 1.64,
     "PDN_HOFFSET": 11.34,
-    "PDN_HPITCH": 15.12,
+    "PDN_HPITCH": 22.68,
 
     "LVS_FLATTEN_CELLS": [],
     "LVS_IGNORE_CELLS": [
