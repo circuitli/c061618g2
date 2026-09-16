@@ -68,7 +68,7 @@
         }
       }
     },
-    "RT_MAX_LAYER": "Metal3",
+    "RT_MAX_LAYER": "Metal5",
     "PDN_HORIZONTAL_LAYER": "Metal5",
     "PDN_VERTICAL_LAYER": "Metal4",
     "PDN_MACRO_CONNECTIONS": [
