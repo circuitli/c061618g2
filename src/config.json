@@ -99,7 +99,7 @@
       "sg13g2_decap_8"
     ],
 
-    "PDN_SKIPTRIM": false,
+    "PDN_SKIPTRIM": true,
 
     "RUN_TAP_ENDCAP_INSERTION": true,
     "FP_TAPCELL_DIST": 60,
