@@ -80,6 +80,8 @@
 
     "PDN_VWIDTH": 0.48,
     "PDN_VSPACING": 0.96,
+    "PDN_VOFFSET": 10.92,
+    "PDN_VPITCH": 22.26,
 
     "PDN_HWIDTH": 0.96,
     "PDN_HSPACING": 1.64,
@@ -364,7 +366,7 @@
   "FP_IO_HLENGTH": 2,
   "FP_IO_VLENGTH": 2,
 
-  "FP_PDN_VPITCH": 38.87,
+  "_FP_PDN_VPITCH": 38.87,
 
   "//": "Clock",
   "RUN_CTS": 0,
