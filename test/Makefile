@@ -60,6 +60,10 @@ else ifeq ($(SIM),icarus)
         COMPILE_ARGS += -DFUNCTIONAL -gno-specify
 
         VERILOG_SOURCES += $(addprefix $(SRC_DIR)/,$(PROJECT_SOURCES))
+
+        # Append the path to your macro's internal gate-level netlist file
+        VERILOG_SOURCES += $(wildcard $(PWD)/../macros/^/nl/*.v)
+
         VERILOG_SOURCES += $(CLEAN_LOCAL_CELLS)
     else
         # Gate level simulation:

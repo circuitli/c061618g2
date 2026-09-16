@@ -80,16 +80,15 @@
       "u_c061618g2 VPWR VGND vdd vss"
     ],
 
-
     "PDN_VWIDTH": 0.48,
     "PDN_VSPACING": 0.96,
-    "PDN_VOFFSET": 11.04,
-    "PDN_VPITCH": 22.08,
+    "_PDN_VOFFSET": 11.04,
+    "_PDN_VPITCH": 22.08,
 
     "PDN_HWIDTH": 0.96,
     "PDN_HSPACING": 1.64,
     "PDN_HOFFSET": 7.56,
-    "_PDN_HPITCH": 22.68,
+    "PDN_HPITCH": 22.68,
 
     "LVS_FLATTEN_CELLS": [],
     "LVS_IGNORE_CELLS": [

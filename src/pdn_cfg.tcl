@@ -32,7 +32,7 @@ define_pdn_grid \
     -name stdcell_grid \
     -starts_with POWER \
     -voltage_domain CORE \
-    -pins $::env(PDN_HORIZONTAL_LAYER)
+    -pins TopMetal1
 
 # 1. HORIZONTAL STRIPE LAYER: Explicitly forced to horizontal layout rules
 add_pdn_stripe \
