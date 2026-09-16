@@ -26,8 +26,8 @@
 
   "PDN_CFG": "dir::pdn_cfg.tcl",
 
-  "VDD_NETS": [ "VDD", "VPWR", "vdd" ],
-  "GND_NETS": [ "VSS", "VGND", "vss" ],
+  "VDD_NETS": [ "VDD", "VPWR" ],
+  "GND_NETS": [ "VSS", "VGND" ],
 
   "// -------------------------------------------------------------------------": "",
   "// STRICT PROCESS-SPECIFIC OVERRIDES ONLY": "",
