@@ -19,8 +19,6 @@
   "_RUN_LINTER": false,
   "LINTER_INCLUDE_PDK_MODELS": 1,
 
-  "EXTRA_CONFIGS": [ "extra_config.tcl" ],
-
   "// -------------------------------------------------------------------------": "",
   "// GLOBAL EXTRA MACRO FILE INTEGRATION (Evaluated Once Globally)": "",
   "// -------------------------------------------------------------------------": "",

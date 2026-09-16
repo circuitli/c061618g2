@@ -8,6 +8,7 @@
 # - Macro internal structures    -> Terminate at Horizontal Metal3
 #
 # Based on librelane's default pdn_cfg.tcl.
+source extra_config.tcl
 
 source $::env(SCRIPTS_DIR)/openroad/common/set_global_connections.tcl
 set_global_connections
