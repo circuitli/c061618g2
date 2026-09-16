@@ -65,7 +65,7 @@
         },
         "instances": {
           "u_c061618g2": {
-            "location": [ 0.42, 94.50 ],
+            "location": [ 1.68, 94.50 ],
             "orientation": "N"
           }
         }
@@ -89,7 +89,7 @@
     "PDN_HWIDTH": 0.96,
     "PDN_HSPACING": 1.64,
     "PDN_HOFFSET": 7.56,
-    "PDN_HPITCH": 22.68,
+    "_PDN_HPITCH": 22.68,
 
     "LVS_FLATTEN_CELLS": [],
     "LVS_IGNORE_CELLS": [
@@ -108,7 +108,7 @@
     "RUN_ANTENNA_REPAIR": true,
     "RUN_HEURISTIC_DIODE_INSERTION": true,
 
-    "FP_MACRO_HORIZONTAL_HALO": 0.42,
+    "FP_MACRO_HORIZONTAL_HALO": 1.68,
     "FP_MACRO_VERTICAL_HALO": 0.756
   },
 
