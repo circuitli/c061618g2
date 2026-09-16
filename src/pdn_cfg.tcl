@@ -19,9 +19,6 @@ set_global_connections
 add_global_connection -net $::env(VDD_NET) -inst_pattern .* -pin_pattern {vdd|VDD|VPWR|vpwr}
 add_global_connection -net $::env(GND_NET) -inst_pattern .* -pin_pattern {vss|VSS|VGND|vgnd}
 
-# 2. Hard-tie the substrate well layers cleanly to close the LVS net loop
-add_global_connection -net vdd -inst_pattern .* -pin_pattern {vdd|VPWR}
-add_global_connection -net vss -inst_pattern .* -pin_pattern {vss|VGND}
 # =============================================================================
 set_voltage_domain -name CORE -power $::env(VDD_NET) -ground $::env(GND_NET) \
     -secondary_power $secondary
