@@ -246,10 +246,11 @@ jobs:
 
           # Target your absolute workspace path to eliminate directory guessing
           TARGET_DIR="${{ github.workspace }}/gds_drop"
+          MACROS_DIR="${{ github.workspace }}/macros"
           TEST_DIR="${{ github.workspace }}/test"
 
           shopt -s nullglob
-          MACRO_FILES=$(echo $GITHUB_WORKSPACE/macros/*/nl/*.v)
+          MACRO_FILES=$(echo $MACROS_DIR/*/nl/*.v)
           shopt -u nullglob
 
           if [ -z "$MACRO_FILES" ]; then
