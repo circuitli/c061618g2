@@ -45,7 +45,7 @@ module tb ();
  */
 
   // Instantiate the actual user module under test (UUT)
-  tt_um_c061618g2 user_project (
+  c061618g2 user_project (
  /*
 `ifdef GL_TEST
       .VPWR(VPWR),

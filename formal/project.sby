@@ -71,7 +71,6 @@ workspace_root = os.environ.get("SBY_WORKFLOW_DIR") or os.getcwd()
 
 # The output() method natively injects the commands back into the SBY engine queue
 output(f"read -sv {define_flag} formal/module/c061618g2_formal.sv")
-output(f"read -sv {define_flag} project_formal.sv")
 --pycode-end--
 # =============================================================================
 
@@ -182,8 +181,8 @@ select -clear
 
 # Standard formal elaboration mapping without port splitting
 #flatten
-#prep -top tt_um_c061618g2 -nordff
-prep -top tt_um_c061618g2
+#prep -top c061618g2 -nordff
+prep -top c061618g2
 ##chformal -early
 ##opt_clean
 
