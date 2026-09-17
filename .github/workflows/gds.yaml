@@ -64,7 +64,7 @@ jobs:
             touch macros/.placeholder
           fi
 
-            - name: Create User Config (Bypassing Naming Validation)
+      - name: Create User Config (Bypassing Naming Validation)
         env:
           TT_ARGS: --ihp
         run: |
