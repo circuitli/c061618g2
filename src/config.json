@@ -45,7 +45,7 @@
         },
         "instances": {
           "u_c061618g2": {
-            "location": [ 5.88, 102.06 ],
+            "location": [ 6.72, 102.06 ],
             "orientation": "N"
           }
         }
@@ -85,7 +85,7 @@
     "RUN_ANTENNA_REPAIR": true,
     "RUN_HEURISTIC_DIODE_INSERTION": true,
 
-    "FP_MACRO_HORIZONTAL_HALO": 0.42,
+    "FP_MACRO_HORIZONTAL_HALO": 3.36,
     "FP_MACRO_VERTICAL_HALO": 3.78,
     "FP_PRUNE_THRESHOLD": 0
   },
