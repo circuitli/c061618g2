@@ -134,8 +134,7 @@ add_pdn_stripe \
 # Step 1: Connect Top-Level Horizontal Parameter pins down to the Vertical Parameter straps
 add_pdn_connect \
     -grid macro \
-    -layers "$::env(PDN_VERTICAL_LAYER) $::env(PDN_HORIZONTAL_LAYER)" \
-    -vias {TopVia1}
+    -layers "$::env(PDN_VERTICAL_LAYER) $::env(PDN_HORIZONTAL_LAYER)" 
 
 add_pdn_connect \
     -grid macro \
