@@ -75,8 +75,18 @@ jobs:
           sed -i 's/top_module: "\([^"]*\)"/top_module: "tt_um_\1"/' info.yaml
           sed -i "s/top_module: \([^'\"].*\)/top_module: tt_um_\1/" info.yaml
           
-          # 3. Call the tool safely via the global python environment hook
-          python3 -m tt_support_tools.tt_tool --create-user-config $TT_ARGS
+          # 3. Locate and use the active virtual environment if it exists, 
+          # otherwise install the dependencies dynamically on the system
+          if [ -f ".venv/bin/python3" ]; then
+            echo "Using local template virtual environment..."
+            .venv/bin/python3 -m pip install --upgrade pip
+            .venv/bin/python3 -m pip install git+https://github.com
+            .venv/bin/python3 -m tt_support_tools.tt_tool --create-user-config $TT_ARGS
+          else
+            echo "Installing support tools to host runner..."
+            python3 -m pip install --user git+https://github.com
+            python3 -m tt_support_tools.tt_tool --create-user-config $TT_ARGS
+          fi
           
           # 4. Instantly restore your original clean custom naming configuration
           mv info.yaml.bak info.yaml
