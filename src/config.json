@@ -31,21 +31,7 @@
   "// -------------------------------------------------------------------------": "",
   "pdk::ihp-sg13g2": {
     "VERILOG_DEFINES": [ "IHP_SG13G2" ],
-    "_VERILOG_FILES": [
-      "pdk_dir::libs.ref/sg13g2_stdcell/verilog/sg13g2_stdcell.v"
-    ],
-    "_VERILOG_FILES_BLACKBOX": [
-      "pdk_dir::libs.ref/sg13g2_stdcell/verilog/sg13g2_stdcell.v"
-    ],
-    "_VERILATOR_LINT_ARGS": [
-      "--verbose",
-      "-v",
-      "pdk_dir::libs.ref/sg13g2_stdcell/verilog/sg13g2_stdcell.v"
-    ],
-    "_VERILOG_INCLUDE_DIRS": [
-      "pdk_dir::libs.ref/sg13g2_stdcell/verilog"
-    ],
-    "macro_y_1": 3.78,
+    "macro_y_1": 5.88,
     "macro_x_1": 20.16,
     "MACROS": {
       "c061618g2": {
@@ -59,7 +45,7 @@
         },
         "instances": {
           "u_c061618g2": {
-            "location": [ 3.36, 102.06 ],
+            "location": [ 5.88, 102.06 ],
             "orientation": "N"
           }
         }
@@ -67,8 +53,6 @@
     },
     "RT_MAX_LAYER": "Metal4",
     "PDN_HORIZONTAL_LAYER": "Metal5",
-    "_VDD_NETS": [ "VPWR", "vdd" ],
-    "_GND_NETS": [ "VGND", "vss" ],
     "PDN_MACRO_CONNECTIONS": [
       "u_c061618g2 VPWR VGND vdd vss"
     ],
@@ -125,7 +109,7 @@
   "_RUN_FILL_INSERTION": false,
 
   "_QUIT_ON_PDN_VIOLATIONS": false,
-  "FP_PDN_CHECK_NODES": true,
+  "ERROR_ON_PDN_VIOLATIONS": true,
 
   "_STA_MACRO_PRIORITIZE_NL": true,
 

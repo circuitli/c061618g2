@@ -17,19 +17,6 @@
 `ifndef TT_UM_C061618G2_V
 `define TT_UM_C061618G2_V
 
-// =========================================================================
-// CONDITIONAL PDK INTERFACE RESOLUTION
-// If compiling for physical synthesis (OpenLane/Yosys), hide the source file 
-// so the tool treats the block as a clean hard macro blackbox.
-// If compiling for local verification (Cocotb/Icarus), include the source
-// so the simulator doesn't throw an 'Unknown module type' crash.
-// =========================================================================
-`ifndef SYNTHESIS
- //   `include "src/module/c061618g2.sv"
-`endif
-
-`default_nettype none
-
 module tt_um_c061618g2 (
     input  wire [7:0] ui_in,    // Dedicated hardware inputs
     output wire [7:0] uo_out,   // Dedicated hardware outputs
