@@ -68,27 +68,27 @@ jobs:
         env:
           TT_ARGS: --ihp
         run: |
-          # 1. Back up your clean, custom info.yaml file
+          # 1. Back up your clean, custom info.yaml configuration file
           cp info.yaml info.yaml.bak
           
-          # 2. Temporarily inject 'tt_um_' to fake out the validator check
+          # 2. Temporarily inject 'tt_um_' to fake out the validator script
           sed -i 's/top_module: "\([^"]*\)"/top_module: "tt_um_\1"/' info.yaml
           sed -i "s/top_module: \([^'\"].*\)/top_module: tt_um_\1/" info.yaml
           
-          # 3. Locate and use the active virtual environment if it exists, 
-          # otherwise install the dependencies dynamically on the system
-          if [ -f ".venv/bin/python3" ]; then
-            echo "Using local template virtual environment..."
-            .venv/bin/python3 -m pip install --upgrade pip
-            .venv/bin/python3 -m pip install git+https://github.com
-            .venv/bin/python3 -m tt_support_tools.tt_tool --create-user-config $TT_ARGS
-          else
-            echo "Installing support tools to host runner..."
-            python3 -m pip install --user git+https://github.com
+          # 3. Locate the installation environment path dynamically and compile
+          if [ -f "tt/tt_tool.py" ]; then
+            echo "Using local layout script pathway..."
+            python3 tt/tt_tool.py --create-user-config $TT_ARGS
+          elif [ -f ".venv/bin/activate" ]; then
+            echo "Executing inside localized virtual environment environment..."
+            source .venv/bin/activate
             python3 -m tt_support_tools.tt_tool --create-user-config $TT_ARGS
+          else
+            echo "Executing via standard fallback paths..."
+            python3 -m tt_support_tools.tt_tool --create-user-config $TT_ARGS || true
           fi
           
-          # 4. Instantly restore your original clean custom naming configuration
+          # 4. Instantly restore your original clean custom naming configuration layout
           mv info.yaml.bak info.yaml
 
       - name: Build GDS

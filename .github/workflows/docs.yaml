@@ -27,6 +27,7 @@ jobs:
 
       - name: Install Tiny Tapeout Support Tools
         run: |
+          python3 -m pip install --upgrade pip
           pip install git+https://github.com/TinyTapeout/tt-support-tools.git
 
       - name: Patch Naming Check & Build Docs
@@ -38,8 +39,9 @@ jobs:
           sed -i 's/top_module: "\([^"]*\)"/top_module: "tt_um_\1"/' info.yaml
           sed -i "s/top_module: \([^'\"].*\)/top_module: tt_um_\1/" info.yaml
           
-          # 3. Generate your project documentation sheets with your custom module name
-          python3 -m tt_support_tools.markdown_docs
+          # 3. Generate your documentation sheets using the binary shortcut 
+          # that maps directly into the toolcache runtime path
+          tt_tool --create-docs
           
           # 4. Instantly restore your original custom naming configuration layout
           mv info.yaml.bak info.yaml
