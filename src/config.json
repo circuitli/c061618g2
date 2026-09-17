@@ -45,7 +45,9 @@
     "_VERILOG_INCLUDE_DIRS": [
       "pdk_dir::libs.ref/sg13g2_stdcell/verilog"
     ],
-    "PL_SOFT_BLOCKAGES": "0 0 199.20 19.12",
+    "PL_SOFT_OBSTRUCTIONS": [
+      [ 0.0, 0.0, 199.20, 19.12 ]
+    ],
     "macro_y_1": 3.78,
     "macro_x_1": 20.16,
     "MACROS": {
