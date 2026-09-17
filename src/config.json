@@ -86,6 +86,13 @@
       "sg13g2_decap_4",
       "sg13g2_decap_8"
     ],
+    "IGNORE_DISCONNECTED_MODULES": [
+      "sg13g2_fill_1",
+      "sg13g2_fill_2",
+      "sg13g2_fill_4",
+      "sg13g2_decap_4",
+      "sg13g2_decap_8"
+    ],
 
     "PDN_SKIPTRIM": false,
 
