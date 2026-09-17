@@ -70,6 +70,7 @@ define_flag = "-DIHP_SG13G2" if pdk_var == "ihp-sg13g2" else ""
 workspace_root = os.environ.get("SBY_WORKFLOW_DIR") or os.getcwd()
 
 # The output() method natively injects the commands back into the SBY engine queue
+output(f"read -sv {define_flag} module/c061618g2_formal.sv")
 output(f"read -sv {define_flag} project_formal.sv")
 --pycode-end--
 # =============================================================================
