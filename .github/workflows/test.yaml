@@ -56,6 +56,7 @@ jobs:
           run-id: ${{ steps.resolve-id.outputs.run_id }}  # 👈 Safe native cross-workflow link
           github-token: ${{ secrets.GITHUB_TOKEN }}       # 👈 Official syntax
           path: macros/
+          ignore-on-missing-artifact: true 
 
       - name: Install iverilog
         shell: bash
