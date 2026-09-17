@@ -45,7 +45,7 @@ module tb ();
  */
 
   // Instantiate the actual user module under test (UUT)
-`ifdef GL_TEST_alkjsdalskjdlkasjdasl
+`ifdef GL_TEST
   // Instantiate the wrapper name that the automated script injected into the netlist
   // (Change 'tt_um_c061618g2_bypass' to match the top_module name in THE info.yaml)
   tt_um_c061618g2_bypass user_project (
