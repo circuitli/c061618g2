@@ -77,7 +77,7 @@ set_voltage_domain -name CORE -power $::env(VDD_NET) -ground $::env(GND_NET)
     add_pdn_connect \
         -grid stdcell_grid \
         -layers "$::env(PDN_RAIL_LAYER) $::env(TILE_PDN_VERTICAL_LAYER)"
-}
+#}
 
 # Connect core grid Vertical stripes to Horizontal stripes
 #add_pdn_connect \
