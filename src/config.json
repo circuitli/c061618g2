@@ -96,7 +96,7 @@
     "RUN_HEURISTIC_DIODE_INSERTION": true,
 
     "FP_MACRO_HORIZONTAL_HALO": 1.68,
-    "FP_MACRO_VERTICAL_HALO": 0.756,
+    "FP_MACRO_VERTICAL_HALO": 3.78,
     "FP_PRUNE_THRESHOLD": 0
   },
 
@@ -111,19 +111,13 @@
   },
 
   "PDN_CORE_RING": false,
-  "PDN_ENABLE_RAILS": false
+  "PDN_ENABLE_RAILS": false,
   "_PDN_ENABLE_MACROS_GRID": false,
   "_PDN_CONNECT_MACROS_TO_GRID": true,
 
   "_QUIT_ON_PDN_VIOLATIONS": true,
   "_FP_PDN_CHECK_NODES": true,
 
-  "_PLACEMENT_CONSTRAINTS": [
-    {
-      "type": "blockage",
-      "bbox": [ 0.0, 0.0, 24.96, 143.64 ]
-    }
-  ],
   "_STA_MACRO_PRIORITIZE_NL": true,
 
   "// Timing is the only external aspect that must be explicitly loaded at root": "",
