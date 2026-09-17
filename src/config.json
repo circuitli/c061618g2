@@ -45,7 +45,7 @@
     "_VERILOG_INCLUDE_DIRS": [
       "pdk_dir::libs.ref/sg13g2_stdcell/verilog"
     ],
-    "PL_SOFT_OBSTRUCTIONS": [
+    "_PL_SOFT_OBSTRUCTIONS": [
       [ 0.0, 0.0, 199.20, 19.12 ]
     ],
     "macro_y_1": 3.78,
@@ -124,7 +124,7 @@
   "_PDN_ENABLE_MACROS_GRID": false,
   "_PDN_CONNECT_MACROS_TO_GRID": true,
 
-  "RUN_TAP_ENDCAP_INSERTION": false,
+  "_RUN_TAP_ENDCAP_INSERTION": false,
   "RUN_FILL_INSERTION": false,
 
   "_QUIT_ON_PDN_VIOLATIONS": false,
