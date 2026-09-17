@@ -228,11 +228,9 @@ src/module/async_glitch_filter.sv      ../src/module/async_glitch_filter.sv
 src/module/async_glitch_filter_bank.sv ../src/module/async_glitch_filter_bank.sv
 src/module/mueller_inertial_delay_filter.v       ../src/module/mueller_inertial_delay_filter.v
 src/module/mueller_inertial_delay_filter_bank.sv ../src/module/mueller_inertial_delay_filter_bank.sv
-#src/module/c061618g2_input_shield.sv            ../src/module/c061618g2_input_shield.sv
 src/module/c061618g2.sv                          ../src/module/c061618g2.sv
-src/project.v                                   ../src/project.v
+src/project.sv                                   ../src/project.sv
 lib/cells_formal.sv                               lib/cells_formal.sv
-project_formal.sv                                 project_formal.sv
 formal/lib/cells_formal.sv                        lib/cells_formal.sv
 formal/techmap/and2_1_formal.sv                   techmap/and2_1_formal.sv 
 formal/techmap/inv_1_formal.sv                    techmap/inv_1_formal.sv 
@@ -249,6 +247,4 @@ formal/module/async_glitch_filter_formal.sv       module/async_glitch_filter_for
 formal/module/async_glitch_filter_bank_formal.sv  module/async_glitch_filter_bank_formal.sv
 formal/module/mueller_inertial_delay_filter_formal.sv       module/mueller_inertial_delay_filter_formal.sv
 formal/module/mueller_inertial_delay_filter_bank_formal.sv  module/mueller_inertial_delay_filter_bank_formal.sv
-formal/#module/c061618g2_input_shield_formal.sv             module/c061618g2_input_shield_formal.sv
 formal/module/c061618g2_formal.sv                           module/c061618g2_formal.sv
-formal/project_formal.sv                                    project_formal.sv
