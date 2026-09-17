@@ -99,8 +99,8 @@
 
     "PDN_SKIPTRIM": false,
 
-    "RUN_TAP_ENDCAP_INSERTION": true,
-    "FP_TAPCELL_DIST": 60,
+    "_RUN_TAP_ENDCAP_INSERTION": true,
+    "_FP_TAPCELL_DIST": 60,
 
     "RUN_ANTENNA_REPAIR": true,
     "RUN_HEURISTIC_DIODE_INSERTION": true,
@@ -128,7 +128,7 @@
   "RUN_TAP_ENDCAP_INSERTION": true,
   "RUN_FILL_INSERTION": true,
 
-  "QUIT_ON_PDN_VIOLATIONS": false,
+  "_QUIT_ON_PDN_VIOLATIONS": false,
   "FP_PDN_CHECK_NODES": true,
 
   "_STA_MACRO_PRIORITIZE_NL": true,
