@@ -302,10 +302,13 @@ jobs:
           MACROS_DIR="${{ github.workspace }}/macros"
           TEST_DIR="${{ github.workspace }}/test"
 
-          shopt -s nullglob
-          MACRO_FILES=($MACROS_DIR/nl/*.v)
-          shopt -u nullglob
+          # 1. Initialize as an empty string
+          MACRO_FILES=""
 
+          # 2. Check if any .v files exist in the directory
+          if [ -d "$MACROS_DIR/nl" ] && ls "$MACROS_DIR"/nl/*.v &>/dev/null; then
+              MACRO_FILES="$MACROS_DIR/nl/*.v"
+          fi
           echo "🎯 Found macros: $MACRO_FILES"
 
           echo "📦 Merging IHP SG13G2 technology library with gate netlist..."
@@ -327,9 +330,11 @@ jobs:
           COMBINED_FILE="$GITHUB_WORKSPACE/test/combined_netlist.v"
 
           # Concatenate the files so Workcraft has the gate definitions inline
-          #cat "$LIB_FILE" "$NETLIST_FILE" > "$COMBINED_FILE"
-          # Using a hyphen (-) tells cat to read the empty line directly from echo via the pipe
-          echo "" | cat "$NETLIST_FILE" - "${MACRO_FILES[@]:-}" > "$COMBINED_FILE"
+          if [ -n "$MACRO_FILES" ]; then
+              echo "" | cat "$NETLIST_FILE" - $MACRO_FILES > "$COMBINED_FILE"
+          else
+              cp "$NETLIST_FILE" "$COMBINED_FILE"
+          fi
 
           echo "🧼 Scrubbing illegal backslash identifier tokens for Workcraft compatibility..."
           sed -i 's/\\//g' "$COMBINED_FILE"
