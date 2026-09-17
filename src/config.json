@@ -206,6 +206,10 @@
   "//": "PL_TARGET_DENSITY_PCT - You can increase this if Global Placement fails with error GPL-0302.",
   "PL_TARGET_DENSITY_PCT": 75,
 
+  "PL_RESIZER_DESIGN_OPTIMIZATIONS": false,
+  "PL_RESIZER_TIMING_OPTIMIZATIONS": false,
+  "GLB_RESIZER_DESIGN_OPTIMIZATIONS": false,
+
   "//1": "Master boolean activation switch that turns on the placement-stage timing repair tool block, instructing OpenROAD to actively resize logic gates and patch setup violations before routing begins.",
   "_PL_REPAIR_TIMING": true,
 
@@ -245,7 +249,6 @@
   "GRT_RESIZER_HOLD_SLACK_MARGIN": 0.05,
 
   "GRT_RESIZER_HOLD_MAX_BUFFER_PCT": 0.0,
-  "GLB_RESIZER_DESIGN_OPTIMIZATIONS": false,
 
   "//": "DESIGN_REPAIR_MAX_WIRE_LENGTH - THE FINAL FIX: Setting this explicitly to 0 tells LibreLane's physical design repair engine to completely skip maximum wire length buffering, ensuring clockless loops stay 100% pure wire tracks.",
   "DESIGN_REPAIR_MAX_WIRE_LENGTH": 10000,
