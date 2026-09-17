@@ -9,6 +9,8 @@ on:
       - 'test/Makefle'
       - 'test/tb.*'
       - 'test/test.py'
+      - 'formal/project.js'
+      - 'formal/project.xml'
       - '.github/workflows/gds.yaml'
 
   workflow_run:
