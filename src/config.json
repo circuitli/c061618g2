@@ -118,12 +118,15 @@
   },
 
   "PDN_CORE_RING": false,
-  "PDN_ENABLE_RAILS": false,
+  "PDN_ENABLE_RAILS": true,
   "_PDN_ENABLE_MACROS_GRID": false,
   "_PDN_CONNECT_MACROS_TO_GRID": true,
 
+  "RUN_TAP_ENDCAP_INSERTION": true,
+  "RUN_FILL_INSERTION": true,
+
   "_QUIT_ON_PDN_VIOLATIONS": true,
-  "FP_PDN_CHECK_NODES": false,
+  "FP_PDN_CHECK_NODES": true,
 
   "_STA_MACRO_PRIORITIZE_NL": true,
 
