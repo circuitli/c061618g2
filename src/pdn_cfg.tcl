@@ -29,13 +29,13 @@ set_voltage_domain -name CORE -power $::env(VDD_NET) -ground $::env(GND_NET)
 # Flipped Entry Matrix: Block-level entry pins reside on the Horizontal layer 
 # parameter (Metal5), matching exactly where external power streams into the block canvas.
 
-#define_pdn_grid \
+define_pdn_grid \
     -name stdcell_grid \
     -starts_with POWER \
     -voltage_domain CORE \
     -pins $::env(PDN_VERTICAL_LAYER)
 
-#add_pdn_stripe \
+add_pdn_stripe \
     -grid stdcell_grid \
     -layer $::env(PDN_VERTICAL_LAYER) \
     -width $::env(PDN_VWIDTH) \
@@ -45,7 +45,7 @@ set_voltage_domain -name CORE -power $::env(VDD_NET) -ground $::env(GND_NET)
     -starts_with POWER -extend_to_core_ring
 
 # 1. HORIZONTAL STRIPE LAYER: Explicitly forced to horizontal layout rules
-#add_pdn_stripe \
+add_pdn_stripe \
     -grid stdcell_grid \
     -layer $::env(PDN_HORIZONTAL_LAYER) \
     -width $::env(PDN_HWIDTH) \
@@ -55,7 +55,7 @@ set_voltage_domain -name CORE -power $::env(VDD_NET) -ground $::env(GND_NET)
     -starts_with POWER
 
 # 2. VERTICAL STRIPE LAYER: Explicitly forced to vertical layout rules
-#add_pdn_stripe \
+add_pdn_stripe \
     -grid stdcell_grid \
     -layer $::env(TILE_PDN_VERTICAL_LAYER) \
     -width $::env(TILE_PDN_VWIDTH) \
@@ -65,7 +65,7 @@ set_voltage_domain -name CORE -power $::env(VDD_NET) -ground $::env(GND_NET)
     -starts_with POWER -extend_to_core_ring
 
 # 3. Standard Cell Rails on Metal1
-#if { $::env(PDN_ENABLE_RAILS) == 1 } {
+if { $::env(PDN_ENABLE_RAILS) == 1 } {
     add_pdn_stripe \
         -grid stdcell_grid \
         -layer $::env(PDN_RAIL_LAYER) \
@@ -77,7 +77,7 @@ set_voltage_domain -name CORE -power $::env(VDD_NET) -ground $::env(GND_NET)
     add_pdn_connect \
         -grid stdcell_grid \
         -layers "$::env(PDN_RAIL_LAYER) $::env(TILE_PDN_VERTICAL_LAYER)"
-#}
+}
 
 # Connect core grid Vertical stripes to Horizontal stripes
 #add_pdn_connect \
@@ -101,44 +101,6 @@ define_pdn_grid \
     -name macro \
     -starts_with POWER \
     -halo "$::env(PDN_HORIZONTAL_HALO) $::env(PDN_VERTICAL_HALO)" 
-
-add_pdn_stripe \
-    -grid macro \
-    -layer $::env(PDN_VERTICAL_LAYER) \
-    -width $::env(PDN_VWIDTH) \
-    -pitch $::env(PDN_VPITCH) \
-    -offset $::env(PDN_VOFFSET) \
-    -spacing $::env(PDN_VSPACING) \
-    -starts_with POWER -extend_to_core_ring
-
-# 1. HORIZONTAL STRIPE LAYER: Explicitly forced to horizontal layout rules
-add_pdn_stripe \
-    -grid macro \
-    -layer $::env(PDN_HORIZONTAL_LAYER) \
-    -width $::env(PDN_HWIDTH) \
-    -pitch $::env(PDN_HPITCH) \
-    -offset $::env(PDN_HOFFSET) \
-    -spacing $::env(PDN_HSPACING) \
-    -starts_with POWER
-
-# 2. VERTICAL STRIPE LAYER: Explicitly forced to vertical layout rules
-add_pdn_stripe \
-    -grid macro \
-    -layer $::env(TILE_PDN_VERTICAL_LAYER) \
-    -width $::env(TILE_PDN_VWIDTH) \
-    -pitch $::env(TILE_PDN_VPITCH) \
-    -offset $::env(TILE_PDN_VOFFSET) \
-    -spacing $::env(TILE_PDN_VSPACING) \
-    -starts_with POWER -extend_to_core_ring
-
-# Step 1: Connect Top-Level Horizontal Parameter pins down to the Vertical Parameter straps
-add_pdn_connect \
-    -grid macro \
-    -layers "$::env(PDN_VERTICAL_LAYER) $::env(PDN_HORIZONTAL_LAYER)" 
-
-add_pdn_connect \
-    -grid macro \
-    -layers "$::env(PDN_HORIZONTAL_LAYER) $::env(TILE_PDN_VERTICAL_LAYER)"
 
 # Step 2: Connect Vertical Parameter straps straight down to the macro's true Horizontal Metal3 targets
 add_pdn_connect \
