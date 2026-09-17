@@ -20,7 +20,7 @@ jobs:
         with:
           submodules: recursive
 
-            - name: Build Docs
+      - name: Build Docs
         run: |
           # 1. We execute the script inside the container's pre-configured tool wrapper
           # to find the correct internal tool package layout location dynamically.
