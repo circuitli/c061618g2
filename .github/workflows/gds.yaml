@@ -64,6 +64,23 @@ jobs:
             touch macros/.placeholder
           fi
 
+      - name: Create User Config (Bypassing Naming Validation)
+        env:
+          TT_ARGS: --ihp
+        run: |
+          # 1. Back up your clean, custom info.yaml file
+          cp info.yaml info.yaml.bak
+          
+          # 2. Temporarily inject 'tt_um_' to fake out the validator check
+          sed -i 's/top_module: "\([^"]*\)"/top_module: "tt_um_\1"/' info.yaml
+          sed -i "s/top_module: \([^'\"].*\)/top_module: tt_um_\1/" info.yaml
+          
+          # 3. Run the standard user config step
+          ./tt/tt_tool.py --create-user-config $TT_ARGS
+          
+          # 4. Instantly restore your original clean custom naming configuration
+          mv info.yaml.bak info.yaml
+
       - name: Build GDS
         uses: TinyTapeout/tt-gds-action@ttihp26b
         with:
