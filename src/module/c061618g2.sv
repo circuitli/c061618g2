@@ -176,8 +176,8 @@ module c061618g2 (
 endmodule
 
 module tt_um_c061618g2_bypass (input wire [7:0] ui_in, output wire [7:0] uo_out, input wire [7:0] uio_in, output wire [7:0] uio_out, output wire [7:0] uio_oe, input wire ena, clk, rst_n);
-    // This passes the IO signals directly into your custom named module
-    (* keep_hierarchy = "TRUE" *) 
+    // This passes the IO signals direct    
+    (* dont_touch = "true" *)
     c061618g2 actual_design (.*); 
 endmodule
 
