@@ -76,6 +76,29 @@ jobs:
         with:
           submodules: recursive
 
+      # 🔍 1. EXTRACT RUN ID (Handles manual buttons natively)
+      - name: Resolve Macro Run ID
+        id: resolve-id
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_run" ]; then
+            echo "run_id=${{ github.event.workflow_run.id }}" >> $GITHUB_OUTPUT
+          else
+            # Finds the absolute latest successful macros workflow run ID natively via GitHub CLI
+            LATEST_ID=$(gh run list --workflow="macros.yaml" --status=success --limit=1 --json databaseId -q '.[0].databaseId')
+            echo "run_id=$LATEST_ID" >> $GITHUB_OUTPUT
+          fi
+
+      # 📦 2. OFFICIAL GITHUB ARTIFACT DOWNLOADER
+      - name: Download Precompiled Macro Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: precompiled-macros
+          run-id: ${{ steps.resolve-id.outputs.run_id }}  # 👈 Safe native cross-workflow link
+          github-token: ${{ secrets.GITHUB_TOKEN }}       # 👈 Official syntax
+          path: macros/
+
       - name: GL test
         uses: TinyTapeout/tt-gds-action/gl_test@ttihp26b
 
@@ -250,11 +273,13 @@ jobs:
           TEST_DIR="${{ github.workspace }}/test"
 
           shopt -s nullglob
-          MACRO_FILES=$(echo $MACROS_DIR/*/nl/*.v)
+          MACRO_FILES=($MACROS_DIR/nl/*.v)
           shopt -u nullglob
 
-          if [ -z "$MACRO_FILES" ]; then
-            echo "❌ ERROR: No macro files found inside macros/"
+          if [ ${#MACRO_FILES[@]} -eq 0 ]; then
+            echo "❌ ERROR: No macro files found inside $MACROS_DIR/"
+            echo "Contents of $MACROS_DIR directory structure:"
+            find "$MACROS_DIR" -type f || ls -R "$MACROS_DIR"
             exit 1
           fi
           echo "🎯 Found macros: $MACRO_FILES"
