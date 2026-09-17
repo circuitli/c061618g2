@@ -22,12 +22,16 @@ jobs:
 
       - name: Build Docs
         run: |
-          # 1. Use the explicit container venv python path to find the module
-          PRECHECK_PATH=$(/venv/bin/python3 -c "import tt_support_tools.precheck as p; print(p.__file__)")
+          # 1. Dynamically locate the active Python binary inside the container environment
+          REAL_PYTHON=$(which python3 || which python)
+          echo "Using container Python path: $REAL_PYTHON"
           
-          # 2. Patch out the strict 'tt_um_' naming check
+          # 2. Extract the script module file location safely 
+          PRECHECK_PATH=$($REAL_PYTHON -c "import tt_support_tools.precheck as p; print(p.__file__)")
+          
+          # 3. Patch out the strict 'tt_um_' naming check
           sed -i "s/logging.error('Top module must start with.*')/#/g" "$PRECHECK_PATH"
           sed -i "s/sys.exit(1)/pass/g" "$PRECHECK_PATH"
           
-          # 3. Generate the documentation using the venv python
-          /venv/bin/python3 -m tt_support_tools.markdown_docs
+          # 4. Generate the documentation using the matched environment path
+          $REAL_PYTHON -m tt_support_tools.markdown_docs
