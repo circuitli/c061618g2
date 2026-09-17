@@ -80,11 +80,11 @@ if { $::env(PDN_ENABLE_RAILS) == 1 } {
 }
 
 # Connect core grid Vertical stripes to Horizontal stripes
-#add_pdn_connect \
+add_pdn_connect \
     -grid stdcell_grid \
     -layers "$::env(PDN_VERTICAL_LAYER) $::env(PDN_HORIZONTAL_LAYER)"
 
-#add_pdn_connect \
+add_pdn_connect \
     -grid stdcell_grid \
     -layers "$::env(PDN_HORIZONTAL_LAYER) $::env(TILE_PDN_VERTICAL_LAYER)" \
     -vias {TopVia1}
