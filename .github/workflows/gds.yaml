@@ -6,6 +6,9 @@ on:
       - main
     paths:
       - 'src/*.*'
+      - 'test/Makefle'
+      - 'test/tb.*'
+      - 'test/test.py'
       - '.github/workflows/gds.yaml'
 
   workflow_run:
