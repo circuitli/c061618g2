@@ -125,7 +125,7 @@
   "_PDN_CONNECT_MACROS_TO_GRID": true,
 
   "RUN_TAP_ENDCAP_INSERTION": false,
-  "RUN_FILL_INSERTION": true,
+  "RUN_FILL_INSERTION": false,
 
   "_QUIT_ON_PDN_VIOLATIONS": false,
   "FP_PDN_CHECK_NODES": true,
@@ -206,8 +206,6 @@
   "//": "PL_TARGET_DENSITY_PCT - You can increase this if Global Placement fails with error GPL-0302.",
   "PL_TARGET_DENSITY_PCT": 75,
 
-  "PL_RESIZER_DESIGN_OPTIMIZATIONS": false,
-  "PL_RESIZER_TIMING_OPTIMIZATIONS": false,
   "GLB_RESIZER_DESIGN_OPTIMIZATIONS": false,
 
   "//1": "Master boolean activation switch that turns on the placement-stage timing repair tool block, instructing OpenROAD to actively resize logic gates and patch setup violations before routing begins.",
