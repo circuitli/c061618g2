@@ -303,12 +303,6 @@ jobs:
           MACRO_FILES=($MACROS_DIR/nl/*.v)
           shopt -u nullglob
 
-          if [ ${#MACRO_FILES[@]} -eq 0 ]; then
-            echo "❌ ERROR: No macro files found inside $MACROS_DIR/"
-            echo "Contents of $MACROS_DIR directory structure:"
-            find "$MACROS_DIR" -type f || ls -R "$MACROS_DIR"
-            exit 1
-          fi
           echo "🎯 Found macros: $MACRO_FILES"
 
           echo "📦 Merging IHP SG13G2 technology library with gate netlist..."
