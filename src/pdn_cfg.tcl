@@ -86,8 +86,7 @@ add_pdn_connect \
 
 add_pdn_connect \
     -grid stdcell_grid \
-    -layers "$::env(PDN_HORIZONTAL_LAYER) $::env(TILE_PDN_VERTICAL_LAYER)" \
-    -vias {TopVia1}
+    -layers "$::env(PDN_HORIZONTAL_LAYER) $::env(TILE_PDN_VERTICAL_LAYER)" 
 
 # =========================================================================
 # SRAM MACRO POWER GRID CONNECTION
