@@ -99,7 +99,6 @@
 
     "PDN_SKIPTRIM": false,
 
-    "_RUN_TAP_ENDCAP_INSERTION": true,
     "_FP_TAPCELL_DIST": 60,
 
     "RUN_ANTENNA_REPAIR": true,
@@ -125,7 +124,7 @@
   "_PDN_ENABLE_MACROS_GRID": false,
   "_PDN_CONNECT_MACROS_TO_GRID": true,
 
-  "RUN_TAP_ENDCAP_INSERTION": true,
+  "RUN_TAP_ENDCAP_INSERTION": false,
   "RUN_FILL_INSERTION": true,
 
   "_QUIT_ON_PDN_VIOLATIONS": false,
