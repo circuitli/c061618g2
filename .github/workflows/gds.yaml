@@ -329,7 +329,7 @@ jobs:
           # Concatenate the files so Workcraft has the gate definitions inline
           #cat "$LIB_FILE" "$NETLIST_FILE" > "$COMBINED_FILE"
           # Using a hyphen (-) tells cat to read the empty line directly from echo via the pipe
-          echo "" | cat "$NETLIST_FILE" - $MACRO_FILES > "$COMBINED_FILE"
+          echo "" | cat "$NETLIST_FILE" - "${MACRO_FILES[@]:-}" > "$COMBINED_FILE"
 
           echo "🧼 Scrubbing illegal backslash identifier tokens for Workcraft compatibility..."
           sed -i 's/\\//g' "$COMBINED_FILE"
