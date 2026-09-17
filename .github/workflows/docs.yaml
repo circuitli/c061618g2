@@ -20,28 +20,5 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install Tiny Tapeout Support Tools
-        run: |
-          python3 -m pip install --upgrade pip
-          pip install git+https://github.com/TinyTapeout/tt-support-tools.git
-
-      - name: Patch Naming Check & Build Docs
-        run: |
-          # 1. Back up your clean, custom info.yaml file layout config
-          cp info.yaml info.yaml.bak
-          
-          # 2. Temporarily apply 'tt_um_' to fake out the internal validation scripts
-          sed -i 's/top_module: "\([^"]*\)"/top_module: "tt_um_\1"/' info.yaml
-          sed -i "s/top_module: \([^'\"].*\)/top_module: tt_um_\1/" info.yaml
-          
-          # 3. Generate your documentation sheets using the binary shortcut 
-          # that maps directly into the toolcache runtime path
-          tt_tool --create-docs
-          
-          # 4. Instantly restore your original custom naming configuration layout
-          mv info.yaml.bak info.yaml
+      - name: Build docs
+        uses: TinyTapeout/tt-gds-action/docs@ttihp26b
