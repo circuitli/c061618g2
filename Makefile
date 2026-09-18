@@ -21,34 +21,30 @@ PDK           ?= ihp
 BUILD_DIR     := openlane
 OUTPUT_DIR    := macros
 
-# THE ARCHITECTURAL WIN: The tool execution definition is kept purely as the binary hook.
-# The actual file array targets are dynamically appended at runtime.
+# Tool execution definition hook
 OPENLANE_CONTAINER := docker run --rm \
-  -v "$(CURDIR)":"$(CURDIR)" \
+  -v "$(CURDIR)":/work \
   -v "$(PDK_ROOT)":"$(PDK_ROOT)" \
   -e PDK_ROOT="$(PDK_ROOT)" \
-  -w "$(CURDIR)" \
+  -w /work \
   ghcr.io/librelane/librelane:3.0.5 \
   python3 -m librelane
 
-# Dynamically find all immediate subdirectories inside macro_build/
-# Each subdirectory represents a standalone block (e.g., macro_build/filter_1)
+# 1. Dynamically find all subdirectories inside openlane/
 MACRO_SUBDIRS := $(wildcard $(BUILD_DIR)/*)
 MACRO_NAMES   := $(notdir $(MACRO_SUBDIRS))
+
+# 2. Build the exact list of ALL configuration file paths space-separated
 JSON_TARGETS  := $(foreach dir,$(MACRO_NAMES),$(BUILD_DIR)/$(dir)/config.json)
 
-.PHONY: all clean $(MACRO_NAMES)
+.PHONY: all clean
 
-# 1. Main entry point: Hardens every discovered macro block sequentially
-all: $(MACRO_NAMES)
-
-# 2. Pattern Rule: Hardens an individual directory target
-$(MACRO_NAMES):
+# Main Entry Point: Runs the entire macro set simultaneously in one container
+all:
 	@echo "================================================================="
-	@echo "🔨 Hardening macro component: [$@]"
+	@echo "🔨 Hardening all macro components together"
 	@echo "================================================================="
 	
-	# Resolve shorthand PDK platform names to strict OpenLane 2 system definitions
 	@case "$(PDK)" in \
 		ihp)    PDK_TARGET="ihp-sg13g2" ;; \
 		sky130) PDK_TARGET="sky130A" ;; \
@@ -57,37 +53,35 @@ $(MACRO_NAMES):
 	esac; \
 	\
 	container_status=0; \
-	if [ -n "$$JSON_TARGETS" ] ; then $(OPENLANE_CONTAINER) --manual-pdk --pdk-root $(PDK_ROOT) --pdk $(PDK_TARGET) $(JSON_TARGETS) || container_status=$$?; fi; \
-	\
-	if [ $$container_status != 0 ]; then \
-		echo "❌ Error: LibreLane failed on macro $$@ with exit code $$container_status"; \
+	if [ -n "$(JSON_TARGETS)" ] ; then \
+		$(OPENLANE_CONTAINER) --manual-pdk --pdk-root $(PDK_ROOT) --pdk $$PDK_TARGET $(JSON_TARGETS) || container_status=$$?; \
+	fi; \
+	if [ "$$container_status" -ne 0 ]; then \
+		echo "❌ Error: LibreLane multi-macro build failed with exit code $$container_status"; \
 		exit $$container_status; \
 	fi; \
 	\
-	RAW_LEF=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.lef" -print -quit); \
-	RAW_LIB=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.lib" -print -quit); \
-	RAW_GDS=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.gds" -print -quit); \
-	RAW_NL=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.nl.v" -print -quit); \
-	RAW_PNL=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.pnl.v" -print -quit); \
-	RAW_SPEF=$$(find $(BUILD_DIR)/$@/runs/ -type f -name "*.spef" -print -quit); \
-	\
-	mkdir -p "$(OUTPUT_DIR)/lef"; \
-	mkdir -p "$(OUTPUT_DIR)/lib"; \
-	mkdir -p "$(OUTPUT_DIR)/gds"; \
-	mkdir -p "$(OUTPUT_DIR)/nl"; \
-	mkdir -p "$(OUTPUT_DIR)/pnl"; \
-    mkdir -p "$(OUTPUT_DIR)/spef"; \
-	\
-	if [ -n "$$RAW_LEF" ] ; then cp "$$RAW_LEF"  "$(OUTPUT_DIR)/lef"; fi; \
-	if [ -n "$$RAW_LIB"  ]; then cp "$$RAW_LIB"  "$(OUTPUT_DIR)/lib/$@.lib"; fi; \
-	if [ -n "$$RAW_GDS"  ]; then cp "$$RAW_GDS"  "$(OUTPUT_DIR)/gds/$@.gds"; fi; \
-	if [ -n "$$RAW_NL"   ]; then cp "$$RAW_NL"   "$(OUTPUT_DIR)/nl"; fi; \
-	if [ -n "$$RAW_PNL"  ]; then cp "$$RAW_PNL"  "$(OUTPUT_DIR)/pnl"; fi; \
-    if [ -n "$$RAW_SPEF" ]; then cp "$$RAW_SPEF" "$(OUTPUT_DIR)/spef"; fi; \
-	\
-	echo "✅ Successfully delivered abstract macro views to: $(OUTPUT_DIR)"
+	echo "📦 Extracting and organizing abstract views..."; \
+	for macro in $(MACRO_NAMES); do \
+		RAW_LEF=$$(find $(BUILD_DIR)/$$macro/runs/ -type f -name "*.lef" -print -quit); \
+		RAW_LIB=$$(find $(BUILD_DIR)/$$macro/runs/ -type f -name "*.lib" -print -quit); \
+		RAW_GDS=$$(find $(BUILD_DIR)/$$macro/runs/ -type f -name "*.gds" -print -quit); \
+		RAW_NL=$$(find $(BUILD_DIR)/$$macro/runs/ -type f -name "*.nl.v" -print -quit); \
+		RAW_PNL=$$(find $(BUILD_DIR)/$$macro/runs/ -type f -name "*.pnl.v" -print -quit); \
+		RAW_SPEF=$$(find $(BUILD_DIR)/$$macro/runs/ -type f -name "*.spef" -print -quit); \
+		\
+		mkdir -p "$(OUTPUT_DIR)/lef" "$(OUTPUT_DIR)/lib" "$(OUTPUT_DIR)/gds" "$(OUTPUT_DIR)/nl" "$(OUTPUT_DIR)/pnl" "$(OUTPUT_DIR)/spef"; \
+		\
+		if [ -n "$$RAW_LEF" ] ; then cp "$$RAW_LEF"  "$(OUTPUT_DIR)/lef"; fi; \
+		if [ -n "$$RAW_LIB"  ]; then cp "$$RAW_LIB"  "$(OUTPUT_DIR)/lib/$$macro.lib"; fi; \
+		if [ -n "$$RAW_GDS"  ]; then cp "$$RAW_GDS"  "$(OUTPUT_DIR)/gds/$$macro.gds"; fi; \
+		if [ -n "$$RAW_NL"   ]; then cp "$$RAW_NL"   "$(OUTPUT_DIR)/nl"; fi; \
+		if [ -n "$$RAW_PNL"  ]; then cp "$$RAW_PNL"  "$(OUTPUT_DIR)/pnl"; fi; \
+		if [ -n "$$RAW_SPEF" ]; then cp "$$RAW_SPEF" "$(OUTPUT_DIR)/spef"; fi; \
+	done; \
+	echo "✅ Successfully delivered all abstract macro views to: $(OUTPUT_DIR)"
 
-# 3. Clean environment workspace pass
+# Clean environment workspace pass
 clean:
 	@echo "🧹 Wiping old synthesis run records and macro delivery paths..."
 	@for dir in $(MACRO_NAMES); do \
