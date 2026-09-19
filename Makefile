@@ -111,6 +111,6 @@ ensure:
 		mkdir -p "$(BUILD_DIR)/$$dir/runs/placeholder"; \
 		touch "$(BUILD_DIR)/$$dir/runs/placeholder/placeholder"; \
 	done
-    mkdir -p "$(OUTPUT_DIR)/lef" "$(OUTPUT_DIR)/lib" "$(OUTPUT_DIR)/gds" "$(OUTPUT_DIR)/nl" "$(OUTPUT_DIR)/pnl" "$(OUTPUT_DIR)/spef"
+	mkdir -p "$(OUTPUT_DIR)/lef" "$(OUTPUT_DIR)/lib" "$(OUTPUT_DIR)/gds" "$(OUTPUT_DIR)/nl" "$(OUTPUT_DIR)/pnl" "$(OUTPUT_DIR)/spef"
 	@echo "✨ Workspace is completely ready for consumption."
 
