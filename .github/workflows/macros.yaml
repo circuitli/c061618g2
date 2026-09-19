@@ -119,9 +119,11 @@ jobs:
           name: macro-signoff-logs
           path: |
             **/runs/*/*
+          if-no-files-found: ignore
 
       - name: 💾 Upload Macro Abstract Views for Top-Level Assembly
         uses: actions/upload-artifact@v4
         with:
           name: precompiled-macros
           path: macros/
+          if-no-files-found: ignore
