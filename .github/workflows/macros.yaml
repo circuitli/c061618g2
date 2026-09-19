@@ -31,7 +31,11 @@ jobs:
         with:
           # 1. Pull down the structure completely
           submodules: recursive
-          # 2. Prevent stale build snapshots from sticking around
+          # 2. Tell Git to aggressively pull the cutting-edge remote branch files
+          submodules-remote: true
+          # 3. Pull the entire Git history so no shallow tracking blocks updates
+          fetch-depth: 0
+          # 4. Prevent stale build snapshots from sticking around
           clean: true 
 
        # Step 2: Query the workspace filesystem to verify if the Makefile exists
