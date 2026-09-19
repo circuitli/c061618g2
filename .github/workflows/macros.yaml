@@ -64,7 +64,7 @@ jobs:
 
           # 2. Automatically retrieve the latest available version hash from IHP-Open-PDK
           # This extracts the latest commit tracking string dynamically
-          LATEST_HASH=$(python3 -m ciel ls-remote --pdk-family ihp-sg13g2 | head -n 1 | awk '{print $1}')
+          CIEL_DIR=$(find /home/runner/ -type d -name "ihp-sg13g2" -path "*/versions/*" | head -n 1)
           echo "Activating IHP PDK Version Hash: $LATEST_HASH"
           
           # 3. Instruct ciel to pull down and enable the target build using that hash
