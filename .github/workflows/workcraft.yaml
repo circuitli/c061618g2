@@ -69,20 +69,6 @@ jobs:
             #touch macros/.placeholder
           fi
 
-      # Native download step: extracts the 'runs/' directory tree perfectly intact
-      - name: Download GDS Netlist Artifacts
-        if: false
-        uses: actions/download-artifact@v4
-        with:
-          # Use a dynamic variable to target your current running pipeline
-          run-id: ${{ github.run_id }}
-          # 1. Force the target selection to pull ONLY the Tiny Tapeout hardware build
-          name: tt_submission
-          # 2. Command it to map the extracted files exactly into the target path
-          path: gds_drop/
-          # 3. Flattens the layout so it strips the artifact name out of the path tree
-          merge-multiple: true
-
       - name: Install and Run PDK Downloader Directly
         #if: false
         run: |
