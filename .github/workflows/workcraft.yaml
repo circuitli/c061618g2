@@ -54,7 +54,7 @@ jobs:
       - name: Download GDS Artifacts
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RUN_ID: ${{ steps.resolve-id.outputs.run_id }}
+          RUN_ID: ${{ steps.gds-resolve-id.outputs.run_id }}
         run: |
           echo "Checking for GDS artifacts in run: $RUN_ID..."
           
