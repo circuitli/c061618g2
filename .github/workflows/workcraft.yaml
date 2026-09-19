@@ -41,6 +41,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: gds_drop/
+          #  Prevents v4 from nesting files inside a subfolder
+          merge-multiple: true 
 
       - name: Install and Run PDK Downloader Directly
         #if: false
