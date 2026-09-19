@@ -35,7 +35,7 @@ MACRO_SUBDIRS := $(wildcard $(BUILD_DIR)/*)
 MACRO_NAMES   := $(notdir $(MACRO_SUBDIRS))
 
 # 2. Build the exact list of ALL configuration file paths space-separated
-JSON_TARGETS  := $(foreach dir,$(MACRO_NAMES),$(BUILD_DIR)/$(dir)/config.json)
+JSON_TARGETS := $(shell find $(BUILD_DIR) -name config.json)
 
 .PHONY: all clean
 
