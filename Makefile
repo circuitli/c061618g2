@@ -20,10 +20,11 @@
 #PDK           ?= ihp
 
 # Force the build directory to anchor strictly to your current terminal path
-BUILD_DIR     := $(CURDIR)/openlane
-OUTPUT_DIR    := $(CURDIR)/macros
+# Use simple relative paths so Docker and the shell align perfectly
+BUILD_DIR     := openlane
+OUTPUT_DIR    := macros
 
-# Search natively down from where your terminal is currently sitting
+# Keep find local to prevent path duplication errors
 JSON_TARGETS  := $(shell find $(BUILD_DIR) -maxdepth 3 -type f -name "config.json" 2>/dev/null)
 MACRO_SUBDIRS := $(patsubst %/,%,$(dir $(JSON_TARGETS)))
 MACRO_NAMES   := $(notdir $(MACRO_SUBDIRS))
