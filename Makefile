@@ -111,4 +111,4 @@ ensure:
 		mkdir -p $(BUILD_DIR)/$$dir/runs/; \
 	done
 	mkdir -p $(OUTPUT_DIR)
-	@echo "✨ Workspace is completely ready for consummption."
+	@echo "✨ Workspace is completely ready for consumption."
