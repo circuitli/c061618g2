@@ -60,7 +60,7 @@ jobs:
           if gh run download "$RUN_ID" --name precompiled-macros --dir macros/ 2>/dev/null; then
             echo "Successfully loaded precompiled macros."
           else
-            echo "No macros dirrectory found."
+            echo "No macros directory found."
             exit -1
             #echo "No precompiled macros found or run doesn't exist yet. Creating empty layout placeholder."
             # Touch a dummy file so the build flow downstream doesn't stall on a completely empty folder
