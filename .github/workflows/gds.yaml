@@ -60,16 +60,17 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RUN_ID: ${{ steps.resolve-id.outputs.run_id }}
         run: |
-          mkdir -p macros/
           echo "Checking for macro artifacts in run: $RUN_ID..."
           
           # Attempt to download the artifact via GitHub CLI; suppress 404 failure code
           if gh run download "$RUN_ID" --name precompiled-macros --dir macros/ 2>/dev/null; then
             echo "Successfully loaded precompiled macros."
           else
-            echo "No precompiled macros found or run doesn't exist yet. Creating empty layout placeholder."
+            echo "No macros dirrectory found."
+            exit -1
+            #echo "No precompiled macros found or run doesn't exist yet. Creating empty layout placeholder."
             # Touch a dummy file so the build flow downstream doesn't stall on a completely empty folder
-            touch macros/.placeholder
+            #touch macros/.placeholder
           fi
 
       - name: Build GDS
@@ -116,16 +117,17 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RUN_ID: ${{ steps.resolve-id.outputs.run_id }}
         run: |
-          mkdir -p macros/
           echo "Checking for macro artifacts in run: $RUN_ID..."
           
           # Attempt to download the artifact via GitHub CLI; suppress 404 failure code
           if gh run download "$RUN_ID" --name precompiled-macros --dir macros/ 2>/dev/null; then
             echo "Successfully loaded precompiled macros."
           else
-            echo "No precompiled macros found or run doesn't exist yet. Creating empty layout placeholder."
+            echo "No macros dirrectory found."
+            exit -1
+            #echo "No precompiled macros found or run doesn't exist yet. Creating empty layout placeholder."
             # Touch a dummy file so the build flow downstream doesn't stall on a completely empty folder
-            touch macros/.placeholder
+            #touch macros/.placeholder
           fi
 
       - name: GL test
@@ -289,16 +291,17 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RUN_ID: ${{ steps.resolve-id.outputs.run_id }}
         run: |
-          mkdir -p macros/
           echo "Checking for macro artifacts in run: $RUN_ID..."
           
           # Attempt to download the artifact via GitHub CLI; suppress 404 failure code
           if gh run download "$RUN_ID" --name precompiled-macros --dir macros/ 2>/dev/null; then
             echo "Successfully loaded precompiled macros."
           else
-            echo "No precompiled macros found or run doesn't exist yet. Creating empty layout placeholder."
+            echo "No macros dirrectory found."
+            exit -1
+            #echo "No precompiled macros found or run doesn't exist yet. Creating empty layout placeholder."
             # Touch a dummy file so the build flow downstream doesn't stall on a completely empty folder
-            touch macros/.placeholder
+            #touch macros/.placeholder
           fi
 
       - name: Run Workcraft Verification
