@@ -28,11 +28,11 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-       with:
-        # 1. Pull down the structure completely
-        submodules: recursive
-        # 2. Prevent stale build snapshots from sticking around
-        clean: true 
+        with:
+          # 1. Pull down the structure completely
+          submodules: recursive
+          # 2. Prevent stale build snapshots from sticking around
+          clean: true 
 
        # Step 2: Query the workspace filesystem to verify if the Makefile exists
       - name: Check for Makefile presence

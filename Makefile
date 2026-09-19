@@ -54,8 +54,6 @@ $(MACRO_NAMES):
 	\
 	container_status=0; \
 	\
-	# 1. Look down your global list and grab ONLY the files that match the active macro folder name
-	# This creates a space-separated string of JSON paths strictly for this macro target block
 	LOCAL_CONFIGS=""; \
 	for file in $(JSON_TARGETS); do \
 		if echo "$$file" | grep -q "/$@/"; then \
@@ -63,7 +61,6 @@ $(MACRO_NAMES):
 		fi; \
 	done; \
 	\
-	# 2. Fire up the container using the space-separated list of multiple config files
 	if [ -n "$$LOCAL_CONFIGS" ] ; then \
 		echo "Executing librelane..."; \
 		$(OPENLANE_CONTAINER) --manual-pdk --pdk-root "$(PDK_ROOT)" --pdk "$$PDK_FINAL" $$LOCAL_CONFIGS || container_status=$$?; \
