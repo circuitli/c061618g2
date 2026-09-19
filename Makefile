@@ -104,7 +104,6 @@ clean:
 	rm -rf $(OUTPUT_DIR)
 	@echo "✨ Workspace is completely clean."
 
-
 # Ensure directories exist
 ensure:
 	@echo "🧹 Creating macro and record delivery paths..."

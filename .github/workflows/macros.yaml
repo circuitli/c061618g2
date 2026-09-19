@@ -86,6 +86,7 @@ jobs:
           # Execute make exactly once and record the numeric status code
           make
           make_exit_code=$?
+          make ensure
         
           # Re-enable standard safe exit constraints
           set -e
