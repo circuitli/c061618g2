@@ -10,7 +10,7 @@ on:
       - '.github/workflows/workcraft.yaml'
 
   workflow_run:
-    workflows: ["gds"]
+    workflows: ["macros", "gds"]
     types:
       - completed
 
