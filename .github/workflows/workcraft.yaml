@@ -1,4 +1,4 @@
-name: verilator
+name: workcraft
 
 on:
   push:
