@@ -41,7 +41,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           # 1. Force the target selection to pull ONLY the Tiny Tapeout hardware build
-          name: GDS
+          name: tt_submission
           # 2. Command it to map the extracted files exactly into the target path
           path: gds_drop/
           # 3. Flattens the layout so it strips the artifact name out of the path tree
