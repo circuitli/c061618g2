@@ -19,19 +19,12 @@
 # Shorthand PDK parameter selection (Defaults to IHP SG13G2)
 #PDK           ?= ihp
 
-# 1. Trace the symlink back to its actual physical file location
-REAL_MAKEFILE_PATH := $(lastword $(MAKEFILE_LIST))
+# Force the build directory to anchor strictly to your current terminal path
+BUILD_DIR     := $(CURDIR)/openlane
+OUTPUT_DIR    := $(CURDIR)/macros
 
-# 2. Get the directory of that real file, then step up to the root project directory
-# (Adjust the number of 'dir' functions depending on how deep the subproject file sits)
-REAL_ROOT := $(abspath $(dir $(REAL_MAKEFILE_PATH))../..)
-
-# 3. Explicitly point to your targets using the absolute true root path
-BUILD_DIR     := $(REAL_ROOT)/openlane
-OUTPUT_DIR    := $(REAL_ROOT)/macros
-
-# 4. Safely pull the configuration files using the verified absolute path
-JSON_TARGETS := $(shell find -L $(BUILD_DIR) -maxdepth 3 -type f \( -name "config.json" -o -name "config.yaml" \) 2>/dev/null)
+# Search natively down from where your terminal is currently sitting
+JSON_TARGETS  := $(shell find $(BUILD_DIR) -maxdepth 3 -type f -name "config.json" 2>/dev/null)
 MACRO_SUBDIRS := $(patsubst %/,%,$(dir $(JSON_TARGETS)))
 MACRO_NAMES   := $(notdir $(MACRO_SUBDIRS))
 
