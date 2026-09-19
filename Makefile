@@ -110,5 +110,5 @@ ensure:
 	@for dir in $(MACRO_NAMES); do \
 		mkdir -p $(BUILD_DIR)/$$dir/runs/; \
 	done
-	mmkdir -p $(OUTPUT_DIR)
+	mkdir -p $(OUTPUT_DIR)
 	@echo "✨ Workspace is completely ready for consummption."
