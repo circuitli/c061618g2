@@ -27,6 +27,10 @@ jobs:
   workcraft:
     if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-24.04
+    # Grant explicit API permission to read actions history and list artifacts
+    #permissions:
+      #actions: read
+      #contents: read
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v6
@@ -81,13 +85,14 @@ jobs:
           echo "Activating IHP PDK Version Hash: $LATEST_HASH"
           
           # 3. Instruct ciel to pull down and enable the target build using that hash
-          python3 -m ciel enable --pdk-family ihp-sg13g2 "$LATEST_HASH"
+          python3 -m ciel enable --pdk-family=ihp-sg13g2 "$LATEST_HASH"
           
           # 4. Create the flat path layout required by your simulations
           mkdir -p /home/runner/pdk
           
           # 5. Locate where ciel placed the versioned directory assets and symlink it
-          CIEL_DIR=$(find /home/runner/.ciel/ciel/ihp-sg13g2/versions/ -maxdepth 2 -name "ihp-sg13g2" | head -n 1)
+          #CIEL_DIR=$(find /home/runner/.ciel/ciel/ihp-sg13g2/versions/ -maxdepth 2 -name "ihp-sg13g2" | head -n 1)
+          CIEL_DIR=$(find /home/runner/ -type d -name "ihp-sg13g2" -path "*/versions/*" | head -n 1)
           ln -s "$CIEL_DIR" /home/runner/pdk/ihp-sg13g2
           
           # 6. Export environment variables to expose paths to subsequent tools
@@ -209,7 +214,7 @@ jobs:
           echo "Checking for macro artifacts in run: $RUN_ID..."
           
           # Attempt to download the artifact via GitHub CLI; suppress 404 failure code
-          if gh run download "$RUN_ID" --name precompiled-macros --dir macros/ 2>/dev/null; then
+          if gh run download "$RUN_ID" --repo "${{ github.repository }}" --name precompiled-macros --dir macros/ 2>/dev/null; then
             echo "Successfully loaded precompiled macros."
           else
             echo "No macros directory found."
