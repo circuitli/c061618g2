@@ -69,7 +69,8 @@ jobs:
           echo "Activating IHP PDK Version Hash: $LATEST_HASH"
           
           # 3. Instruct ciel to pull down and enable the target build using that hash
-          python3 -m ciel enable --pdk-root "$PDK_ROOT" --pdk-family "$PDK_TARGET" "$LATEST_HASH"
+          #python3 -m ciel enable --pdk-root "$PDK_ROOT" --pdk-family "$PDK_TARGET" "$LATEST_HASH"
+          python3 -m ciel enable --pdk-family ihp-sg13g2 "dev"
                 
           echo "✅ PDK tracks successfully populated with configurations."
 
