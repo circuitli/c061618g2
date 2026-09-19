@@ -40,9 +40,12 @@ jobs:
       - name: Download GDS Netlist Artifacts
         uses: actions/download-artifact@v4
         with:
+          # 1. Force the target selection to pull ONLY the Tiny Tapeout hardware build
+          name: gds
+          # 2. Command it to map the extracted files exactly into the target path
           path: gds_drop/
-          #  Prevents v4 from nesting files inside a subfolder
-          merge-multiple: true 
+          # 3. Flattens the layout so it strips the artifact name out of the path tree
+          merge-multiple: true
 
       - name: Install and Run PDK Downloader Directly
         #if: false
