@@ -108,7 +108,8 @@ clean:
 ensure:
 	@echo "🧹 Creating macro and record delivery paths..."
 	@for dir in $(MACRO_NAMES); do \
-		mkdir -p $(BUILD_DIR)/$$dir/runs/; \
+		mkdir -p $(BUILD_DIR)/$$dir/runs/.placeholder; \
+		touch $(BUILD_DIR)/$$dir/runs/.placeholder/.placeholder; \
 	done
 	mkdir -p $(OUTPUT_DIR)
 	@echo "✨ Workspace is completely ready for consumption."
