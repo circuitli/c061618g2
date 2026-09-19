@@ -106,13 +106,7 @@ clean:
 
 # Ensure directories exist without overwriting or touching existing ones
 ensure:
-	@echo "📁 Creating macro and record delivery paths safely..."
-	@for dir in $(MACRO_NAMES); do \
-		if [ ! -d "$(BUILD_DIR)/$$dir/runs/placeholder" ]; then \
-			mkdir -p "$(BUILD_DIR)/$$dir/runs/placeholder"; \
-			touch "$(BUILD_DIR)/$$dir/runs/placeholder/placeholder"; \
-		fi; \
-	done
+	@echo "📁 Creating macro delivery paths safely..."
 	@if [ ! -d "$(OUTPUT_DIR)" ]; then \
 		mkdir -p "$(OUTPUT_DIR)/lef" "$(OUTPUT_DIR)/lib" "$(OUTPUT_DIR)/gds" "$(OUTPUT_DIR)/nl" "$(OUTPUT_DIR)/pnl" "$(OUTPUT_DIR)/spef"; \
 		touch "$(OUTPUT_DIR)/placeholder"; \
