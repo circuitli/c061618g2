@@ -40,6 +40,8 @@ jobs:
       - name: Download GDS Netlist Artifacts
         uses: actions/download-artifact@v4
         with:
+          # Use a dynamic variable to target your current running pipeline
+          run-id: ${{ github.run_id }}
           # 1. Force the target selection to pull ONLY the Tiny Tapeout hardware build
           name: tt_submission
           # 2. Command it to map the extracted files exactly into the target path
