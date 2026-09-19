@@ -106,7 +106,7 @@ clean:
 
 
 # Ensure directories exist
-clean:
+ensure:
 	@echo "🧹 Creating macro and record delivery paths..."
 	@for dir in $(MACRO_NAMES); do \
 		mkdir -p $(BUILD_DIR)/$$dir/runs/; \
