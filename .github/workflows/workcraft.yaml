@@ -38,7 +38,7 @@ jobs:
 
        # 🔍 1. EXTRACT RUN ID (Handles manual buttons natively)
       - name: Resolve GDS Run ID
-        id: resolve-id
+        id: gds-resolve-id
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
