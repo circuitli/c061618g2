@@ -65,6 +65,7 @@ $(MACRO_NAMES):
 	\
 	# 2. Fire up the container using the space-separated list of multiple config files
 	if [ -n "$$LOCAL_CONFIGS" ] ; then \
+		echo "Executing librelane..."; \
 		$(OPENLANE_CONTAINER) --manual-pdk --pdk-root "$(PDK_ROOT)" --pdk "$$PDK_FINAL" $$LOCAL_CONFIGS || container_status=$$?; \
 	else \
 		echo "❌ Error: No configurations found matching macro folder: $@"; \
