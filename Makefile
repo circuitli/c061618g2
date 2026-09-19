@@ -97,19 +97,20 @@ $(MACRO_NAMES):
 
 # Clean environment workspace pass
 clean:
-	@echo "🧹 Wiping old synthesis run records and macro delivery paths..."; \
+	@echo "🧹 Wiping old synthesis run records and macro delivery paths..."
 	@for dir in $(MACRO_NAMES); do \
-		rm -rf $(BUILD_DIR)/$$dir/runs/; \
-	done; \
-	rm -rf $(OUTPUT_DIR); \
+		rm -rf "$(BUILD_DIR)/$$dir/runs"; \
+	done
+	rm -rf "$(OUTPUT_DIR)"
 	@echo "✨ Workspace is completely clean."
 
 # Ensure directories exist
 ensure:
-	@echo "🧹 Creating macro and record delivery paths..." ; \
+	@echo "🧹 Creating macro and record delivery paths..."
 	@for dir in $(MACRO_NAMES); do \
-		mkdir -p $(BUILD_DIR)/$$dir/runs/.placeholder; \
-		touch $(BUILD_DIR)/$$dir/runs/.placeholder/.placeholder; \
-	done; \
-	mkdir -p $(OUTPUT_DIR); \
+		mkdir -p "$(BUILD_DIR)/$$dir/runs/placeholder"; \
+		touch "$(BUILD_DIR)/$$dir/runs/placeholder/placeholder"; \
+	done
+    mkdir -p "$(OUTPUT_DIR)/lef" "$(OUTPUT_DIR)/lib" "$(OUTPUT_DIR)/gds" "$(OUTPUT_DIR)/nl" "$(OUTPUT_DIR)/pnl" "$(OUTPUT_DIR)/spef"
 	@echo "✨ Workspace is completely ready for consumption."
+
