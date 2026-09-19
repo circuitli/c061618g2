@@ -17,9 +17,23 @@
 # =============================================================================
 
 # Shorthand PDK parameter selection (Defaults to IHP SG13G2)
-PDK           ?= ihp
-BUILD_DIR     := openlane
-OUTPUT_DIR    := macros
+#PDK           ?= ihp
+
+# 1. Trace the symlink back to its actual physical file location
+REAL_MAKEFILE_PATH := $(lastword $(MAKEFILE_LIST))
+
+# 2. Get the directory of that real file, then step up to the root project directory
+# (Adjust the number of 'dir' functions depending on how deep the subproject file sits)
+REAL_ROOT := $(abspath $(dir $(REAL_MAKEFILE_PATH))../..)
+
+# 3. Explicitly point to your targets using the absolute true root path
+BUILD_DIR     := $(REAL_ROOT)/openlane
+OUTPUT_DIR    := $(REAL_ROOT)/macros
+
+# 4. Safely pull the configuration files using the verified absolute path
+JSON_TARGETS  := $(shell find $(BUILD_DIR) -maxdepth 3 -type f \( -name "config.json" -o -name "config.yaml" \))
+MACRO_SUBDIRS := $(patsubst %/,%,$(dir $(JSON_TARGETS)))
+MACRO_NAMES   := $(notdir $(MACRO_SUBDIRS))
 
 # Tool execution definition hook
 OPENLANE_CONTAINER := docker run --rm \
@@ -29,13 +43,6 @@ OPENLANE_CONTAINER := docker run --rm \
   -w /work \
   ghcr.io/librelane/librelane:3.0.5 \
   python3 -m librelane
-
-# 1. Dynamically find all subdirectories inside openlane/
-MACRO_SUBDIRS := $(wildcard $(BUILD_DIR)/*)
-MACRO_NAMES   := $(notdir $(MACRO_SUBDIRS))
-
-# 2. Build the exact list of ALL configuration file paths space-separated
-JSON_TARGETS := $(shell find $(BUILD_DIR) -name config.json)
 
 .PHONY: all clean
 
