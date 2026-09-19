@@ -38,7 +38,7 @@ OPENLANE_CONTAINER := docker run --rm \
   ghcr.io/librelane/librelane:3.0.5 \
   python3 -m librelane
 
-.PHONY: all clean
+.PHONY: all clean ensure
 
 # Main Entry Point: Runs the entire macro set simultaneously in one container
 $(MACRO_NAMES):
@@ -103,3 +103,13 @@ clean:
 	done
 	rm -rf $(OUTPUT_DIR)
 	@echo "✨ Workspace is completely clean."
+
+
+# Ensure directories exist
+clean:
+	@echo "🧹 Creating macro and record delivery paths..."
+	@for dir in $(MACRO_NAMES); do \
+		mkdir -p $(BUILD_DIR)/$$dir/runs/; \
+	done
+	mmkdir -p $(OUTPUT_DIR)
+	@echo "✨ Workspace is completely ready for consummption."

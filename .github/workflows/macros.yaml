@@ -47,7 +47,6 @@ jobs:
           else
             echo "exists=false" >> $GITHUB_OUTPUT
           fi
-          mkdir -p macros/gds macros/lef macros/lib macros/nl macros/pnl macros/spef
 
       - name: Install and Run PDK Downloader Directly
         if: steps.check_makefile.outputs.exists == 'true'
