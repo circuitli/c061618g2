@@ -104,14 +104,18 @@ clean:
 	rm -rf "$(OUTPUT_DIR)"
 	@echo "✨ Workspace is completely clean."
 
-# Ensure directories exist
+# Ensure directories exist without overwriting or touching existing ones
 ensure:
-	@echo "🧹 Creating macro and record delivery paths..."
-	@for dir in $(MACRO_NAMES); do \
-		mkdir -p "$(BUILD_DIR)/$$dir/runs/placeholder"; \
-		touch "$(BUILD_DIR)/$$dir/runs/placeholder/placeholder"; \
-	done
-	mkdir -p "$(OUTPUT_DIR)/lef" "$(OUTPUT_DIR)/lib" "$(OUTPUT_DIR)/gds" "$(OUTPUT_DIR)/nl" "$(OUTPUT_DIR)/pnl" "$(OUTPUT_DIR)/spef"
-	touch "$(OUTPUT_DIR)/placeholder"
-	@echo "✨ Workspace is completely ready for consumption."
+	@echo "📁 Creating macro and record delivery paths safely..."
+	@if [ ! -d "$(BUILD_DIR)" ]; then \
+		for dir in $(MACRO_NAMES); do \
+			mkdir -p "$(BUILD_DIR)/$$dir/runs/placeholder"; \
+			touch "$(BUILD_DIR)/$$dir/runs/placeholder/placeholder"; \
+		done; \
+	fi
+	@if [ ! -d "$(OUTPUT_DIR)" ]; then \
+		mkdir -p "$(OUTPUT_DIR)/lef" "$(OUTPUT_DIR)/lib" "$(OUTPUT_DIR)/gds" "$(OUTPUT_DIR)/nl" "$(OUTPUT_DIR)/pnl" "$(OUTPUT_DIR)/spef"; \
+		touch "$(OUTPUT_DIR)/placeholder"; \
+	fi
+	@echo "✨ Workspace check complete. Directories are secure."
 
