@@ -35,7 +35,10 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v6
         with:
+          # 1. Pull down the structure completely
           submodules: recursive
+          # 2. Prevent stale build snapshots from sticking around
+          clean: true 
 
       # 🔍 1. EXTRACT RUN ID (Handles manual buttons natively)
       - name: Resolve Macro Run ID
@@ -88,7 +91,10 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v6
         with:
+          # 1. Pull down the structure completely
           submodules: recursive
+          # 2. Prevent stale build snapshots from sticking around
+          clean: true 
 
       # 🔍 1. EXTRACT RUN ID (Handles manual buttons natively)
       - name: Resolve Macro Run ID
@@ -141,7 +147,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v6
         with:
+          # 1. Pull down the structure completely
           submodules: recursive
+          # 2. Prevent stale build snapshots from sticking around
+          clean: true 
 
       - name: Install and Run PDK Downloader Directly
         if: false
@@ -410,7 +419,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v6
         with:
+          # 1. Pull down the structure completely
           submodules: recursive
+          # 2. Prevent stale build snapshots from sticking around
+          clean: true 
 
       - name: Setup Verilator Compilation Cache
         uses: actions/cache@v4
