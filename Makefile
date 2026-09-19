@@ -40,24 +40,39 @@ OPENLANE_CONTAINER := docker run --rm \
 .PHONY: all clean
 
 # Main Entry Point: Runs the entire macro set simultaneously in one container
-all:
+$(MACRO_NAMES):
 	@echo "================================================================="
-	@echo "🔨 Hardening all macro components together"
+	@echo "🔨 Hardening macro component: [$@]"
 	@echo "================================================================="
 	
-	@case "$(PDK)" in \
-		ihp)    PDK_TARGET="ihp-sg13g2" ;; \
-		sky130) PDK_TARGET="sky130A" ;; \
-		gf180)  PDK_TARGET="gf180mcuC" ;; \
-		*) echo "❌ Error: Invalid PDK select. Use PDK=ihp|sky130|gf180"; exit 1 ;; \
+	@case "$(PDK_TARGET)" in \
+		ihp-sg13g2) PDK_FINAL="ihp-sg13g2" ;; \
+		sky130A)    PDK_FINAL="sky130A" ;; \
+		gf180mcuC)  PDK_FINAL="gf180mcuC" ;; \
+		*) echo "❌ Error: Invalid PDK select."; exit 1 ;; \
 	esac; \
 	\
 	container_status=0; \
-	if [ -n "$(MACRO_NAMES)" ] ; then \
-		$(OPENLANE_CONTAINER) --manual-pdk --pdk-root $(PDK_ROOT) --pdk $$PDK_TARGET $(JSON_TARGETS) || container_status=$$?; \
+	\
+	# 1. Look down your global list and grab ONLY the files that match the active macro folder name
+	# This creates a space-separated string of JSON paths strictly for this macro target block
+	LOCAL_CONFIGS=""; \
+	for file in $(JSON_TARGETS); do \
+		if echo "$$file" | grep -q "/$@/"; then \
+			LOCAL_CONFIGS="$$LOCAL_CONFIGS $$file"; \
+		fi; \
+	done; \
+	\
+	# 2. Fire up the container using the space-separated list of multiple config files
+	if [ -n "$$LOCAL_CONFIGS" ] ; then \
+		$(OPENLANE_CONTAINER) --manual-pdk --pdk-root "$(PDK_ROOT)" --pdk "$$PDK_FINAL" $$LOCAL_CONFIGS || container_status=$$?; \
+	else \
+		echo "❌ Error: No configurations found matching macro folder: $@"; \
+		exit 1; \
 	fi; \
-	if [ "$$container_status" -ne 0 ]; then \
-		echo "❌ Error: LibreLane multi-macro build failed with exit code $$container_status"; \
+	\
+	if [ $$container_status -ne 0 ]; then \
+		echo "❌ Error: LibreLane failed on macro $@ with exit code $$container_status"; \
 		exit $$container_status; \
 	fi; \
 	\
