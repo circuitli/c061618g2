@@ -31,7 +31,7 @@ BUILD_DIR     := $(REAL_ROOT)/openlane
 OUTPUT_DIR    := $(REAL_ROOT)/macros
 
 # 4. Safely pull the configuration files using the verified absolute path
-JSON_TARGETS  := $(shell find $(BUILD_DIR) -maxdepth 3 -type f \( -name "config.json" -o -name "config.yaml" \))
+JSON_TARGETS := $(shell find -L $(BUILD_DIR) -maxdepth 3 -type f \( -name "config.json" -o -name "config.yaml" \) 2>/dev/null)
 MACRO_SUBDIRS := $(patsubst %/,%,$(dir $(JSON_TARGETS)))
 MACRO_NAMES   := $(notdir $(MACRO_SUBDIRS))
 
