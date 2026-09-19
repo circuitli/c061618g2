@@ -53,7 +53,7 @@ all:
 	esac; \
 	\
 	container_status=0; \
-	if [ -n "$(JSON_TARGETS)" ] ; then \
+	if [ -n "$(MACRO_NAMES)" ] ; then \
 		$(OPENLANE_CONTAINER) --manual-pdk --pdk-root $(PDK_ROOT) --pdk $$PDK_TARGET $(JSON_TARGETS) || container_status=$$?; \
 	fi; \
 	if [ "$$container_status" -ne 0 ]; then \
