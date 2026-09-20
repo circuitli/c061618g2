@@ -39,6 +39,39 @@ jobs:
           clean: true 
 
        # 🔍 1. EXTRACT RUN ID (Handles manual buttons natively)
+      - name: Resolve Macro Run ID
+        id: resolve-id
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_run" ]; then
+            echo "run_id=${{ github.event.workflow_run.id }}" >> $GITHUB_OUTPUT
+          else
+            # Finds the absolute latest successful macros workflow run ID natively via GitHub CLI
+            LATEST_ID=$(gh run list --workflow="macros.yaml" --status=success --limit=1 --json databaseId -q '.[0].databaseId')
+            echo "run_id=$LATEST_ID" >> $GITHUB_OUTPUT
+          fi
+                
+        # 📦 2. SAFE GITHUB ARTIFACT DOWNLOADER (Bypasses v4 run-id 404 bugs)
+      - name: Download Precompiled Macro Artifacts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_ID: ${{ steps.resolve-id.outputs.run_id }}
+        run: |
+          echo "Checking for macro artifacts in run: $RUN_ID..."
+          
+          # Attempt to download the artifact via GitHub CLI; suppress 404 failure code
+          if gh run download "$RUN_ID" --name precompiled-macros --dir macros/ 2>/dev/null; then
+            echo "Successfully loaded precompiled macros."
+          else
+            echo "No macros directory found."
+            exit -1
+            #echo "No precompiled macros found or run doesn't exist yet. Creating empty layout placeholder."
+            # Touch a dummy file so the build flow downstream doesn't stall on a completely empty folder
+            #touch macros/.placeholder
+          fi
+
+       # 🔍 1. EXTRACT RUN ID (Handles manual buttons natively)
       - name: Resolve GDS Run ID
         id: gds-resolve-id
         env:
@@ -191,39 +224,6 @@ jobs:
           sed -i '/^[[:space:]]*assign[[:space:]]/d' ./sg13g2_stdcell_clean.v
           sed -i 's/#[0-9]\+//g' ./sg13g2_stdcell_clean.v
 
-      
-       # 🔍 1. EXTRACT RUN ID (Handles manual buttons natively)
-      - name: Resolve Macro Run ID
-        id: resolve-id
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [ "${{ github.event_name }}" = "workflow_run" ]; then
-            echo "run_id=${{ github.event.workflow_run.id }}" >> $GITHUB_OUTPUT
-          else
-            # Finds the absolute latest successful macros workflow run ID natively via GitHub CLI
-            LATEST_ID=$(gh run list --workflow="macros.yaml" --status=success --limit=1 --json databaseId -q '.[0].databaseId')
-            echo "run_id=$LATEST_ID" >> $GITHUB_OUTPUT
-          fi
-
-       # 📦 2. SAFE GITHUB ARTIFACT DOWNLOADER (Bypasses v4 run-id 404 bugs)
-      - name: Download Precompiled Macro Artifacts
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RUN_ID: ${{ steps.resolve-id.outputs.run_id }}
-        run: |
-          echo "Checking for macro artifacts in run: $RUN_ID..."
-          
-          # Attempt to download the artifact via GitHub CLI; suppress 404 failure code
-          if gh run download "$RUN_ID" --repo "${{ github.repository }}" --name precompiled-macros --dir macros/ 2>/dev/null; then
-            echo "Successfully loaded precompiled macros."
-          else
-            echo "No macros directory found."
-            exit -1
-            #echo "No precompiled macros found or run doesn't exist yet. Creating empty layout placeholder."
-            # Touch a dummy file so the build flow downstream doesn't stall on a completely empty folder
-            #touch macros/.placeholder
-          fi
 
       - name: Run Workcraft Verification
         id: workcraft
