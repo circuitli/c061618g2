@@ -8,7 +8,7 @@ on:
       - '.github/workflows/workcraft.yaml'
 
   workflow_run:
-    workflows: ["macros", "gds"]
+    workflows: ["gds"]
     types:
       - completed
 
