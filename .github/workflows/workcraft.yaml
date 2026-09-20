@@ -5,8 +5,6 @@ on:
     branches:
       - main
     paths:
-      - 'src/**'
-      - 'info.yaml'
       - '.github/workflows/workcraft.yaml'
 
   workflow_run:
@@ -73,32 +71,33 @@ jobs:
             #touch macros/.placeholder
           fi
 
-      - name: Install and Run PDK Downloader Directly
-        #if: false
+      - name: Fetch and Link IHP PDK dev Branch Directly
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # 1. Install ciel (the open-source IHP PDK version manager)
-          python3 -m pip install ciel
+          set -eo pipefail
+
+          # 1. Define clean workspace target directory variables
+          export TARGET_PDK_DIR="${{ github.workspace }}/pdk"
+          export TEMP_CLONE_DIR="${{ github.workspace }}/pdk_tmp"
           
-          # 2. Automatically retrieve the latest available version hash from IHP-Open-PDK
-          # This extracts the latest commit tracking string dynamically
-          LATEST_HASH=$(python3 -m ciel ls-remote --pdk-family ihp-sg13g2 | head -n 1 | awk '{print $1}')
-          echo "Activating IHP PDK Version Hash: $LATEST_HASH"
+          rm -rf "$TARGET_PDK_DIR" "$TEMP_CLONE_DIR"
+          mkdir -p "$TARGET_PDK_DIR"
           
-          # 3. Instruct ciel to pull down and enable the target build using that hash
-          python3 -m ciel enable --pdk-family=ihp-sg13g2 "$LATEST_HASH"
+          echo "📥 Performing native source clone..."
+          # 2. Clone the full repository structure to a temporary folder
+          git clone --branch dev --depth 1 --recurse-submodules https://github.com/IHP-GmbH/IHP-Open-PDK.git "$TEMP_CLONE_DIR"
           
-          # 4. Create the flat path layout required by your simulations
-          mkdir -p /home/runner/pdk
+          echo "📁 Moving internal process folder to eliminate double nesting..."
+          # 3. Move the internal process folder directly to where LibreLane expects it
+          # This extracts 'ihp-pdk_repo/ihp-sg13g2' straight to 'pdk/ihp-sg13g2'
+          mv "$TEMP_CLONE_DIR/ihp-sg13g2" "$TARGET_PDK_DIR/"
           
-          # 5. Locate where ciel placed the versioned directory assets and symlink it
-          #CIEL_DIR=$(find /home/runner/.ciel/ciel/ihp-sg13g2/versions/ -maxdepth 2 -name "ihp-sg13g2" | head -n 1)
-          CIEL_DIR=$(find /home/runner/ -type d -name "ihp-sg13g2" -path "*/versions/*" | head -n 1)
-          ln -s "$CIEL_DIR" /home/runner/pdk/ihp-sg13g2
+          # 4. Clean up the empty temporary download directory
+          rm -rf "$TEMP_CLONE_DIR"
           
-          # 6. Export environment variables to expose paths to subsequent tools
-          echo "PDK_ROOT=/home/runner/pdk" >> $GITHUB_ENV
+          # 5. Export environment tracking configurations
+          echo "PDK_ROOT=$TARGET_PDK_DIR" >> $GITHUB_ENV
           echo "PDK=ihp-sg13g2" >> $GITHUB_ENV
 
       - name: Install OSS CAD Suite
