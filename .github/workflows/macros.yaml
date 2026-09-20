@@ -49,7 +49,7 @@ jobs:
           fi
 
       - name: Install and Run PDK Downloader Directly
-        if: steps.check_makefile.outputs.exists == 'true'
+        if: false #steps.check_makefile.outputs.exists == 'true'
         shell: bash
         # Forward the path definitions directly into this step execution block
         env:
@@ -73,6 +73,30 @@ jobs:
           #python3 -m ciel enable --pdk-family ihp-sg13g2 "dev"
                 
           echo "✅ PDK tracks successfully populated with configurations."
+
+      - name: Fetch and Link IHP PDK dev Branch Directly
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PDK_ROOT: ${{ env.PDK_ROOT }}
+        run: |
+          set -eo pipefail
+
+          export PDK_ROOT="${{ github.workspace }}/pdk"
+          export PDK_TARGET="ihp-sg13g2"
+
+          pip install ciel
+
+          # 1. Clear out any broken tracking links or layout remains
+          rm -rf $PDK_ROOT
+          mkdir -p $PDK_ROOT
+          
+          echo "📥 Performing native source clone of the IHP dev branch..."
+          # 2. Force a fast clone of the official IHP repository directly into your path
+          git clone --branch dev --depth 1 --recurse-submodules https://github.com/IHP-GmbH/IHP-Open-PDK.git $PDK_ROOT/ihp-sg13g2
+          
+          # 3. Export environment variables to expose paths to subsequent tools
+          echo "PDK_ROOT=/home/runner/pdk" >> $GITHUB_ENV
+          echo "PDK=ihp-sg13g2" >> $GITHUB_ENV
 
       # Hardens the macros sub-config natively
       - name: 🔨 Compile Internal Hard Macros Natively
