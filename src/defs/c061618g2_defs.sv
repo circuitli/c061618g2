@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-`ifndef MMU_DEFS_SVH
-`define MMU_DEFS_SVH
+`ifndef c061618g2_defs_SVH
+`define c061618g2_defs_SVH
 `default_nettype none
 
 // =========================================================================
@@ -79,4 +79,4 @@ typedef struct packed {
 } pmod3_outputs_t;
 
 `default_nettype wire
-`endif // MMU_DEFS_SVH
+`endif // c061618g2_defs_SVH

@@ -14,10 +14,10 @@
  * limitations under the License.
  */
  
-`ifndef MMU_CORE_SVH
-`define MMU_CORE_SVH
+`ifndef c061618g2_core_SVH
+`define c061618g2_core_SVH
 
-`include "src/defs/mmu_defs.sv"
+`include "src/defs/c061618g2_defs.sv"
 `include "src/module/mueller_inertial_delay_filter_bank.sv"
 
 `default_nettype none
@@ -35,7 +35,7 @@
 `default_nettype none
 `timescale 1ns/1ps
 
-module mmu_core #(
+module c061618g2_core #(
     parameter int FILTER_STAGES = 3
 )(
     input  wire                 rst_n,     // Asynchronous active-low reset
@@ -134,4 +134,4 @@ module mmu_core #(
 endmodule
 
 `default_nettype wire
-`endif // MMU_CORE_SVH
+`endif // c061618g2_core_SVH

@@ -17,7 +17,7 @@
 `ifndef C061618G2_SV
 `define C061618G2_SV
 
-`include "src/core/mmu_core.sv"
+`include "src/core/c061618g2_core.sv"
 
 `default_nettype none
 
@@ -107,7 +107,7 @@ module c061618g2 (
     
     pmod3_outputs_t core_signals;
 
-    mmu_core core_inst (
+    c061618g2_core core_inst (
         .rst_n     (rst_n),
         .core_ctrl (filtered[7:5]), 
         .core_addr (filtered[4:0]), 

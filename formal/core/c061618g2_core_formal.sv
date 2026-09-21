@@ -14,17 +14,17 @@
  * limitations under the License.
  */
  
-`ifndef MMU_CORE_FORMAL_SV
-`define MMU_CORE_FORMAL_SV
+`ifndef c061618g2_core_FORMAL_SV
+`define c061618g2_core_FORMAL_SV
 
-`include "src/core/mmu_core.sv"
+`include "src/core/c061618g2_core.sv"
 
-`include "formal/defs/mmu_defs_formal.sv"
+`include "formal/defs/c061618g2_defs_formal.sv"
 `include "formal/module/async_glitch_filter_bank_formal.sv"
 
 `default_nettype none
 
-module mmu_core_formal #(
+module c061618g2_core_formal #(
     parameter int FILTER_STAGES = 4
 )(
     input  wire                 rst_n,      // Asynchronous active-low reset
@@ -40,7 +40,7 @@ module mmu_core_formal #(
     // =========================================================================
     // 1. DESIGN UNDER TEST (DUT) INSTANTIATION
     // =========================================================================
-    mmu_core #(
+    c061618g2_core #(
         .FILTER_STAGES(FILTER_STAGES)
     ) dut (
         .rst_n    (rst_n),
@@ -216,7 +216,7 @@ module mmu_core_formal #(
 endmodule
 
 // Bind declaration mapping structural signals cleanly into the tracking workspace
-bind mmu_core mmu_core_formal i_mmu_core_formal (
+bind c061618g2_core c061618g2_core_formal i_c061618g2_core_formal (
     .rst_n    (rst_n),
     .core_ctrl (core_ctrl),           // Maps flat [2:0] control vector
     .core_addr (core_addr),           // Maps flat [4:0] address slice vector    .ren      (ren),

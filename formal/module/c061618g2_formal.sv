@@ -19,7 +19,7 @@
 
 `include "src/module/c061618g2.sv"
 
-`include "formal/core/mmu_core_formal.sv"
+`include "formal/core/c061618g2_core_formal.sv"
 
 `default_nettype none
 

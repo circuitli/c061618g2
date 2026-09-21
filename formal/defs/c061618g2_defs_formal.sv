@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-`ifndef MMU_DEFS_FORMAL_SV
-`define MMU_DEFS_FORMAL_SV
+`ifndef c061618g2_defs_FORMAL_SV
+`define c061618g2_defs_FORMAL_SV
 
-`include "src/defs/mmu_defs.sv"
+`include "src/defs/c061618g2_defs.sv"
 
 `default_nettype none
 
-module mmu_defs_formal(
+module c061618g2_defs_formal(
     input wire [7:0] ui_in,
     input wire [7:0] uio_in,
     input wire [7:0] uio_out,
