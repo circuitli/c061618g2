@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-`ifndef c061618g2_defs_SVH
-`define c061618g2_defs_SVH
+`ifndef C061618G2_DEFS_SVH
+`define C061618G2_DEFS_SVH
 `default_nettype none
 
 // =========================================================================

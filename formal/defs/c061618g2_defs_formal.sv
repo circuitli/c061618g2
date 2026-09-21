@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-`ifndef c061618g2_defs_FORMAL_SV
-`define c061618g2_defs_FORMAL_SV
+`ifndef C061618G2_DEFS_FORMAL_SV
+`define C061618G2_DEFS_FORMAL_SV
 
 `include "src/defs/c061618g2_defs.sv"
 

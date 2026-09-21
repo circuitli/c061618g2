@@ -14,8 +14,8 @@
  * limitations under the License.
  */
  
-`ifndef c061618g2_core_SVH
-`define c061618g2_core_SVH
+`ifndef C061618G2_CORE_SVH
+`define C061618G2_CORE_SVH
 
 `include "src/defs/c061618g2_defs.sv"
 `include "src/module/mueller_inertial_delay_filter_bank.sv"
