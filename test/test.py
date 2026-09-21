@@ -96,7 +96,7 @@ async def initialize_dut(dut):
     dut.rst_n.value = 1
     await Timer(50, unit="ns") # Give the asynchronous delay chains time to stabilize
 
-async def drive_and_settle(dut, ui_val, uio_val, ena_val=1, settle_ns=50):
+async def drive_and_settle(dut, ui_val, uio_val, ena_val=1, settle_ns=5):
     """
     Drives all input vectors and environment flags simultaneously to eliminate 
     address skew, then steps time to cleanly resolve asynchronous feedback loops.
