@@ -47,8 +47,8 @@ module mux2_1 (
 `elsif GF180MCU
     // GlobalFoundries GF180MCU 7-track 5V MUX2_1
     gf180mcu_fd_sc_mcu7t5v0__mux2_1 u_cell (
-        .I0(A0), // GF naming convention uses I0/I1 for data inputs
-        .I1(A1), 
+        .A(A0),   // Data Input 0 (Selected when S == 0)
+        .B(A1),   // Data Input 1 (Selected when S == 1)
         .S(S), 
         .Z(Y)    // Maps GF's internal Z output port to top level Y
     );

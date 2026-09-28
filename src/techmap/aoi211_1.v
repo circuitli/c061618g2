@@ -56,16 +56,6 @@ module aoi211_1 (
         .Y(Y) 
     );
 
-`elsif GF180MCU
-    // GlobalFoundries Native 7-track 5V footprint
-    gf180mcu_fd_sc_mcu7t5v0__aoi211_1 u_gf_aoi (
-        .I0(A1),
-        .I1(A2),
-        .I2(B1),
-        .I3(C1),
-        .Z(Y)
-    );
-
 `elsif SKY130
     // SkyWater Sky130 Native High-Density Cell
     sky130_fd_sc_hd__aoi211_1 u_sky_aoi (
@@ -74,6 +64,16 @@ module aoi211_1 (
         .B1(B1),
         .C1(C1),
         .Y(Y)
+    );
+
+`elsif GF180MCU
+    // GlobalFoundries Native 7-track 5V footprint
+    gf180mcu_fd_sc_mcu7t5v0__aoi211_1 u_gf_aoi (
+        .A1(A1),
+        .A2(A2),
+        .B(B1),
+        .C(C1),
+        .ZN(Y)
     );
 
 `else
