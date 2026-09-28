@@ -17,8 +17,10 @@
 `ifndef DLYGATE4SD3_V
 `define DLYGATE4SD3_V
 
-`include "src/techmap/inv_1.v"
-`include "src/techmap/buf_4.v"
+`ifdef IHP_SG13G2
+ `include "src/techmap/inv_1.v"
+ `include "src/techmap/buf_4.v"
+`endif
 
 `default_nettype none
 

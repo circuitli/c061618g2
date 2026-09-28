@@ -19,8 +19,10 @@
 
 `include "src/techmap/dlygate4sd3.v"
 
-`include "formal/techmap/inv_1_formal.sv"
-`include "formal/techmap/buf_4_formal.sv"
+`ifdef IHP_SG13G2
+ `include "formal/techmap/inv_1_formal.sv"
+ `include "formal/techmap/buf_4_formal.sv"
+`endif
 
 `default_nettype none
 
