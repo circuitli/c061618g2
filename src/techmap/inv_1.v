@@ -34,7 +34,7 @@ module inv_1 (
     sky130_fd_sc_hd__inv_1 u_cell (.A(A), .Y(Y));
 `elsif GF180MCU
     // GlobalFoundries GF180MCU 7-track Inverter
-    gf180mcu_fd_sc_mcu7t5v0__inv_1 u_cell (.A(A), .Y(Y));
+    gf180mcu_fd_sc_mcu7t5v0__inv_1 u_cell (.I(A), .ZN(Y));
 `else
     // Pure behavioral fallback for local verification (Icarus / Verilator)
     assign Y = !A;
