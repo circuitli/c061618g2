@@ -36,14 +36,6 @@ module tb ();
       ui_in  = 8'h00;   // Baseline address lines grounded to $0000
   end
 
- /*
-`ifdef GL_TEST
-  // Supply rails required strictly for gate-level netlist simulations
-  supply1 VPWR;
-  supply0 VGND;
-`endif
- */
-
   // Instantiate the actual user module under test (UUT)
 `ifdef GL_TEST
   // Instantiate the wrapper name that the automated script injected into the netlist
@@ -53,13 +45,6 @@ module tb ();
   // Standard RTL simulation uses your raw custom name
   c061618g2 user_project (
 `endif
-
-/*
-`ifdef GL_TEST
-      .VPWR(VPWR),
-      .VGND(VGND),
-`endif
- */
       .ui_in  (ui_in),    // Dedicated inputs
       .uo_out (uo_out),   // Dedicated outputs
       .uio_in (uio_in),   // Bidirectional IOs: Input path
