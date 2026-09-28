@@ -68,7 +68,7 @@ module dlygate4sd3 (
 `elsif SKY130
     sky130_fd_sc_hd__dlygate4sd3 u_cell (.A(A), .X(X));
 `elsif GF180MCU
-    gf180mcu_fd_sc_7at__dlygate4sd3 u_cell (.A(A), .Y(X));
+    gf180mcu_fd_sc_mcu7t5v0__dlygate4sd3 u_cell (.A(A), .Y(X));
 `else
     // Fallback behavioral assignment for local testbench verifications
     assign #1 X = A;
