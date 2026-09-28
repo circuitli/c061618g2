@@ -17,10 +17,8 @@
 `ifndef DLYGATE4SD3_V
 `define DLYGATE4SD3_V
 
-`ifdef IHP_SG13G2
- `include "src/techmap/inv_1.v"
- `include "src/techmap/buf_4.v"
-`endif
+`include "src/techmap/inv_1.v"
+`include "src/techmap/buf_4.v"
 
 `default_nettype none
 
@@ -28,8 +26,6 @@ module dlygate4sd3 (
     input wire A,
     output wire X
 );
-`ifdef IHP_SG13G2
-
     // ---------------------------------------------------------------------
     // HIGH-EFFICIENCY CAPACITIVE-LOADED INVERTER PAIR (~1.2 - 1.8 ns)
     // ---------------------------------------------------------------------
@@ -64,15 +60,6 @@ module dlygate4sd3 (
         .A (X),
         .X (scalar_cap_b) 
     );
-
-`elsif SKY130
-    sky130_fd_sc_hd__dlygate4sd3 u_cell (.A(A), .X(X));
-`elsif GF180MCU
-    gf180mcu_fd_sc_mcu7t5v0__dlygate4sd3 u_cell (.A(A), .Y(X));
-`else
-    // Fallback behavioral assignment for local testbench verifications
-    assign #1 X = A;
-`endif
 endmodule
 
 `default_nettype wire

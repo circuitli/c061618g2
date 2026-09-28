@@ -49,11 +49,11 @@ module oai211_1 (
 `elsif GF180MCU
     // GlobalFoundries Native 7-track 5V OAI211 Footprint
     gf180mcu_fd_sc_mcu7t5v0__oai211_1 u_gf_oai (
-        .I0(A1),
-        .I1(A2),
-        .I2(B1),
-        .I3(C1),
-        .Z(Y)
+        .A1(A1),
+        .A2(A2),
+        .B(B1),
+        .C(C1),
+        .ZN(Y)
     );
 
 `else
