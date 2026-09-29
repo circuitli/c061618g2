@@ -49,7 +49,7 @@ $(MACRO_NAMES):
 	@case "$(PDK_TARGET)" in \
 		ihp-sg13g2) PDK_FINAL="ihp-sg13g2" ;; \
 		sky130A)    PDK_FINAL="sky130A" ;; \
-		gf180mcuC)  PDK_FINAL="gf180mcuC" ;; \
+		gf180mcuD)  PDK_FINAL="gf180mcuD" ;; \
 		*) echo "❌ Error: Invalid PDK select."; exit 1 ;; \
 	esac; \
 	\

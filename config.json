@@ -62,12 +62,6 @@
     "PDN_VOFFSET": 10.78,
     "PDN_VPITCH": 22.26,
 
-    "_fp_pdn_enable_pins": true,
-    "_fp_pdn_global_connections": null,
-    "_fp_io_mode": 1,
-    "_fp_io_edge_padding": 0.46,
-    "_FP_IO_MIN_DISTANCE": 0.96,
-
     "PDN_SKIPTRIM": false,
 
     "RUN_TAP_ENDCAP_INSERTION": true,
@@ -91,8 +85,37 @@
     "STD_CELL_LIBRARY": "gf180mcu_fd_sc_mcu7t5v0",
     "VDD_NETS": [ "VDD" ],
     "GND_NETS": [ "VSS" ],
-    "FP_TAP_DISTANCE": 16,
-    "DIODE_INSERTION_STRATEGY": 0
+
+    "FP_CORE_UTIL": 55,
+    "PL_TARGET_DENSITY_PCT": 65,
+
+    "DIE_AREA": [ 0.0, 0.0, 147.84, 39.20 ],
+    "CORE_AREA": [ 0.0, 0.0, 147.84, 39.20 ],
+
+    "RT_MAX_LAYER": "met3",
+    "PDN_HORIZONTAL_LAYER": "met3",
+    "PDN_VERTICAL_LAYER": "met2",
+    "PDN_RAIL_LAYER": "met1",
+    "RT_CLOCK_MIN_LAYER": "met1",
+    "RT_CLOCK_MAX_LAYER": "met2",
+
+    "PDN_HWIDTH": 0.46,
+    "PDN_HSPACING": 0.46,
+    "PDN_HOFFSET": 3.92,
+    "PDN_HPITCH": 7.84,
+
+    "PDN_VWIDTH": 0.46,
+    "PDN_VSPACING": 0.46,
+    "PDN_VOFFSET": 12.32,
+    "PDN_VPITCH": 25.20,
+
+    "PDN_SKIPTRIM": false,
+
+    "RUN_TAP_ENDCAP_INSERTION": true,
+    "_FP_TAPCELL_DIST": 60,
+
+    "RUN_ANTENNA_REPAIR": true,
+    "RUN_HEURISTIC_DIODE_INSERTION": true
   },
 
   "// -------------------------------------------------------------------------": "",
