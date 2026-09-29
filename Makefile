@@ -34,6 +34,7 @@ OPENLANE_CONTAINER := docker run --rm \
   -v "$(CURDIR)":/work \
   -v "$(PDK_ROOT)":"$(PDK_ROOT)" \
   -e PDK_ROOT="$(PDK_ROOT)" \
+  -e PDK="$(PDK_TARGET)" \
   -w /work \
   ghcr.io/librelane/librelane:3.0.5 \
   python3 -m librelane
@@ -64,7 +65,7 @@ $(MACRO_NAMES):
 	\
 	if [ -n "$$LOCAL_CONFIGS" ] ; then \
 		echo "Executing librelane..."; \
-		$(OPENLANE_CONTAINER) --manual-pdk --pdk-root "$(PDK_ROOT)" --pdk "$$PDK_FINAL" $$LOCAL_CONFIGS || container_status=$$?; \
+		$(OPENLANE_CONTAINER) $$LOCAL_CONFIGS || container_status=$$?; \
 	else \
 		echo "❌ Error: No configurations found matching macro folder: $@"; \
 		exit 1; \
